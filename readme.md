@@ -1,4 +1,4 @@
-AlgoVis
+#AlgoVis
 
 Algorith visualization webapp for Fullstack Open 2020 project
 

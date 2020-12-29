@@ -20,15 +20,16 @@ const sortNumbers = (list: number[], n: number): number[] => {
 
 			// If the next index is smaller, switch the places
 			[nubmersToSort[i], nubmersToSort[i + 1]] = [nubmersToSort[i + 1], nubmersToSort[i]]
-			console.log(nubmersToSort[i], '<-', nubmersToSort[i + 1])
-			console.log(nubmersToSort)
+			/* console.log(nubmersToSort[i], '<-', nubmersToSort[i + 1])
+			console.log(nubmersToSort) */
 			swapped = true
 		}
 	}
 
-	if (!swapped)
+	if (!swapped){
+		console.log('amount of recursions', Math.abs(n))
 		return nubmersToSort
-	
+	}
 	return sortNumbers(nubmersToSort, n-1)
 }
 
