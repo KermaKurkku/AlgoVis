@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-#AlgoVis
-=======
 # AlgoVis
->>>>>>> 95b8a0592bacbffa4fd24b20ea6913dab61327ca
 
 Algorith visualization webapp for Fullstack Open 2020 project
 
