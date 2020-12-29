@@ -6,13 +6,15 @@ import listGenerator from './utils/listGenerator'
 
 const App: React.FC = () => {
   const [inputValue, setInputValue] = useState<number>(5)
-  const [numbers, setNumbers] = useState<number[]>(listGenerator(5))
+  const [numbers, setNumbers] = useState<number[]>([
+    1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+  ])
 
   const setSliderValue = (value: any) => {
     if (typeof value !== 'number')
       return
-    if (value > 50)
-      value = 50
+    /* if (value > 50)
+      value = 50 */
     setNumbers(listGenerator(value))
     setInputValue(value)
   }
@@ -45,7 +47,7 @@ const App: React.FC = () => {
 
       <div style={{ display: 'flex' }}>
         {numbers.map(n => (
-          <Bar key={n} width={100/numbers.length} height={n+100/numbers.length}/>
+          <Bar key={n} width={100/numbers.length} height={n}/>
         ))}
       </div>
     </div>
