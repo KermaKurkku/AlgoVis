@@ -1,5 +1,9 @@
-AlgoVis
+# AlgoVis
 
 Algorith visualization webapp for Fullstack Open 2020 project
 
-29.12.20 start: 13.30
+Working times
+
+Date | Start time | End time | Time worked
+-----|------------|----------|------------
+29.12.20 | 13.30 |
