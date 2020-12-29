@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
 import { Slider, InputNumber, Row, Col } from 'antd'
+
+import Bar from './Components/Bar'
 import listGenerator from './utils/listGenerator'
 
 const App: React.FC = () => {
   const [inputValue, setInputValue] = useState<number>(5)
-  const [numbers, setNumbers] = useState<number[]>(listGenerator(inputValue))
+  const [numbers, setNumbers] = useState<number[]>(listGenerator(5))
 
   const setSliderValue = (value: any) => {
     if (typeof value !== 'number')
       return
+    if (value > 50)
+      value = 50
     setNumbers(listGenerator(value))
     setInputValue(value)
   }
@@ -17,21 +21,20 @@ const App: React.FC = () => {
   return (
     <div>
       <h1>AlgoVis</h1>
-      {numbers.map(n => `${n}, `)}
       <br />
       <Row>
         <Col span={12}>
           <Slider
-            min={1}
-            max={15}
+            min={3}
+            max={50}
             onChange={setSliderValue}
             value={typeof inputValue === 'number' ? inputValue : 0}
           />
         </Col>
         <Col span={4}>
           <InputNumber
-            min={1}
-            max={15}
+            min={3}
+            max={50}
             value={inputValue}
             onChange={setSliderValue}
           />
@@ -39,6 +42,12 @@ const App: React.FC = () => {
       </Row>
 
       <h3>{inputValue}</h3>
+
+      <div style={{ display: 'flex' }}>
+        {numbers.map(n => (
+          <Bar key={n} width={100/numbers.length} height={n+100/numbers.length}/>
+        ))}
+      </div>
     </div>
   )
 }
