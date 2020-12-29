@@ -13,8 +13,8 @@ const App: React.FC = () => {
   const setSliderValue = (value: any) => {
     if (typeof value !== 'number')
       return
-    /* if (value > 50)
-      value = 50 */
+    if (value > 200)
+      value = 200
     setNumbers(listGenerator(value))
     setListSize(value)
   }
@@ -28,7 +28,7 @@ const App: React.FC = () => {
         <Col span={12}>
           <Slider
             min={3}
-            max={50}
+            max={200}
             onChange={setSliderValue}
             value={typeof listSize === 'number' ? listSize : 0}
           />
@@ -36,7 +36,7 @@ const App: React.FC = () => {
         <Col span={4}>
           <InputNumber
             min={3}
-            max={50}
+            max={200}
             value={listSize}
             onChange={setSliderValue}
           />

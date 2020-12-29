@@ -10,6 +10,7 @@ const Bar = ({ height, width }: { height: number, width: number }) => {
     background: '#3E54E0',
     zIndex: 50,
     borderStyle: 'solid',
+    borderWidth: '1px',
     borderColor: '#37AFED'
   }
 
