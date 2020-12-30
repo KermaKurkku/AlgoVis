@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react'
-import { Slider, InputNumber, Row, Col } from 'antd'
+import {
+  Slider,
+  InputNumber,
+  Row,
+  Col,
+} from 'antd'
 
 import Bar from './Components/Bar'
-import listGenerator from './utils/listGenerator'
+//import listGenerator from './utils/listGenerator'
 import axios from 'axios'
 
 import { apiBaseUrl } from './constants'
 
 const App: React.FC = () => {
   const [listSize, setListSize] = useState<number>(25)
+  const [sliderValue, setSliderValue] = useState<number>(25)
   const [numbers, setNumbers] = useState<number[]>([
     1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
   ])
@@ -29,12 +35,17 @@ const App: React.FC = () => {
     fetchNewList()
   }, [listSize])
 
-  const setSliderValue = (value: any) => {
+  const onSliderChange = (value: any) => {
+    if (typeof value !== 'number' || isNaN(Number(value)))
+      return
+    setSliderValue(value)
+  }
+
+  const setNewListSize = (value: any) => {
     if (typeof value !== 'number')
       return
     if (value > 200)
       value = 200
-    setNumbers(listGenerator(value))
     setListSize(value)
   }
 
@@ -48,26 +59,27 @@ const App: React.FC = () => {
           <Slider
             min={3}
             max={200}
-            onChange={setSliderValue}
-            value={typeof listSize === 'number' ? listSize : 0}
+            onChange={onSliderChange}
+            onAfterChange={setNewListSize}
+            value={typeof sliderValue === 'number' ? sliderValue : 0}
           />
         </Col>
         <Col span={4}>
           <InputNumber
             min={3}
             max={200}
-            value={listSize}
-            onChange={setSliderValue}
+            value={sliderValue}
+            onChange={setNewListSize}
           />
         </Col>
       </Row>
 
       <h3>{listSize}</h3>
-
+        
       <div style={{ display: 'flex' }}>
-        {numbers.map(n => (
-          <Bar key={n} width={100/numbers.length} height={n/listSize}/>
-        ))}
+          {numbers.map(n => (
+            <Bar key={n} width={100/numbers.length} height={n/listSize}/>
+          ))}
       </div>
     </div>
   )

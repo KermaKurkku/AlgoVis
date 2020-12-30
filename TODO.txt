@@ -1,0 +1,4 @@
+TODO make sorting work in frontend
+
+TODO? calculate sorting in backend
+TODO make fewer calls to backend when moving the slider
