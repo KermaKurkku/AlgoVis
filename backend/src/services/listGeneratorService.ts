@@ -11,7 +11,7 @@ const addNumber = (list: number[], size: number): number => {
 
 }
 
-const listGenerator = (size: number): number[] => {
+export const listGenerator = (size: number): number[] => {
   const list: number[] = []
   console.log('generating list length of', size)
 
@@ -25,4 +25,3 @@ const listGenerator = (size: number): number[] => {
 
 
 
-export default listGenerator
