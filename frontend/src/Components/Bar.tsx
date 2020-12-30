@@ -1,7 +1,12 @@
 import React from 'react'
 
+interface Bar {
+  height: number,
+  width: number
+}
+
 // Renders a bar to represent a number in the list
-const Bar = ({ height, width }: { height: number, width: number }) => {
+const Bar: React.FC<Bar> = ({ height, width }: { height: number, width: number }) => {
   const maxHeight = 40
   const style = {
     height: `${maxHeight*height}em`,
