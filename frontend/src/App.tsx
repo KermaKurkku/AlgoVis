@@ -7,32 +7,22 @@ import {
 } from 'antd'
 
 import Bar from './Components/Bar'
-//import listGenerator from './utils/listGenerator'
-import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { apiBaseUrl } from './constants'
+import { RootState } from './store/store'
+import { fetchNewList } from './store/list/listReducer'
 
 const App: React.FC = () => {
   const [listSize, setListSize] = useState<number>(25)
   const [sliderValue, setSliderValue] = useState<number>(25)
-  const [numbers, setNumbers] = useState<number[]>([
-    1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
-  ])
+
+
+  const dispatch = useDispatch()
+  const numbers = useSelector((state: RootState) => state.numberList.list)
+
 
   useEffect(() => {
-    // eslint-disable-next-line
-    axios.get<void>(`${apiBaseUrl}/ping`)
-    const fetchNewList = async () => {
-      try {
-        const { data: newList } = await axios.get<number[]>(`${apiBaseUrl}/list?size=${listSize}`)
-        console.log(newList)
-        setNumbers(newList)
-      } catch (e) {
-        return (<h2>Error</h2>)
-      }
-    }
-    // eslint-disable-next-line
-    fetchNewList()
+    dispatch(fetchNewList(listSize))
   }, [listSize])
 
   const onSliderChange = (value: any) => {
@@ -49,7 +39,6 @@ const App: React.FC = () => {
     setListSize(value)
   }
 
-  console.log(numbers)
   return (
     <div>
       <h1>AlgoVis</h1>

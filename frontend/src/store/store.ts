@@ -6,7 +6,7 @@ import listReducer from './list/listReducer'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 const rootReducer = combineReducers({
-  listReducer
+  numberList: listReducer,
 })
 
 const store = createStore(

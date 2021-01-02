@@ -12,7 +12,7 @@ const initialState: ListState = {
   list: []
 }
 
-export const getNewList = (listSize: number): AppType => async dispatch => {
+export const fetchNewList = (listSize: number): AppType => async dispatch => {
   const newList = await listService.fetchNew(listSize)
   dispatch(setNewList(newList))
 }
