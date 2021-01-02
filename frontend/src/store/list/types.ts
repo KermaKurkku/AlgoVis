@@ -2,7 +2,6 @@ export interface ListState {
   list: number[];
 }
 
-
 export const ADD_LIST = 'ADD_LIST'
 
 interface AddListAction {

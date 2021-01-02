@@ -12,6 +12,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from './store/store'
 import { fetchNewList } from './store/list/listReducer'
 
+import selectedTest from './Algorithms/SelectedTest'
+
 const App: React.FC = () => {
   const [listSize, setListSize] = useState<number>(25)
   const [sliderValue, setSliderValue] = useState<number>(25)
@@ -19,6 +21,7 @@ const App: React.FC = () => {
 
   const dispatch = useDispatch()
   const numbers = useSelector((state: RootState) => state.numberList.list)
+  const current = useSelector((state: RootState) => state.currentNumber.current)
 
 
   useEffect(() => {
@@ -62,12 +65,13 @@ const App: React.FC = () => {
           />
         </Col>
       </Row>
+      <button onClick={selectedTest}>test</button>
 
       <h3>{listSize}</h3>
         
       <div style={{ display: 'flex' }}>
           {numbers.map(n => (
-            <Bar key={n} width={100/numbers.length} height={n/listSize}/>
+            <Bar key={n} width={100/numbers.length} height={n/listSize} selected={numbers.indexOf(n) === current}/>
           ))}
       </div>
     </div>

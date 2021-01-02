@@ -3,7 +3,7 @@ import {
   ListActionType,
   ADD_LIST
 } from './types'
-import { setNewList } from './actions'
+import { setNewAction } from './actions'
 import { AppType } from '../store'
 
 import listService from '../../services/lists'
@@ -14,7 +14,7 @@ const initialState: ListState = {
 
 export const fetchNewList = (listSize: number): AppType => async dispatch => {
   const newList = await listService.fetchNew(listSize)
-  dispatch(setNewList(newList))
+  dispatch(setNewAction(newList))
 }
 
 const reducer = (state = initialState, action: ListActionType): ListState => {
