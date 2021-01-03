@@ -9,10 +9,10 @@ import {
 import Bar from './Components/Bar'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { RootState } from './store/store'
+import { RootState } from './store'
 import { fetchNewList } from './store/list/listReducer'
 
-import selectedTest from './Algorithms/SelectedTest'
+import bubbleSortRedux from './Algorithms/bubbleSortRedux'
 
 const App: React.FC = () => {
   const [listSize, setListSize] = useState<number>(25)
@@ -53,7 +53,7 @@ const App: React.FC = () => {
             max={200}
             onChange={onSliderChange}
             onAfterChange={setNewListSize}
-            value={typeof sliderValue === 'number' ? sliderValue : 0}
+            value={typeof sliderValue === 'number' ? sliderValue : 25}
           />
         </Col>
         <Col span={4}>
@@ -65,7 +65,7 @@ const App: React.FC = () => {
           />
         </Col>
       </Row>
-      <button onClick={selectedTest}>test</button>
+      <button onClick={bubbleSortRedux}>test</button>
 
       <h3>{listSize}</h3>
         

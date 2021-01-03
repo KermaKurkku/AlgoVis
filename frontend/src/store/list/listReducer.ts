@@ -4,7 +4,7 @@ import {
   ADD_LIST
 } from './types'
 import { setNewAction } from './actions'
-import { AppType } from '../store'
+import { AppType } from '../'
 
 import listService from '../../services/lists'
 
