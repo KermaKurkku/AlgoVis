@@ -1,15 +1,12 @@
 import { setCurrentAction, removeCurrentAction } from '../store/currentNumber/actions'
 import { setNewAction } from '../store/list/actions'
 
-import { getStore } from '../store'
+import store from '../store'
 
-const store = getStore()
+const timeoutLoop = (i: number, loop: number): void => {
+  const list: number[] = [...store.getState().numberList.list]
 
-
-const timeoutLoop = (i: number, loop: number) => {
-  const list = store.getState().numberList.list
   setTimeout(() => {
-    console.log(i)
     if (list[i] > list[i + 1]) {
       [list[i], list[i + 1]] = [list[i + 1], list[i]]
       store.dispatch(setNewAction(list))
@@ -26,12 +23,9 @@ const timeoutLoop = (i: number, loop: number) => {
   }, 20)
 }
 
-const bubbleSort = (): void => {
-  const list = store.getState().numberList.list
-
-  const i = -1
-
+export const bubbleSort = (): void => {
+  const list: number[] = [...store.getState().numberList.list]
+  const i = 0
+  store.dispatch(setCurrentAction(0))
   timeoutLoop(i, list.length)
 }
-
-export default bubbleSort

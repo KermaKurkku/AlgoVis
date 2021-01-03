@@ -20,8 +20,6 @@ const store = createStore(
   )
 )
 
-export const getStore = (): Store => store
-
 export type RootState = ReturnType<typeof rootReducer>
 
 export type AppType<ReturnType = void> = ThunkAction<

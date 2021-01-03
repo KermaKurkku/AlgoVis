@@ -12,7 +12,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from './store'
 import { fetchNewList } from './store/list/listReducer'
 
-import bubbleSortRedux from './Algorithms/bubbleSortRedux'
+import {
+  quickSort
+} from './Algorithms'
 
 const App: React.FC = () => {
   const [listSize, setListSize] = useState<number>(25)
@@ -65,7 +67,7 @@ const App: React.FC = () => {
           />
         </Col>
       </Row>
-      <button onClick={bubbleSortRedux}>test</button>
+      <button onClick={quickSort}>test</button>
 
       <h3>{listSize}</h3>
         
