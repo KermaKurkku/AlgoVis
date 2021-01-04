@@ -12,9 +12,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from './store'
 import { fetchNewList } from './store/list/listReducer'
 
-import {
-  quickSort
-} from './Algorithms'
+import Worker from './worker'
 
 const App: React.FC = () => {
   const [listSize, setListSize] = useState<number>(25)
@@ -67,7 +65,11 @@ const App: React.FC = () => {
           />
         </Col>
       </Row>
-      <button onClick={quickSort}>test</button>
+      <button onClick={async () => {
+        const instance = new Worker()
+        await instance.quickSortRedux()
+        instance.terminate()
+      }}>test</button>
 
       <h3>{listSize}</h3>
         
