@@ -42,6 +42,17 @@ const App: React.FC = () => {
     setListSize(value)
   }
 
+  const onClick = async () => {
+    const instance = new Worker()
+    instance.onmessage = (event) => {
+      console.log(event)
+    }
+
+    await instance.quickSort()
+
+    console.log(numbers)
+  }
+
   return (
     <div>
       <h1>AlgoVis</h1>
@@ -65,11 +76,7 @@ const App: React.FC = () => {
           />
         </Col>
       </Row>
-      <button onClick={async () => {
-        const instance = new Worker()
-        await instance.quickSortRedux()
-        instance.terminate()
-      }}>test</button>
+      <button onClick={onClick}>test</button>
 
       <h3>{listSize}</h3>
         
