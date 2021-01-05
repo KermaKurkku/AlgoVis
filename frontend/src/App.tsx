@@ -17,6 +17,7 @@ import Worker from './worker'
 const App: React.FC = () => {
   const [listSize, setListSize] = useState<number>(25)
   const [sliderValue, setSliderValue] = useState<number>(25)
+  const workerRef = React.useRef<Worker>()
 
 
   const dispatch = useDispatch()
@@ -43,12 +44,12 @@ const App: React.FC = () => {
   }
 
   const onClick = async () => {
-    const instance = new Worker()
-    instance.onmessage = (event) => {
-      console.log(event)
+    workerRef.current = new Worker()
+    workerRef.current.onmessage = (e) => {
+      console.log(e.data)
     }
 
-    await instance.quickSort()
+    await workerRef.current.quickSort()
 
     console.log(numbers)
   }
