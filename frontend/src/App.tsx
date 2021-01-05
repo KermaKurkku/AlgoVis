@@ -45,10 +45,10 @@ const App: React.FC = () => {
 
   const onClick = async () => {
     workerRef.current = new Worker()
-    workerRef.current.onmessage = (e) => {
-      console.log(e.data)
+    workerRef.current.onmessage = ( e: MessageEvent) => {
+      console.log('yeet')
     }
-
+    workerRef.current.postMessage('Yeetus deletus')
     await workerRef.current.quickSort()
 
     console.log(numbers)
