@@ -44,9 +44,6 @@ const App: React.FC = () => {
 
   const onClick = async () => {
     const instance = new SortWorker()
-    instance.onmessage = (event) => {
-      console.log(event)
-    }
 
     await instance.quickSort()
 

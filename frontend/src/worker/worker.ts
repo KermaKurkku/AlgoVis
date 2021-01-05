@@ -60,14 +60,14 @@ const sort = async (low: number, high: number): Promise<void> => {
   
 }
 
-const countUp = (i: number) => {
+const countUp = async (i: number) => {
   for (let j = 0; j < 10; j++)
     i++
 
   return i
 }
 
-export const quickSort = (): void => {
+export const quickSort = async (): Promise<void> => {
   const list = [...store.getState().numberList.list]
   const i = 10;
   console.log(i)
