@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from './store'
 import { fetchNewList } from './store/list/listReducer'
 
-import Worker from './worker'
+import SortWorker from './worker'
 
 const App: React.FC = () => {
   const [listSize, setListSize] = useState<number>(25)
@@ -43,7 +43,7 @@ const App: React.FC = () => {
   }
 
   const onClick = async () => {
-    const instance = new Worker()
+    const instance = new SortWorker()
     instance.onmessage = (event) => {
       console.log(event)
     }

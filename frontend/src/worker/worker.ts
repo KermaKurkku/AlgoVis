@@ -3,8 +3,6 @@ import { setNewAction } from '../store/list/actions'
 
 import store from '../store'
 
-declare function postMessage(message: any): void
-
 const wait = async (ms: number): Promise<void> => await new Promise(resolve => setTimeout(resolve, ms))
 
 const partition = async (low: number, high: number): Promise<number> => {
@@ -62,10 +60,18 @@ const sort = async (low: number, high: number): Promise<void> => {
   
 }
 
-export const quickSort = (): void => {
-  const list = [...store.getState().numberList.list]
-  postMessage('currentValue')
-  //sort(0, list.length-1)
+const countUp = (i: number) => {
+  for (let j = 0; j < 10; j++)
+    i++
+
+  return i
 }
 
-quickSort()
+export const quickSort = (): void => {
+  const list = [...store.getState().numberList.list]
+  const i = 10;
+  console.log(i)
+  const rtrn = countUp(i)
+  console.log(rtrn)
+}
+
