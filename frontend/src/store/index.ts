@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux'
-import { Action, Store } from 'redux'
+import { Action } from 'redux'
 import thunk, { ThunkAction } from 'redux-thunk'
 import listReducer from './list/listReducer'
 import currentNumberReducer from './currentNumber/currentNumberReducer'

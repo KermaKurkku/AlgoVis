@@ -88,7 +88,8 @@ const App: React.FC = () => {
         
       <div style={{ display: 'flex' }}>
           {numbers.map(n => (
-            <Bar key={n} width={100/numbers.length} height={n/listSize} selected={numbers.indexOf(n) === current}/>
+            <Bar key={n} width={100/numbers.length} height={n/listSize}
+              main={numbers.indexOf(n) === current.main} sub={numbers.indexOf(n) === current.sub} />
           ))}
       </div>
     </div>
