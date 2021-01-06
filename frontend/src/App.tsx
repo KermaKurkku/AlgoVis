@@ -12,12 +12,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from './store'
 import { fetchNewList } from './store/list/listReducer'
 
-import Worker from './worker'
+import SortWorker from 'comlink-loader!./worker'
+
+import {quickSort} from './Algorithms'
 
 const App: React.FC = () => {
   const [listSize, setListSize] = useState<number>(25)
   const [sliderValue, setSliderValue] = useState<number>(25)
-  const workerRef = React.useRef<Worker>()
+  const workerRef = React.useRef<SortWorker>()
 
 
   const dispatch = useDispatch()
@@ -26,6 +28,7 @@ const App: React.FC = () => {
 
 
   useEffect(() => {
+    console.log('fetching new list')
     dispatch(fetchNewList(listSize))
   }, [listSize])
 
@@ -43,15 +46,17 @@ const App: React.FC = () => {
     setListSize(value)
   }
 
-  const onClick = async () => {
-    workerRef.current = new Worker()
-    workerRef.current.onmessage = ( e: MessageEvent) => {
-      console.log('yeet')
-    }
-    workerRef.current.postMessage('Yeetus deletus')
+  const onClick = async (): Promise<void> => {
+    /* workerRef.current = new SortWorker()
+    workerRef.current.addEventListener('message', message => {
+      console.log(message)
+    })
+    //workerRef.current.postMessage('Yeetus deletus')
     await workerRef.current.quickSort()
 
-    console.log(numbers)
+    console.log(numbers) */
+    console.log('yeet')
+    await quickSort()
   }
 
   return (

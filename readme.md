@@ -12,3 +12,4 @@ Date | Working time | Working time (h) | Work done
 3.1.21 | 12.00 - 14.00 18.00 - 20.30 | 4.5 | Created bubblesort in frontend, started quicksort -Very WIP, VERY broken
 4.1.21 | 14.15 - 19.30 | 5.25 | Figuring out how webworkers work with typescript, tons of troubleshooting and stackOverflow
 5.1.21 | 13.30 - 20.00 | 6.5H | Troubleshooting with a error with webworkers onmessage, not a lot of actual code
+6.1.21 | 11.45 - 

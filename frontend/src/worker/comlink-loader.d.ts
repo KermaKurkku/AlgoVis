@@ -1,10 +1,10 @@
 declare module 'comlink-loader!*' {
-  class SortWorker extends Worker {
+  class WebWorker extends Worker {
     constructor()
 
     quickSort(): Promise<void>
   }
 
-  export = SortWorker
+  export = WebWorker
 }
   
