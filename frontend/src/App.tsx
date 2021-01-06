@@ -4,6 +4,7 @@ import {
   InputNumber,
   Row,
   Col,
+  Select
 } from 'antd'
 
 import Bar from './Components/Bar'
@@ -16,9 +17,19 @@ import SortWorker from 'comlink-loader!./worker'
 
 import {quickSort} from './Algorithms'
 
+import {
+  runAlgorithm,
+  Algorithms,
+  AlgorithmTypes
+} from './services/AlgorithmRunner'
+
+const { Option } = Select
+
 const App: React.FC = () => {
+  const algorithmOptions: string[] = Object.values(AlgorithmTypes) as string[]
   const [listSize, setListSize] = useState<number>(25)
   const [sliderValue, setSliderValue] = useState<number>(25)
+  const [selectedAlgorithm, setSelectedAlgorithm] = useState<string>(algorithmOptions[0])
   const workerRef = React.useRef<SortWorker>()
 
 
@@ -28,7 +39,6 @@ const App: React.FC = () => {
 
 
   useEffect(() => {
-    console.log('fetching new list')
     dispatch(fetchNewList(listSize))
   }, [listSize])
 
@@ -55,8 +65,12 @@ const App: React.FC = () => {
     await workerRef.current.quickSort()
 
     console.log(numbers) */
-    console.log('yeet')
-    await quickSort()
+    const selected: Algorithms =  selectedAlgorithm as Algorithms
+    await runAlgorithm(selected)
+  }
+
+  const handleAlgorithm = (value: string) => {
+    setSelectedAlgorithm(value)
   }
 
   return (
@@ -80,6 +94,13 @@ const App: React.FC = () => {
             value={sliderValue}
             onChange={setNewListSize}
           />
+        </Col>
+        <Col>
+          <Select defaultValue={algorithmOptions[0]} onChange={handleAlgorithm}>
+            {algorithmOptions.map(a => 
+              <Option key={a} value={a}>{a}</Option>  
+            )}
+          </Select>
         </Col>
       </Row>
       <button onClick={onClick}>test</button>

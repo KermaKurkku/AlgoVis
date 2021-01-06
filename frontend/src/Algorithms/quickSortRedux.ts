@@ -15,7 +15,7 @@ const partition = async (A: number[], low: number, high: number): Promise<number
     return -1
   for (let j = low; j < high; j++) {
     store.dispatch(setSubAction(j))
-    await wait(200)
+    await wait(50)
     if (list[j] < pivot) {
       [list[i], list[j]] = [list[j], list[i]]
       store.dispatch(setNewAction(list))
