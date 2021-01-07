@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Slider,
-  Row,
-  Col,
-  Select
+  Select,
+  Layout,
+  Typography,
+  Menu,
+  Button
 } from 'antd'
 
+const { Title } = Typography
+const { SubMenu } = Menu
+const { Header, Footer, Sider, Content } = Layout
+
 import Bars from './Components/Bars'
+import ListSizeSlider from './Components/ListSizeSlider'
+
 import { useDispatch, useSelector } from 'react-redux'
 
 import { RootState } from './store'
-import { fetchNewList } from './store/list/listReducer'
+import { fetchNewList, changeListSize } from './store/list/listReducer'
 
 import SortWorker from 'comlink-loader!./worker'
 
@@ -19,40 +26,11 @@ import {
   Algorithms,
   AlgorithmTypes
 } from './services/AlgorithmRunner'
-import { changeListSizeAction } from './store/list/actions'
-
-const { Option } = Select
 
 const App: React.FC = () => {
   const algorithmOptions: string[] = Object.values(AlgorithmTypes) as string[]
-  const [sliderValue, setSliderValue] = useState<number>(25)
   const [selectedAlgorithm, setSelectedAlgorithm] = useState<string>(algorithmOptions[0])
   const workerRef = React.useRef<SortWorker>()
-
-
-  const dispatch = useDispatch()
-  const numbers = useSelector((state: RootState) => state.numberList.list)
-  const listSize = useSelector((state: RootState) => state.numberList.size)
-  const current = useSelector((state: RootState) => state.currentNumber)
-
-
-  useEffect(() => {
-    dispatch(fetchNewList(listSize))
-  }, [listSize])
-
-  const onSliderChange = (value: any) => {
-    if (typeof value !== 'number' || isNaN(Number(value)))
-      return
-    setSliderValue(value)
-  }
-
-  const setNewListSize = (value: any) => {
-    if (typeof value !== 'number')
-      return
-    if (value > 200)
-      value = 200
-    dispatch(changeListSizeAction(value))
-  }
 
   const onClick = async (): Promise<void> => {
     
@@ -60,37 +38,70 @@ const App: React.FC = () => {
     await runAlgorithm(selected)
   }
 
-  const handleAlgorithm = (value: string) => {
+  const menuOnClick = (event: any)  => {
+    console.log(event)
+    setSelectedAlgorithm(event.key)
+  }
+
+  const handleAlgorithm = (value: string): void => {
     setSelectedAlgorithm(value)
   }
 
   return (
     <div>
-      <h1>AlgoVis</h1>
-      <br />
-      <Row>
-        <Col span={12}>
-          <Slider
-            min={3}
-            max={150}
-            onChange={onSliderChange}
-            onAfterChange={setNewListSize}
-            value={typeof sliderValue === 'number' ? sliderValue : 25}
-          />
-        </Col>
-        <Col>
-          <Select defaultValue={algorithmOptions[0]} onChange={handleAlgorithm}>
-            {algorithmOptions.map(a => 
-              <Option key={a} value={a}>{a}</Option>  
-            )}
-          </Select>
-        </Col>
-      </Row>
-      <button onClick={onClick}>test</button>
+      <Layout>
+        <Header className="header">
+          <div className="logo" />
+          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
+            <Menu.Item key="1">AlgoVis</Menu.Item>
+          </Menu>
+        </Header>
+        <Layout style={{ margin: '0 5em 0 5em'}}>
+          <Sider width={'20%'} className="site-layout-background">
 
-      <h3>{listSize}</h3>
-        
-      <Bars />
+            <Button type='primary' block size='large' style={{
+                margin: '1em auto',
+              }}
+              onClick={onClick}
+            >Visualize</Button>
+
+            <Title level={2} style={{ color: 'white', margin: '0,5em auto'}}>Select list size</Title>
+
+            <Menu
+              mode="inline"
+              style={{ borderRight: 0 }}
+              defaultOpenKeys={['slider', 'sub2']}
+              defaultSelectedKeys={[algorithmOptions[0]]}
+              onClick={menuOnClick}
+            >
+              <Menu.Item key='slider' title={
+                <p>Select list size</p>
+              }>
+                <ListSizeSlider />
+              </Menu.Item>
+              <SubMenu
+                key='sub2'
+                title="Select algorithm"
+              >
+                {algorithmOptions.map(a => 
+                  <Menu.Item key={a} >{a}</Menu.Item>  
+                )}
+              </SubMenu>
+            </Menu>
+            
+          </Sider>
+          <Layout style={{ padding: '0 10em em'}}>
+            <Content className="site-layout-background"
+              style={{
+                padding: 24,
+                margin: 0,
+              }}>
+              <Bars />
+            </Content>
+          </Layout>
+        </Layout>
+        <Footer style={{ textAlign: 'center'}}>AlgoVis algorithm visualizer @2020 Created by Jere Salmensaari</Footer>
+      </Layout>
     </div>
   )
 }

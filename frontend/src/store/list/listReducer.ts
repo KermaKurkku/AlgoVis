@@ -4,7 +4,7 @@ import {
   ADD_LIST,
   CHANGE_SIZE
 } from './types'
-import { setNewAction } from './actions'
+import { setNewAction, changeListSizeAction } from './actions'
 import { AppType } from '../'
 
 import listService from '../../services/lists'
@@ -20,7 +20,7 @@ export const fetchNewList = (listSize: number): AppType => async dispatch => {
 }
 
 export const changeListSize = (listSize: number): AppType => async dispatch => {
-  dispatch(changeListSize(listSize))
+  dispatch(changeListSizeAction(listSize))
 }
 
 const reducer = (state = initialState, action: ListActionType): ListState => {
