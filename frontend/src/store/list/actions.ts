@@ -1,4 +1,8 @@
-import { ListActionType, ADD_LIST } from './types'
+import {
+  ListActionType,
+  ADD_LIST,
+  CHANGE_SIZE
+} from './types'
 
 
 export const setNewAction = (list: number[]): ListActionType => {
@@ -6,4 +10,11 @@ export const setNewAction = (list: number[]): ListActionType => {
       type: ADD_LIST,
       payload: list
     }
+}
+
+export const changeListSizeAction = (size: number): ListActionType => {
+  return {
+    type: CHANGE_SIZE,
+    payload: size
+  }
 }

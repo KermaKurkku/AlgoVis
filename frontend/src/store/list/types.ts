@@ -1,12 +1,19 @@
 export interface ListState {
   list: number[];
+  size: number
 }
 
 export const ADD_LIST = 'ADD_LIST'
+export const CHANGE_SIZE = 'CHANGE_SIZE'
 
-interface AddListAction {
+interface SetList {
   type: typeof ADD_LIST;
   payload: number[];
 }
 
-export type ListActionType = AddListAction
+interface ChangeListSize {
+  type: typeof CHANGE_SIZE;
+  payload: number
+}
+
+export type ListActionType = SetList | ChangeListSize

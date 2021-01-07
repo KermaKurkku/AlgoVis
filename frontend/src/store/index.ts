@@ -22,6 +22,9 @@ const store = createStore(
 
 export type RootState = ReturnType<typeof rootReducer>
 
+export * from './currentNumber/types'
+export * from './list/types'
+
 export type AppType<ReturnType = void> = ThunkAction<
   ReturnType,
   RootState,

@@ -15,7 +15,7 @@ const partition = async (A: number[], low: number, high: number): Promise<number
     return -1
   for (let j = low; j < high; j++) {
     store.dispatch(setSubAction(j))
-    await wait(50)
+    await wait(20)
     if (list[j] < pivot) {
       [list[i], list[j]] = [list[j], list[i]]
       store.dispatch(setNewAction(list))
@@ -46,28 +46,3 @@ export const quickSort = async (): Promise<void> => {
   await sort(0, list.length-1)
   store.dispatch(removeCurrentAction())
 }
-
-
-/* const timeoutLoop = async (i: number, j: number, pivot: number, low: number,  high: number) => {
-  const list: number[] = [...store.getState().numberList.list]
-  setTimeout(() => {
-    if (list[j] < pivot) {
-      const newList = [...list.map(
-        n => n === list[i] ? list[j] : n === list[j] ? list[i] : n
-        )]
-      store.dispatch(setNewAction(newList))
-      i++
-      store.dispatch(setCurrentAction(i))
-    }
-    if (j === high) {
-      const newList = [...list.map(
-        n => n === list[i] ? list[high] : n === list[high] ? list[i] : n
-        )]
-      console.log(newList)
-      store.dispatch(setNewAction(list))
-      
-    } else {
-      timeoutLoop(i, ++j, pivot, low, high)
-    }
-  }, 20)
-} */

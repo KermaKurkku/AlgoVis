@@ -1,8 +1,6 @@
 export interface CurrentNumberState {
-  current: {
-    main: number | null
-    sub: number | null
-  }
+  main: number | null
+  sub: number | null
 }
 
 export const SET_CURRENT = 'SET_CURRENT'

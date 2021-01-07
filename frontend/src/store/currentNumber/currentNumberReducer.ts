@@ -17,10 +17,8 @@ import {
 import { AppType } from '../'
 
 const initialState: CurrentNumberState = {
-  current: {
-    main: null,
-    sub: null
-  }
+  main: null,
+  sub: null
 }
 
 export const setCurrent = (main: number, sub: number | null): AppType => async dispatch => {
@@ -48,39 +46,29 @@ const reducer = (state = initialState, action: CurrentNumberActionType): Current
   switch(action.type) {
     case SET_CURRENT:
       return {
-        current: {
-          main: action.payload.main,
-          sub: action.payload.sub
-        }
+        main: action.payload.main,
+        sub: action.payload.sub
       }
     case SET_MAIN:
       console.log(action.payload)
       return {
-        current: {
-          main: action.payload.main,
-          sub: state.current.sub
-        }
+        main: action.payload.main,
+        sub: state.sub
       }
     case SET_SUB:
       return {
-        current: {
-          main: state.current.main,
-          sub: action.payload.sub
-        }
+        main: state.main,
+        sub: action.payload.sub
       }
     case REMOVE_CURRENT:
       return {
-        current: {
-          main: null,
-          sub: null,
-        }
+        main: null,
+        sub: null,
       }
     case REMOVE_SUB:
       return {
-        current: {
-          sub: null,
-          ...state.current
-        }
+        sub: null,
+        ...state
       }
     default:
       return state

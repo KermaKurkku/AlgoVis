@@ -13,4 +13,5 @@ Working times
 | 4.1.21 | 14.15 - 19.30 | 5.25 | Figuring out how webworkers work with typescript, tons of troubleshooting and stackOverflow | |
 | 5.1.21 | 13.30 - 20.00 | 6.5 | Troubleshooting with a error with webworkers onmessage, not a lot of actual code | |
 | 6.1.21 | 11.45 - 17.15| 5.5 | Troubleshooted web workers, got quicksort working without web workers for now, added possibility to change the sorting algorithm in use |  |
+| 7.1.21 | 12.30 - | 1 | Layout?  |  |
 |        |         |  |                                                                               | 34.5h |

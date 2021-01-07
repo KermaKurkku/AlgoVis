@@ -1,7 +1,8 @@
 import {
   ListState,
   ListActionType,
-  ADD_LIST
+  ADD_LIST,
+  CHANGE_SIZE
 } from './types'
 import { setNewAction } from './actions'
 import { AppType } from '../'
@@ -9,19 +10,31 @@ import { AppType } from '../'
 import listService from '../../services/lists'
 
 const initialState: ListState = {
-  list: []
+  list: [],
+  size: 25
 }
 
 export const fetchNewList = (listSize: number): AppType => async dispatch => {
-  const newList = await listService.fetchNew(listSize)
+  const newList: number[] = await listService.fetchNew(listSize)
   dispatch(setNewAction(newList))
+}
+
+export const changeListSize = (listSize: number): AppType => async dispatch => {
+  dispatch(changeListSize(listSize))
 }
 
 const reducer = (state = initialState, action: ListActionType): ListState => {
   switch(action.type) {
     case ADD_LIST:
+      
       return {
-        list: [...action.payload]
+        list: [...action.payload],
+        size: state.size
+      }
+    case CHANGE_SIZE:
+      return {
+        list: state.list,
+        size: action.payload
       }
     default:
       return state
