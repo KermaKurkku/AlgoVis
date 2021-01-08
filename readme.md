@@ -16,3 +16,5 @@ Working times
 | 7.1.21 | 12.30 - 17.30 | 5 | Styled the application, changed redux states to contain length of list, moved parts of website to separate components |  |
 | 8.1.21 | 12.00 - | 1 | Created version 0.1.0 in heroku | |
 |        |         |  |                                                                               | 39.5h |
+
+Link to app <https://rocky-springs-02478.herokuapp.com/>
