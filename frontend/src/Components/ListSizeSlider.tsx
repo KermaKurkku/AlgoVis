@@ -26,8 +26,8 @@ const ListSizeSlider: React.FC = () => {
   const setNewListSize = (value: any) => {
     if (typeof value !== 'number')
       return
-    if (value > 200)
-      value = 200
+    if (value > 60)
+      value = 60
     console.log('change list size', value)
     dispatch(changeListSize(value))
   }
@@ -36,7 +36,7 @@ const ListSizeSlider: React.FC = () => {
 		<div>
 			<Slider
 				min={3}
-        max={150}
+        max={60}
         onChange={onSliderChange}
         onAfterChange={setNewListSize}
         value={typeof sliderValue === 'number' ? sliderValue : 25}

@@ -1,14 +1,17 @@
 {
   "name": "algovis_backend",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Backend for AlgoVis, algorithm visualisator",
   "main": "index.js",
   "scripts": {
+    "start": "node ./build/index.js",
+    "tsc": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "ts-node": "ts-node",
     "dev": "ts-node-dev src/index.ts",
     "lint": "eslint './src/**/*.{ts, tsx}'",
-    "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix"
+    "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix",
+    "build:ui": "rm -rf build_frontend && cd ../frontend && npm run build --prod && cp -r build ../backend/build_frontend"
   },
   "author": "Jere Salmensaari",
   "license": "MIT",
@@ -26,6 +29,7 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1"
   }
 }

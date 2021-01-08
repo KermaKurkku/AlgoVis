@@ -11,7 +11,6 @@ export const setCurrentAction = (main: number, sub?: number | null): CurrentNumb
 }
 
 export const setMainAction = (main: number): CurrentNumberActionType => {
-  console.log('main',main)
   return {
     type: SET_MAIN,
     payload: {

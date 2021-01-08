@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import {
   Select,
   Layout,
@@ -14,38 +14,48 @@ const { Header, Footer, Sider, Content } = Layout
 import Bars from './Components/Bars'
 import ListSizeSlider from './Components/ListSizeSlider'
 
+import stillRunning from './utils/stillRunning'
+
 import { useDispatch, useSelector } from 'react-redux'
+import { removeCurrent } from './store/currentNumber/currentNumberReducer'
 
-import { RootState } from './store'
-import { fetchNewList, changeListSize } from './store/list/listReducer'
-
-import SortWorker from 'comlink-loader!./worker'
+// Figure out webworkers at some point maybe?
+//import SortWorker from 'comlink-loader!./worker'
 
 import {
   runAlgorithm,
   Algorithms,
   AlgorithmTypes
 } from './services/AlgorithmRunner'
+import { RootState } from './store'
 
 const App: React.FC = () => {
   const algorithmOptions: string[] = Object.values(AlgorithmTypes) as string[]
   const [selectedAlgorithm, setSelectedAlgorithm] = useState<string>(algorithmOptions[0])
-  const workerRef = React.useRef<SortWorker>()
 
-  const onClick = async (): Promise<void> => {
+  const dispatch = useDispatch()
+
+  const main = useSelector((state: RootState) => state.currentNumber.main)
+
+  const startVisualization = async (): Promise<void> => {
     
     const selected: Algorithms =  selectedAlgorithm as Algorithms
     await runAlgorithm(selected)
+  }
+
+  const stopVisualization = (): void => {
+    console.log('Stop visualizing')
+    dispatch(removeCurrent())
+    setTimeout(() => {
+      stillRunning()
+    }, 20);
   }
 
   const menuOnClick = (event: any)  => {
     console.log(event)
     setSelectedAlgorithm(event.key)
   }
-
-  const handleAlgorithm = (value: string): void => {
-    setSelectedAlgorithm(value)
-  }
+  console.log(stillRunning())
 
   return (
     <div>
@@ -59,11 +69,18 @@ const App: React.FC = () => {
         <Layout style={{ margin: '0 5em 0 5em'}}>
           <Sider width={'20%'} className="site-layout-background">
 
-            <Button type='primary' block size='large' style={{
-                margin: '1em auto',
-              }}
-              onClick={onClick}
-            >Visualize</Button>
+            {main === null ? 
+              <Button type='primary' block size='large' style={{
+                  margin: '1em auto',
+                }}
+                onClick={startVisualization}
+              >Visualize</Button> :
+              <Button type='primary' block size='large' style={{
+                  margin: '1em auto'
+                }}
+                onClick={stopVisualization}
+              >Stop visualization</Button>
+            }
 
             <Title level={2} style={{ color: 'white', margin: '0,5em auto'}}>Select list size</Title>
 

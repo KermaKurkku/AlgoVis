@@ -1,3 +1,4 @@
+require('dotenv').config()
 import express from 'express'
 const cors = require('cors')
 import listRouter from './routes/lists'
@@ -5,8 +6,9 @@ import listRouter from './routes/lists'
 const app = express()
 app.use(cors())
 app.use(express.json())
+app.use(express.static('build_frontend'))
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 
 app.get('/api/ping', (_req, res) => {
   console.log('pinged')

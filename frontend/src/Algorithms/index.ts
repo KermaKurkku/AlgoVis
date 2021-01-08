@@ -1,2 +1,3 @@
-export * from './bubbleSortRedux'
-export * from './quickSortRedux'
+export * from './bubbleSort'
+export * from './quickSort'
+export * from './bogoSort'

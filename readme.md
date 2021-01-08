@@ -14,4 +14,5 @@ Working times
 | 5.1.21 | 13.30 - 20.00 | 6.5 | Troubleshooting with a error with webworkers onmessage, not a lot of actual code | |
 | 6.1.21 | 11.45 - 17.15| 5.5 | Troubleshooted web workers, got quicksort working without web workers for now, added possibility to change the sorting algorithm in use |  |
 | 7.1.21 | 12.30 - 17.30 | 5 | Styled the application, changed redux states to contain length of list, moved parts of website to separate components |  |
+| 8.1.21 | 12.00 - | 1 | Created version 0.1.0 in heroku | |
 |        |         |  |                                                                               | 39.5h |

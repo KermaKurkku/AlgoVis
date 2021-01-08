@@ -30,7 +30,6 @@ export const setMain = (main: number): AppType => async dispatch => {
 }
 
 export const setSub = (sub: number): AppType => async dispatch => {
-  console.log('sub',sub)
   dispatch(setSubAction(sub))
 }
 
@@ -50,7 +49,6 @@ const reducer = (state = initialState, action: CurrentNumberActionType): Current
         sub: action.payload.sub
       }
     case SET_MAIN:
-      console.log(action.payload)
       return {
         main: action.payload.main,
         sub: state.sub
