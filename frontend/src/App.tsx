@@ -49,7 +49,6 @@ const App: React.FC = () => {
   }
 
   const stopVisualization = (): void => {
-    console.log('Stop visualizing')
     dispatch(setStopped())
     setTimeout(() => {
       isRunning()
@@ -57,7 +56,6 @@ const App: React.FC = () => {
   }
 
   const menuOnClick = (event: any)  => {
-    console.log('onClick')
     const checkIfNotWaiting = async () => {
       if (running !== 'waiting') {
         await dispatch(fetchNewList(listSize))

@@ -33,7 +33,7 @@ const reducer = (state = initialState, action: ListActionType): ListState => {
       }
     case CHANGE_SIZE:
       return {
-        list: state.list,
+        ...state,
         size: action.payload
       }
     default:

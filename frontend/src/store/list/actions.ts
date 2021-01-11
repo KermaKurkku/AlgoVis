@@ -1,7 +1,7 @@
 import {
   ListActionType,
   ADD_LIST,
-  CHANGE_SIZE
+  CHANGE_SIZE,
 } from './types'
 
 

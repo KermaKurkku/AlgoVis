@@ -18,7 +18,7 @@ const Bar: React.FC<Bar> = ({ height, width, main, sub }: { height: number, widt
     zIndex: 50,
     borderStyle: 'solid',
     borderWidth: '1px',
-    borderColor: '#f0f2f5'
+    borderColor: '#f0f2f5',
   }
 
   return <div style={style} />
