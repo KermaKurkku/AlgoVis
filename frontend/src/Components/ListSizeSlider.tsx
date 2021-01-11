@@ -6,6 +6,8 @@ import { RootState } from '../store'
 
 import { fetchNewList, changeListSize } from '../store/list/listReducer'
 
+import isRunning from '../utils/isRunning'
+
 
 const ListSizeSlider: React.FC = () => {
   const dispatch = useDispatch()
@@ -28,7 +30,6 @@ const ListSizeSlider: React.FC = () => {
       return
     if (value > 60)
       value = 60
-    console.log('change list size', value)
     dispatch(changeListSize(value))
   }
 
@@ -41,6 +42,7 @@ const ListSizeSlider: React.FC = () => {
         onAfterChange={setNewListSize}
         value={typeof sliderValue === 'number' ? sliderValue : 25}
         tipFormatter={null}
+        disabled={isRunning()}
 			/>
 		</div>
 	)

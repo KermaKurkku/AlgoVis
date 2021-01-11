@@ -3,14 +3,14 @@ import { setNewAction } from '../store/list/actions'
 
 import store from '../store'
 
-import stillRunning from '../utils/stillRunning'
+import isRunning from '../utils/isRunning'
 
 const timeoutLoop = (i: number, loop: number): void => {
   
   const list: number[] = [...store.getState().numberList.list]
 
   setTimeout(() => {
-    if (!stillRunning())
+    if (!isRunning())
     return
     if (list[i] > list[i + 1]) {
       [list[i], list[i + 1]] = [list[i + 1], list[i]]

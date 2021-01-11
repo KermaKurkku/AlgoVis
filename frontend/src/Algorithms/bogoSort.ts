@@ -6,7 +6,7 @@ import listService from '../services/lists'
 
 import store from '../store'
 
-import stillRunning from '../utils/stillRunning'
+import isRunning from '../utils/isRunning'
 
 const wait = async (ms: number): Promise<void> => await new Promise(resolve => setTimeout(resolve, ms))
 
@@ -19,7 +19,7 @@ const sort = async (): Promise<void> => {
 
   for (let i = 0; i < listSize - 1; i++) {
     await wait(100)
-    if (!stillRunning())
+    if (!isRunning())
       return
     store.dispatch(setMainAction(i))
     if (list[i] > list[i + 1]) {

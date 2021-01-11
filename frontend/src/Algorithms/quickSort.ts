@@ -3,7 +3,7 @@ import { setNewAction } from '../store/list/actions'
 
 import store from '../store'
 
-import stillRunning from '../utils/stillRunning'
+import isRunning from '../utils/isRunning'
 
 const wait = async (ms: number): Promise<void> => await new Promise(resolve => setTimeout(resolve, ms))
 
@@ -18,7 +18,7 @@ const partition = async (A: number[], low: number, high: number): Promise<number
   if (!pivot)
     return -1
   for (let j = low; j < high; j++) {
-    if (!stillRunning())
+    if (!isRunning())
       return -1
     store.dispatch(setSubAction(j))
 
@@ -36,7 +36,7 @@ const partition = async (A: number[], low: number, high: number): Promise<number
 }
 
 const sort = async (low: number, high: number): Promise<void> => {
-  if (!stillRunning())
+  if (!isRunning())
     return
 
   const list = [...store.getState().numberList.list]

@@ -4,7 +4,9 @@ import {
   Layout,
   Typography,
   Menu,
-  Button
+  Button,
+  Skeleton,
+  Divider
 } from 'antd'
 
 const { Title } = Typography
@@ -14,7 +16,7 @@ const { Header, Footer, Sider, Content } = Layout
 import Bars from './Components/Bars'
 import ListSizeSlider from './Components/ListSizeSlider'
 
-import stillRunning from './utils/stillRunning'
+import isRunning from './utils/isRunning'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { removeCurrent } from './store/currentNumber/currentNumberReducer'
@@ -47,7 +49,7 @@ const App: React.FC = () => {
     console.log('Stop visualizing')
     dispatch(removeCurrent())
     setTimeout(() => {
-      stillRunning()
+      isRunning()
     }, 20);
   }
 
@@ -55,20 +57,24 @@ const App: React.FC = () => {
     console.log(event)
     setSelectedAlgorithm(event.key)
   }
-  console.log(stillRunning())
+  console.log(isRunning())
 
   return (
     <div>
       <Layout>
-        <Header className="header">
-          <div className="logo" />
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
+        <Header className='header'>
+          <div />
+          <Menu theme='dark' mode='horizontal' defaultSelectedKeys={['1']}>
             <Menu.Item key="1">AlgoVis</Menu.Item>
           </Menu>
         </Header>
         <Layout style={{ margin: '0 5em 0 5em'}}>
-          <Sider width={'20%'} className="site-layout-background">
+          <Sider width={'20%'} className='site-layout-background' theme='light'>
 
+            
+
+            <Title level={2} style={{ margin: '0,5em auto', padding: '0.2em 1em'}}>Select list size</Title>
+            <ListSizeSlider />
             {main === null ? 
               <Button type='primary' block size='large' style={{
                   margin: '1em auto',
@@ -81,9 +87,7 @@ const App: React.FC = () => {
                 onClick={stopVisualization}
               >Stop visualization</Button>
             }
-
-            <Title level={2} style={{ color: 'white', margin: '0,5em auto'}}>Select list size</Title>
-
+            <Divider>Select sorting algorithm</Divider>
             <Menu
               mode="inline"
               style={{ borderRight: 0 }}
@@ -91,29 +95,22 @@ const App: React.FC = () => {
               defaultSelectedKeys={[algorithmOptions[0]]}
               onClick={menuOnClick}
             >
-              <Menu.Item key='slider' title={
-                <p>Select list size</p>
-              }>
-                <ListSizeSlider />
-              </Menu.Item>
-              <SubMenu
-                key='sub2'
-                title="Select algorithm"
-              >
-                {algorithmOptions.map(a => 
-                  <Menu.Item key={a} >{a}</Menu.Item>  
-                )}
-              </SubMenu>
+              {algorithmOptions.map(a => 
+                <Menu.Item key={a} >{a}</Menu.Item>  
+              )}
             </Menu>
             
           </Sider>
           <Layout style={{ padding: '0 10em em'}}>
-            <Content className="site-layout-background"
+            <Content className="site-layout-content"
               style={{
                 padding: 24,
                 margin: 0,
               }}>
               <Bars />
+              <Divider />
+              <Skeleton />
+              <Skeleton />
             </Content>
           </Layout>
         </Layout>
