@@ -12,7 +12,6 @@ import {
 } from '../../Algorithms'
 
 export const runAlgorithm = async (type: Algorithms) => {
-  console.log(type)
   switch (type) {
     case BubbleSort:
       return await bubbleSort()

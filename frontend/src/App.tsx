@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import {
-  Select,
   Layout,
   Typography,
   Menu,
@@ -10,7 +9,6 @@ import {
 } from 'antd'
 
 const { Title } = Typography
-const { SubMenu } = Menu
 const { Header, Footer, Sider, Content } = Layout
 
 import Bars from './Components/Bars'
@@ -19,7 +17,7 @@ import ListSizeSlider from './Components/ListSizeSlider'
 import isRunning from './utils/isRunning'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { removeCurrent } from './store/currentNumber/currentNumberReducer'
+import { setStopped, setRunning, setWaiting } from './store/running/runningReducer'
 
 // Figure out webworkers at some point maybe?
 //import SortWorker from 'comlink-loader!./worker'
@@ -30,6 +28,7 @@ import {
   AlgorithmTypes
 } from './services/AlgorithmRunner'
 import { RootState } from './store'
+import { fetchNewList } from './store/list/listReducer'
 
 const App: React.FC = () => {
   const algorithmOptions: string[] = Object.values(AlgorithmTypes) as string[]
@@ -37,27 +36,39 @@ const App: React.FC = () => {
 
   const dispatch = useDispatch()
 
-  const main = useSelector((state: RootState) => state.currentNumber.main)
+  const running = useSelector((state: RootState) => state.running)
+  const listSize = useSelector((state: RootState) => state.numberList.size)
 
   const startVisualization = async (): Promise<void> => {
-    
+    if (running === 'finished') 
+      await dispatch(fetchNewList(listSize))
+      
+    dispatch(setRunning())
     const selected: Algorithms =  selectedAlgorithm as Algorithms
     await runAlgorithm(selected)
   }
 
   const stopVisualization = (): void => {
     console.log('Stop visualizing')
-    dispatch(removeCurrent())
+    dispatch(setStopped())
     setTimeout(() => {
       isRunning()
     }, 20);
   }
 
   const menuOnClick = (event: any)  => {
-    console.log(event)
+    console.log('onClick')
+    const checkIfNotWaiting = async () => {
+      if (running !== 'waiting') {
+        await dispatch(fetchNewList(listSize))
+        dispatch(setWaiting())
+      }
+    }
+    
+    checkIfNotWaiting()
+
     setSelectedAlgorithm(event.key)
   }
-  console.log(isRunning())
 
   return (
     <div>
@@ -75,7 +86,7 @@ const App: React.FC = () => {
 
             <Title level={2} style={{ margin: '0,5em auto', padding: '0.2em 1em'}}>Select list size</Title>
             <ListSizeSlider />
-            {main === null ? 
+            {running === 'stopped' || running === 'finished' || running === 'waiting' ? 
               <Button type='primary' block size='large' style={{
                   margin: '1em auto',
                 }}
@@ -88,6 +99,7 @@ const App: React.FC = () => {
               >Stop visualization</Button>
             }
             <Divider>Select sorting algorithm</Divider>
+            {/*Menu for selecting sorting algorithm*/}
             <Menu
               mode="inline"
               style={{ borderRight: 0 }}
@@ -96,7 +108,10 @@ const App: React.FC = () => {
               onClick={menuOnClick}
             >
               {algorithmOptions.map(a => 
-                <Menu.Item key={a} >{a}</Menu.Item>  
+                <Menu.Item
+                  key={a}
+                  disabled={running === 'running' ? true : false}
+                >{a}</Menu.Item>  
               )}
             </Menu>
             

@@ -2,7 +2,8 @@ import {
 	RunningStateAction,
 	SET_RUNNING,
 	SET_STOPPED,
-	SET_FINISHED
+	SET_FINISHED,
+	SET_WAITING
 } from './types'
 
 export const setRunningAction = (): RunningStateAction => {
@@ -20,5 +21,11 @@ export const setStoppedAction = (): RunningStateAction => {
 export const setFinishedAction = (): RunningStateAction => {
 	return {
 		type: SET_FINISHED
+	}
+}
+
+export const setWaitingAction = (): RunningStateAction => {
+	return {
+		type: SET_WAITING
 	}
 }

@@ -1,10 +1,16 @@
 import state from '../store'
+import { runningType } from '../store/running/types'
 
-const isRunning = (): boolean => {
-	if (state.getState().currentNumber.main === null)
-		return false
-	else
-		return true
+const isRunning = (): runningType => {
+  const running = state.getState().running
+	switch (running) {
+		case 'running':
+			return 'running'
+		case 'finished':
+			return 'finished'
+		default:
+			return 'stopped'
+	}
 }
 
 export default isRunning

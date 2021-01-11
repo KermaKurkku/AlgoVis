@@ -17,7 +17,7 @@ import {
 import { AppType } from '../'
 
 const initialState: CurrentNumberState = {
-  main: null,
+  main: -1,
   sub: null
 }
 
@@ -60,7 +60,7 @@ const reducer = (state = initialState, action: CurrentNumberActionType): Current
       }
     case REMOVE_CURRENT:
       return {
-        main: null,
+        main: -1,
         sub: null,
       }
     case REMOVE_SUB:

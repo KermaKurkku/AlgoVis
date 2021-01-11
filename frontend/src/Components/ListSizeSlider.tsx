@@ -42,7 +42,7 @@ const ListSizeSlider: React.FC = () => {
         onAfterChange={setNewListSize}
         value={typeof sliderValue === 'number' ? sliderValue : 25}
         tipFormatter={null}
-        disabled={isRunning()}
+        disabled={isRunning() === 'running'}
 			/>
 		</div>
 	)

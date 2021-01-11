@@ -24,7 +24,7 @@ export const changeListSize = (listSize: number): AppType => async dispatch => {
 }
 
 const reducer = (state = initialState, action: ListActionType): ListState => {
-  switch(action.type) {
+  switch (action.type) {
     case ADD_LIST:
       
       return {

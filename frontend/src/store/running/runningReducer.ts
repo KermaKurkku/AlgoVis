@@ -1,22 +1,21 @@
 import {
-  RunningState,
   RunningStateAction,
   runningType,
   SET_RUNNING,
   SET_STOPPED,
-  SET_FINISHED
+  SET_FINISHED,
+  SET_WAITING
 } from './types'
 import {
   setRunningAction,
   setStoppedAction,
-  setFinishedAction
+  setFinishedAction,
+  setWaitingAction
 } from './actions'
 
-import { AppType } from '../'
+import { AppType } from '..'
 
-const initialState: RunningState = {
-  running: 'stopped'
-}
+const initialState: runningType = 'waiting'
 
 export const setRunning = (): AppType => async dispatch => {
   dispatch(setRunningAction())
@@ -30,14 +29,20 @@ export const setFinished = (): AppType => async dispatch => {
   dispatch(setFinishedAction())
 }
 
+export const setWaiting = (): AppType => async dispatch => {
+  dispatch(setWaitingAction())
+}
+
 const reducer = (state = initialState, action: RunningStateAction) => {
   switch (action.type){
     case SET_RUNNING:
-      return { running: 'running' }
+      return 'running' 
     case SET_STOPPED:
-      return { running: 'stopped' }
+      return 'stopped'
     case SET_FINISHED:
-      return { running: 'finished' }
+      return 'finished'
+    case SET_WAITING:
+      return 'waiting'
     default:
       return state
   }

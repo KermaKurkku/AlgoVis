@@ -14,11 +14,11 @@ const Bar: React.FC<Bar> = ({ height, width, main, sub }: { height: number, widt
     height: `${maxHeight*height}em`,
     maxHeight: `${maxHeight}em`,
     width: `${width}%`,
-    background: main ? '#FF7A32' : sub ? '#2EF550' : '#3E54E0',
+    background: main ? '#FF7A32' : sub ? '#2EF550' : '#1890ff',
     zIndex: 50,
     borderStyle: 'solid',
     borderWidth: '1px',
-    borderColor: '#37AFED'
+    borderColor: '#f0f2f5'
   }
 
   return <div style={style} />

@@ -1,5 +1,6 @@
 import { removeCurrentAction, setMainAction } from '../store/currentNumber/actions'
 import { setNewAction } from '../store/list/actions'
+import { setFinishedAction } from '../store/running/actions'
 
 import store from '../store'
 
@@ -10,8 +11,10 @@ const timeoutLoop = (i: number, loop: number): void => {
   const list: number[] = [...store.getState().numberList.list]
 
   setTimeout(() => {
-    if (!isRunning())
-    return
+    if (isRunning() === 'stopped') {
+      store.dispatch(removeCurrentAction())
+      return
+    }
     if (list[i] > list[i + 1]) {
       [list[i], list[i + 1]] = [list[i + 1], list[i]]
       store.dispatch(setNewAction(list))
@@ -22,6 +25,7 @@ const timeoutLoop = (i: number, loop: number): void => {
       timeoutLoop(-1, loop - 1)
     }else if (loop == 0) {
       store.dispatch(removeCurrentAction())
+      store.dispatch(setFinishedAction())
     }else  {
       timeoutLoop(i, loop)
     }

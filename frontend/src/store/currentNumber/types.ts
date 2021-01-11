@@ -1,5 +1,5 @@
 export interface CurrentNumberState {
-  main: number | null
+  main: number
   sub: number | null
 }
 

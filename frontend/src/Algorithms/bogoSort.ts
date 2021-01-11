@@ -1,4 +1,5 @@
 import { setMainAction, removeCurrentAction } from '../store/currentNumber/actions'
+import { setFinishedAction } from '../store/running/actions'
 
 import { setNewAction } from '../store/list/actions'
 
@@ -19,7 +20,7 @@ const sort = async (): Promise<void> => {
 
   for (let i = 0; i < listSize - 1; i++) {
     await wait(100)
-    if (!isRunning())
+    if (isRunning() === 'stopped')
       return
     store.dispatch(setMainAction(i))
     if (list[i] > list[i + 1]) {
@@ -35,12 +36,13 @@ const sort = async (): Promise<void> => {
     await wait(100)
     return await sort()
   }
-  store.dispatch(removeCurrentAction())
+  store.dispatch(setFinishedAction())
   return 
 }
 
 export const bogoSort = async (): Promise<void> => {
   store.dispatch(setMainAction(-1))
   await sort()
+  store.dispatch(removeCurrentAction())
   
 }
