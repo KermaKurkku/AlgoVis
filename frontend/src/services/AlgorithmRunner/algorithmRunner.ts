@@ -13,13 +13,13 @@ import {
 
 export const runAlgorithm = async (type: Algorithms) => {
   switch (type) {
-    case BubbleSort:
-      return await bubbleSort()
-    case QuickSort:
-      return await quickSort()
-    case BogoSort:
-      return await bogoSort()
-    default:
-      return
+  case BubbleSort:
+    return await bubbleSort()
+  case QuickSort:
+    return await quickSort()
+  case BogoSort:
+    return await bogoSort()
+  default:
+    return
   }
 }

@@ -33,43 +33,43 @@ export const setSub = (sub: number): AppType => async dispatch => {
   dispatch(setSubAction(sub))
 }
 
-export const removeCurrent = ():AppType => async dispatch => {
+export const removeCurrent = (): AppType => async dispatch => {
   dispatch(removeCurrentAction())
 }
 
-export const removeSub = ():AppType => async dispatch => {
+export const removeSub = (): AppType => async dispatch => {
   dispatch(removeSubAction())
 }
 
 const reducer = (state = initialState, action: CurrentNumberActionType): CurrentNumberState => {
   switch(action.type) {
-    case SET_CURRENT:
-      return {
-        main: action.payload.main,
-        sub: action.payload.sub
-      }
-    case SET_MAIN:
-      return {
-        main: action.payload.main,
-        sub: state.sub
-      }
-    case SET_SUB:
-      return {
-        main: state.main,
-        sub: action.payload.sub
-      }
-    case REMOVE_CURRENT:
-      return {
-        main: -1,
-        sub: null,
-      }
-    case REMOVE_SUB:
-      return {
-        sub: null,
-        ...state
-      }
-    default:
-      return state
+  case SET_CURRENT:
+    return {
+      main: action.payload.main,
+      sub: action.payload.sub
+    }
+  case SET_MAIN:
+    return {
+      main: action.payload.main,
+      sub: state.sub
+    }
+  case SET_SUB:
+    return {
+      main: state.main,
+      sub: action.payload.sub
+    }
+  case REMOVE_CURRENT:
+    return {
+      main: -1,
+      sub: null,
+    }
+  case REMOVE_SUB:
+    return {
+      sub: null,
+      ...state
+    }
+  default:
+    return state
   }
 }
 

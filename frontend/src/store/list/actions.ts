@@ -6,10 +6,10 @@ import {
 
 
 export const setNewAction = (list: number[]): ListActionType => {
-    return {
-      type: ADD_LIST,
-      payload: list
-    }
+  return {
+    type: ADD_LIST,
+    payload: list
+  }
 }
 
 export const changeListSizeAction = (size: number): ListActionType => {

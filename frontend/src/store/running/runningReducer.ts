@@ -35,16 +35,16 @@ export const setWaiting = (): AppType => async dispatch => {
 
 const reducer = (state = initialState, action: RunningStateAction) => {
   switch (action.type){
-    case SET_RUNNING:
-      return 'running' 
-    case SET_STOPPED:
-      return 'stopped'
-    case SET_FINISHED:
-      return 'finished'
-    case SET_WAITING:
-      return 'waiting'
-    default:
-      return state
+  case SET_RUNNING:
+    return 'running'
+  case SET_STOPPED:
+    return 'stopped'
+  case SET_FINISHED:
+    return 'finished'
+  case SET_WAITING:
+    return 'waiting'
+  default:
+    return state
   }
 }
 

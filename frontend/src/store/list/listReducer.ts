@@ -25,19 +25,19 @@ export const changeListSize = (listSize: number): AppType => async dispatch => {
 
 const reducer = (state = initialState, action: ListActionType): ListState => {
   switch (action.type) {
-    case ADD_LIST:
-      
-      return {
-        list: [...action.payload],
-        size: state.size
-      }
-    case CHANGE_SIZE:
-      return {
-        ...state,
-        size: action.payload
-      }
-    default:
-      return state
+  case ADD_LIST:
+
+    return {
+      list: [...action.payload],
+      size: state.size
+    }
+  case CHANGE_SIZE:
+    return {
+      ...state,
+      size: action.payload
+    }
+  default:
+    return state
   }
 }
 

@@ -13,7 +13,7 @@ const partition = async (A: number[], low: number, high: number): Promise<number
   const pivot: number = list[high]
   store.dispatch(setMainAction(high))
   let i = low
-  
+
   if (!pivot)
     return -1
   for (let j = low; j < high; j++) {
@@ -41,13 +41,13 @@ const sort = async (low: number, high: number): Promise<void> => {
   const list = [...store.getState().numberList.list]
   if (low < high) {
     const p: number = await partition(list, low, high)
-    
+
     if (p === -1)
       return
     await sort(low, p - 1)
     await sort(p + 1, high)
   }
-  
+
 }
 
 export const quickSort = async (): Promise<void> => {

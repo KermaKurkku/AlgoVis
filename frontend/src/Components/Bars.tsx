@@ -1,49 +1,61 @@
+// @ts-nocheck
 import React, { useState, useEffect } from 'react'
 
 import Bar from './Visualization/Bar'
-import { useTransition, animated, TransitionFn } from 'react-spring'
+import { useTransition, a, TransitionFn } from 'react-spring'
 
 import { useDispatch, useSelector } from 'react-redux'
 
 import { RootState, CurrentNumberState } from '../store'
 
-interface animationObject {
+interface AnimationObject {
   value: number;
-  y: number;
+  index: number;
+  x: number;
+  width: number;
 }
 
 // wery much in progress
 const Bars: React.FC = () => {
+  const screenWidth = document.getElementById('container')?.clientWidth
+  console.log(screenWidth)
   const listSize: number = useSelector((state: RootState) => state.numberList.size)
   const list: number[] = useSelector((state: RootState) => state.numberList.list)
   const selected: CurrentNumberState = useSelector((state: RootState) => state.currentNumber)
-  const width: number = 100/listSize * 20
+  const width: number = 100/listSize * screenWidth/listSize
   const barList = list.map((b, i) => (<Bar key={b} width={width} height={b/listSize}
     main={i === selected.main} sub={i === selected.sub} />))
-  
-  const transition: TransitionFn = useTransition(
-    list.map((n: number, i: number) => ({value: n, y: i * width} as animationObject)), 
-    (obj: animationObject) => obj.value,
+
+  const props = {
+    from: { width: width, opacity: 0 },
+    leave: { width: width, opacity: 0 },
+    enter: ({ x, width }: { x: number; width: number }) => ({ x, width, opacity: 1 }),
+    update: ({ x, width }: { x: number; width: number }) => ({ x })
+  }
+
+  const transition = useTransition(
+    list.map((n: number, i: number) => ({ value: n, index: i, x: (i+width)-width, width } as AnimationObject)),
     {
-      initial: { postition: 'absolute', opacity: 0 },
-      enter: { width: 0, opacity: 0},
-      leave: {}
-    })
-  
+      from: { width: 0, opacity: 0 },
+      leave: { width: 0, opacity: 0 },
+      enter: ({ x, width }: { x: number; width: number }) => ({ x, width, opacity: 1 }),
+      update: ({ x, width }: { x: number; width: number }) => ({ x, width })
+    }
+  )
+  const fragment = transition((style, item) => {
+    return (
+      <a.div style={style} key={item.value}>
+        <Bar width={100} height={item.value/listSize} main={item.index === selected.main}
+          sub={item.index === selected.sub}
+        />
+      </a.div>
+    )
+  })
+
   // https://codesandbox.io/s/animated-list-order-example-with-react-spring-teypu
   return (
     <div style={{ display: 'flex' }}>
-    {transition.map(({ item, props: { x, ...rest }, key }, index) => (
-        <animated.div
-          key={key}
-          style={{
-            transform: x.interpolate(x => `translate3d(${x}px,0,0)`)
-          }}
-        >
-          <Bar key={item.value} width={width} height={item.value/listSize}
-            main={index === selected.main} sub={index === selected.sub} />
-        </animated.div>
-      ))}
+      {fragment}
     </div>
   )
 }

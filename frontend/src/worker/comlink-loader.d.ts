@@ -7,4 +7,3 @@ declare module 'comlink-loader!*' {
 
   export = WebWorker
 }
-  

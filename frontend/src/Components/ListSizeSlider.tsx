@@ -15,7 +15,7 @@ const ListSizeSlider: React.FC = () => {
   const [sliderValue, setSliderValue] = useState(25)
   const listSize = useSelector((state: RootState) => state.numberList.size)
 
-	useEffect(() => {
+  useEffect(() => {
     dispatch(fetchNewList(listSize))
   }, [listSize])
 
@@ -33,19 +33,19 @@ const ListSizeSlider: React.FC = () => {
     dispatch(changeListSize(value))
   }
 
-	return (
-		<div>
-			<Slider
-				min={3}
+  return (
+    <div>
+      <Slider
+        min={3}
         max={60}
         onChange={onSliderChange}
         onAfterChange={setNewListSize}
         value={typeof sliderValue === 'number' ? sliderValue : 25}
         tipFormatter={null}
         disabled={isRunning() === 'running'}
-			/>
-		</div>
-	)
+      />
+    </div>
+  )
 }
 
 export default ListSizeSlider

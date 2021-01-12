@@ -7,7 +7,7 @@ import store from '../store'
 import isRunning from '../utils/isRunning'
 
 const timeoutLoop = (i: number, loop: number): void => {
-  
+
   const list: number[] = [...store.getState().numberList.list]
 
   setTimeout(() => {
@@ -22,7 +22,7 @@ const timeoutLoop = (i: number, loop: number): void => {
     store.dispatch(setMainAction(i))
     if (i === (loop-1)) {
       timeoutLoop(-1, loop - 1)
-    }else if (loop == 0) {
+    }else if (loop === 0) {
       store.dispatch(removeCurrentAction())
       store.dispatch(setFinishedAction())
     }else  {

@@ -1,6 +1,6 @@
 export interface CurrentNumberState {
-  main: number
-  sub: number | null
+  main: number;
+  sub: number | null;
 }
 
 export const SET_CURRENT = 'SET_CURRENT'
@@ -13,34 +13,34 @@ export const REMOVE_CURRENT = 'REMOVE_CURRENT'
 
 export const REMOVE_SUB = 'REMOVE_SUB'
 
-interface setCurrentAction {
+interface SetCurrentAction {
   type: typeof SET_CURRENT;
   payload: {
-    main: number,
-    sub: number | null
-  }
+    main: number;
+    sub: number | null;
+  };
 }
 
-interface setMainAction {
+interface SetMainAction {
   type: typeof SET_MAIN;
   payload: {
-    main: number
-  }
+    main: number;
+  };
 }
 
-interface setSubAction {
+interface SetSubAction {
   type: typeof SET_SUB;
   payload: {
-    sub: number
-  }
+    sub: number;
+  };
 }
 
-interface removeCurrentAction {
+interface RemoveCurrentAction {
   type: typeof REMOVE_CURRENT;
 }
 
-interface removeSubAction {
-  type: typeof REMOVE_SUB
+interface RemoveSubAction {
+  type: typeof REMOVE_SUB;
 }
 
-export type CurrentNumberActionType = setCurrentAction | setMainAction | setSubAction | removeCurrentAction | removeSubAction
+export type CurrentNumberActionType = SetCurrentAction | SetMainAction | SetSubAction | RemoveCurrentAction | RemoveSubAction

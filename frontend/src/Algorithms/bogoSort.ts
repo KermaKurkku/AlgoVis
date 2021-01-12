@@ -13,7 +13,6 @@ const wait = async (ms: number): Promise<void> => await new Promise(resolve => s
 
 
 const sort = async (): Promise<void> => {
-  
   const list: number[] = [...store.getState().numberList.list]
   const listSize: number = store.getState().numberList.size
   let rerun = false
@@ -37,12 +36,12 @@ const sort = async (): Promise<void> => {
     return await sort()
   }
   store.dispatch(setFinishedAction())
-  return 
+  return
 }
 
 export const bogoSort = async (): Promise<void> => {
   store.dispatch(setMainAction(-1))
   await sort()
   store.dispatch(removeCurrentAction())
-  
+
 }

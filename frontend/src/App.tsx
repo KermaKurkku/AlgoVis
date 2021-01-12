@@ -40,9 +40,9 @@ const App: React.FC = () => {
   const listSize = useSelector((state: RootState) => state.numberList.size)
 
   const startVisualization = async (): Promise<void> => {
-    if (running === 'finished') 
+    if (running === 'finished')
       await dispatch(fetchNewList(listSize))
-      
+
     dispatch(setRunning())
     const selected: Algorithms =  selectedAlgorithm as Algorithms
     await runAlgorithm(selected)
@@ -52,7 +52,7 @@ const App: React.FC = () => {
     dispatch(setStopped())
     setTimeout(() => {
       isRunning()
-    }, 20);
+    }, 20)
   }
 
   const menuOnClick = (event: any)  => {
@@ -62,7 +62,7 @@ const App: React.FC = () => {
         dispatch(setWaiting())
       }
     }
-    
+
     checkIfNotWaiting()
 
     setSelectedAlgorithm(event.key)
@@ -77,23 +77,23 @@ const App: React.FC = () => {
             <Menu.Item key="1">AlgoVis</Menu.Item>
           </Menu>
         </Header>
-        <Layout style={{ margin: '0 5em 0 5em'}}>
+        <Layout style={{ margin: '0 5em 0 5em' }}>
           <Sider width={'20%'} className='site-layout-background' theme='light'>
 
-            
 
-            <Title level={2} style={{ margin: '0,5em auto', padding: '0.2em 1em'}}>Select list size</Title>
+
+            <Title level={2} style={{ margin: '0,5em auto', padding: '0.2em 1em' }}>Select list size</Title>
             <ListSizeSlider />
-            {running === 'stopped' || running === 'finished' || running === 'waiting' ? 
+            {running === 'stopped' || running === 'finished' || running === 'waiting' ?
               <Button type='primary' block size='large' style={{
-                  margin: '1em auto',
-                }}
-                onClick={startVisualization}
+                margin: '1em auto',
+              }}
+              onClick={startVisualization}
               >Visualize</Button> :
               <Button type='primary' block size='large' style={{
-                  margin: '1em auto'
-                }}
-                onClick={stopVisualization}
+                margin: '1em auto'
+              }}
+              onClick={stopVisualization}
               >Stop visualization</Button>
             }
             <Divider>Select sorting algorithm</Divider>
@@ -105,17 +105,17 @@ const App: React.FC = () => {
               defaultSelectedKeys={[algorithmOptions[0]]}
               onClick={menuOnClick}
             >
-              {algorithmOptions.map(a => 
+              {algorithmOptions.map(a =>
                 <Menu.Item
                   key={a}
                   disabled={running === 'running' ? true : false}
-                >{a}</Menu.Item>  
+                >{a}</Menu.Item>
               )}
             </Menu>
-            
+
           </Sider>
-          <Layout style={{ padding: '0 10em em'}}>
-            <Content className="site-layout-content"
+          <Layout style={{ padding: '0 10em em' }}>
+            <Content className="site-layout-content" id='container'
               style={{
                 padding: 24,
                 margin: 0,
@@ -127,7 +127,7 @@ const App: React.FC = () => {
             </Content>
           </Layout>
         </Layout>
-        <Footer style={{ textAlign: 'center'}}>AlgoVis algorithm visualizer @2020 Created by Jere Salmensaari</Footer>
+        <Footer style={{ textAlign: 'center' }}>AlgoVis algorithm visualizer @2020 Created by Jere Salmensaari</Footer>
       </Layout>
     </div>
   )

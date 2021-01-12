@@ -13,7 +13,7 @@ interface SetList {
 
 interface ChangeListSize {
   type: typeof CHANGE_SIZE;
-  payload: number
+  payload: number;
 }
 
 export type ListActionType = SetList | ChangeListSize

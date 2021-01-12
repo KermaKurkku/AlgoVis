@@ -9,19 +9,19 @@ export const SET_FINISHED = 'SET_FINISHED'
 export const SET_WAITING = 'SET_WAITING'
 
 interface SetRunning {
-  type: typeof SET_RUNNING,
+  type: typeof SET_RUNNING;
 }
 
 interface SetStopped {
-  type: typeof SET_STOPPED
+  type: typeof SET_STOPPED;
 }
 
 interface SetFinished {
-  type: typeof SET_FINISHED
+  type: typeof SET_FINISHED;
 }
 
 interface SetWaiting {
-  type: typeof SET_WAITING
+  type: typeof SET_WAITING;
 }
 
 export type RunningStateAction = SetRunning | SetStopped | SetFinished | SetWaiting
