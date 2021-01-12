@@ -16,6 +16,7 @@ Working times
 | 7.1.21 | 12.30 - 17.30 | 5 | Styled the application, changed redux states to contain length of list, moved parts of website to separate components |  |
 | 8.1.21 | 12.00 - 16.30 | 4.5 | Created version 0.1.0 in heroku, added bogosort, added capability to stop visualization | |
 | 11.1.21 | 12.30 | 1 | New sorting | 1 |
+| 12.1.21 | 10.00 | 1 | Animations | 1 |
 |        |         |  |                                                                               | 44h |
 
 Link to app <https://rocky-springs-02478.herokuapp.com/>
