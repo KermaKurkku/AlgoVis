@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef} from 'react'
 import {
   Layout,
   Typography,
@@ -29,10 +29,14 @@ import {
 } from './services/AlgorithmRunner'
 import { RootState } from './store'
 import { fetchNewList } from './store/list/listReducer'
+import { useContainerDimensions } from './hooks'
 
 const App: React.FC = () => {
   const algorithmOptions: string[] = Object.values(AlgorithmTypes) as string[]
   const [selectedAlgorithm, setSelectedAlgorithm] = useState<string>(algorithmOptions[0])
+
+  const componentRef = useRef<HTMLDivElement>(null)
+  const { width } = useContainerDimensions(componentRef)
 
   const dispatch = useDispatch()
 
@@ -50,9 +54,7 @@ const App: React.FC = () => {
 
   const stopVisualization = (): void => {
     dispatch(setStopped())
-    setTimeout(() => {
-      isRunning()
-    }, 20)
+    
   }
 
   const menuOnClick = (event: any)  => {
@@ -116,14 +118,17 @@ const App: React.FC = () => {
           </Sider>
           <Layout style={{ padding: '0 10em em' }}>
             <Content className="site-layout-content" id='container'
-              style={{
-                padding: 24,
-                margin: 0,
-              }}>
-              <Bars />
-              <Divider />
-              <Skeleton />
-              <Skeleton />
+                style={{
+                  padding: 24,
+                  margin: 0,
+                }}
+              >
+              <div ref={componentRef}>
+                <Bars componentWidth={width} />
+                <Divider />
+                <Skeleton />
+                <Skeleton />
+              </div>
             </Content>
           </Layout>
         </Layout>

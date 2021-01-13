@@ -17,6 +17,7 @@ Working times
 | 8.1.21 | 12.00 - 16.30 | 4.5 | Created version 0.1.0 in heroku, added bogosort, added capability to stop visualization | |
 | 11.1.21 | 12.30 - 18.30| 6 | Updated ui, fixed problems in ui control. Started working on properly animating list changes |  |
 | 12.1.21 | 10.00 - 15.00| 5 | Working on react-spring, typescript errors, trying to get bars to draw in correct sizes |  |
+| 13.1.21 | 13.30 - | 1 | React-spring animations | |
 |        |         |  |                                                                               | 55h |
 
 Link to app <https://rocky-springs-02478.herokuapp.com/>

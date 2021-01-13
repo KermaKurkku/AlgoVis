@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState, useEffect } from 'react'
 
 import Bar from './Visualization/Bar'
@@ -15,28 +14,24 @@ interface AnimationObject {
   width: number;
 }
 
+interface Props {
+  componentWidth: number;
+}
+
 // wery much in progress
-const Bars: React.FC = () => {
-  const screenWidth = document.getElementById('container')?.clientWidth
-  console.log(screenWidth)
+const Bars: React.FC<Props> = ({componentWidth}: { componentWidth: number } ) => {
   const listSize: number = useSelector((state: RootState) => state.numberList.size)
   const list: number[] = useSelector((state: RootState) => state.numberList.list)
   const selected: CurrentNumberState = useSelector((state: RootState) => state.currentNumber)
-  const width: number = 100/listSize * screenWidth/listSize
+  
+  const width: number = 100/listSize * componentWidth/listSize 
   const barList = list.map((b, i) => (<Bar key={b} width={width} height={b/listSize}
     main={i === selected.main} sub={i === selected.sub} />))
-
-  const props = {
-    from: { width: width, opacity: 0 },
-    leave: { width: width, opacity: 0 },
-    enter: ({ x, width }: { x: number; width: number }) => ({ x, width, opacity: 1 }),
-    update: ({ x, width }: { x: number; width: number }) => ({ x })
-  }
 
   const transition = useTransition(
     list.map((n: number, i: number) => ({ value: n, index: i, x: (i+width)-width, width } as AnimationObject)),
     {
-      from: { width: 0, opacity: 0 },
+      from: { opacity: 0, width: 0 },
       leave: { width: 0, opacity: 0 },
       enter: ({ x, width }: { x: number; width: number }) => ({ x, width, opacity: 1 }),
       update: ({ x, width }: { x: number; width: number }) => ({ x, width })
@@ -44,7 +39,8 @@ const Bars: React.FC = () => {
   )
   const fragment = transition((style, item) => {
     return (
-      <a.div style={style} key={item.value}>
+      // @ts-expect-error
+      <a.div style={style} key={item.value}> 
         <Bar width={100} height={item.value/listSize} main={item.index === selected.main}
           sub={item.index === selected.sub}
         />
@@ -55,7 +51,7 @@ const Bars: React.FC = () => {
   // https://codesandbox.io/s/animated-list-order-example-with-react-spring-teypu
   return (
     <div style={{ display: 'flex' }}>
-      {fragment}
+      {componentWidth ? fragment : null}
     </div>
   )
 }
