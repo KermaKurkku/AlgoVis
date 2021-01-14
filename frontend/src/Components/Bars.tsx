@@ -21,12 +21,18 @@ interface Props {
 // wery much in progress
 const Bars: React.FC<Props> = ({componentWidth}: { componentWidth: number } ) => {
   const listSize: number = useSelector((state: RootState) => state.numberList.size)
-  const list: number[] = useSelector((state: RootState) => state.numberList.list)
+  const list: number[] = [...useSelector((state: RootState) => state.numberList.list)]
   const selected: CurrentNumberState = useSelector((state: RootState) => state.currentNumber)
+
+  const [items, setItems] = useState(list)
   
   const width: number = 100/listSize * componentWidth/listSize 
   const barList = list.map((b, i) => (<Bar key={b} width={width} height={b/listSize}
     main={i === selected.main} sub={i === selected.sub} />))
+
+  useEffect(() => {
+    console.log('list updated')
+  }, [list])
 
   const transition = useTransition(
     list.map((n: number, i: number) => ({ value: n, index: i, x: (i+width)-width, width } as AnimationObject)),
