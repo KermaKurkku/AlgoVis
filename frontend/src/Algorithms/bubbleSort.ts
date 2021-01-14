@@ -13,6 +13,7 @@ const timeoutLoop = (i: number, loop: number): void => {
   setTimeout(() => {
     if (isRunning() === 'stopped') {
       store.dispatch(removeCurrentAction())
+      return
     }
     if (list[i] > list[i + 1]) {
       [list[i], list[i + 1]] = [list[i + 1], list[i]]

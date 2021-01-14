@@ -21,26 +21,34 @@ interface Props {
 // wery much in progress
 const Bars: React.FC<Props> = ({componentWidth}: { componentWidth: number } ) => {
   const listSize: number = useSelector((state: RootState) => state.numberList.size)
-  const list: number[] = [...useSelector((state: RootState) => state.numberList.list)]
+  const list: number[] = useSelector((state: RootState) => state.numberList.list)
   const selected: CurrentNumberState = useSelector((state: RootState) => state.currentNumber)
-
-  const [items, setItems] = useState(list)
   
   const width: number = 100/listSize * componentWidth/listSize 
   const barList = list.map((b, i) => (<Bar key={b} width={width} height={b/listSize}
     main={i === selected.main} sub={i === selected.sub} />))
+  
+  const itemList: number[] = []
+
+  const updateItemlist = () => {
+    itemList.map((v: number, i: number) => v === list[i] ? v : list[i])
+  }
 
   useEffect(() => {
-    console.log('list updated')
+    updateItemlist()
+    console.log('updated list')
   }, [list])
+
 
   const transition = useTransition(
     list.map((n: number, i: number) => ({ value: n, index: i, x: (i+width)-width, width } as AnimationObject)),
     {
-      from: { opacity: 0, width: 0 },
-      leave: { width: 0, opacity: 0 },
+      expires: false,
+      initial: { opacity: 1, width: width},
+      from: { opacity: 1, width: width},
+      leave: { opacity: 1},
       enter: ({ x, width }: { x: number; width: number }) => ({ x, width, opacity: 1 }),
-      update: ({ x, width }: { x: number; width: number }) => ({ x, width })
+      update: ({ x, width }: { x: number; width: number }) => ({ position: `translate3d(${x}px,0,0)`, width })
     }
   )
   const fragment = transition((style, item) => {
@@ -50,11 +58,13 @@ const Bars: React.FC<Props> = ({componentWidth}: { componentWidth: number } ) =>
         <Bar width={100} height={item.value/listSize} main={item.index === selected.main}
           sub={item.index === selected.sub}
         />
+        {item.index}
       </a.div>
     )
   })
 
   // https://codesandbox.io/s/animated-list-order-example-with-react-spring-teypu
+  // https://codesandbox.io/embed/1wqpz5mzqj
   return (
     <div style={{ display: 'flex' }}>
       {componentWidth ? fragment : null}
