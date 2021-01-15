@@ -34,18 +34,21 @@ const AnimateBars: React.FC<any> = ({ children }: { children: any}) => {
         const firstBox = prevBoundingBox[child.key]
         const lastBox = boundingBox[child.key]
         const changeInX = firstBox.left - lastBox.left
-        console.log(changeInX)
+        console.log('child', child)
+        console.log('domNode', domNode)
 
         if (changeInX) {
           requestAnimationFrame(() => {
             // Before DOM paints, invert child to old position
+            // Maybe longer animation time?
+            // Reduce speed of sorting so the animation shows
             domNode.style.transform = `translateX(${changeInX}px)`
-            domNode.style.transform = `transform 10ms`
+            domNode.style.transform = `transform 0ms`
 
             requestAnimationFrame(() => {
               // After previous frame, remove the transition to play the animation
               domNode.style.transform = ''
-              domNode.style.transition = 'transfrom 500ms'
+              domNode.style.transition = 'transfrom 100ms'
             })
           })
         }

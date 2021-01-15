@@ -39,6 +39,7 @@ export const usePrevious = (value: any): any => {
 
   useEffect(() => {
     console.log('previous', prevChildrenRef.current)
+    console.log('is same', prevChildrenRef.current === value)
     prevChildrenRef.current = value
     console.log('new previous', value)
   }, [value])

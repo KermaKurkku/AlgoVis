@@ -19,7 +19,7 @@ Working times
 | 12.1.21 | 10.00 - 15.00| 5 | Working on react-spring, typescript errors, trying to get bars to draw in correct sizes |  |
 | 13.1.21 | 13.30 - 15.30 | 2 | Researching why react-spring starts an endless animation loop | |
 | 14.1.21 | 9.30 - 12.00 13.00 - 13.30 | 3 | Figuring out why animation creates endless loop. Trying to stop animation creating endless amounts of new bars |  |
-| 15.1.21 | 9.30 - | 1 | animation | |
-|        |         |  |                                                                               | 57h |
+| 15.1.21 | 9.30 - 16.00 | 6.5 | Got rid of react-spring and started doing my own animation based on <https://itnext.io/animating-list-reordering-with-react-hooks-aca5e7eeafba> | |
+|        |         |  |                                                                               | 63.5h |
 
 Link to app <https://rocky-springs-02478.herokuapp.com/>

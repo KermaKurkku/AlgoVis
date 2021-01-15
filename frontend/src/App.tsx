@@ -1,3 +1,7 @@
+/*
+  Create a button to change the places of 2 bars to figure out visualization
+*/
+
 import React, { useState, useRef} from 'react'
 import {
   Layout,

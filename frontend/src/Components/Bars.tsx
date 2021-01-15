@@ -30,10 +30,11 @@ const Bars: React.FC<Props> = ({componentWidth}: { componentWidth: number } ) =>
         {
           list.map((b, i) => {
             const barRef = createRef<HTMLDivElement>()
+            console.log(barRef)
             return <Bar key={b} width={width} height={b/listSize}
             // Fix types here
             // @ts-expect-error
-              main={i === selected.main} sub={i === selected.sub} ref={barRef}
+              main={i === selected.main} sub={i === selected.sub} ref={barRef} // Ref is null for some reason
             />
         })}
       </AnimateBars>

@@ -29,7 +29,7 @@ const timeoutLoop = (i: number, loop: number): void => {
     }else  {
       timeoutLoop(i, loop)
     }
-  }, 80)
+  }, 150)
 }
 
 export const bubbleSort = (): void => {
