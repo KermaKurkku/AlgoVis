@@ -9,8 +9,15 @@ type Props = {
 
 type Ref = HTMLDivElement
 
+interface Bar {
+  height: number;
+  width: number;
+  main: boolean;
+  sub: boolean;
+}
+
 // Renders a bar to represent a number in the list
-const Bar: React.FC<Props> = React.forwardRef<Ref, Props>((props: Props, ref) => {
+const Bar: React.FC<Bar> = React.forwardRef<Ref, Props>((props: Props, ref) => {
   const maxHeight = 40
   const style = {
     height: `${maxHeight*props.height}em`,
