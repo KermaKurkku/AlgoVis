@@ -33,6 +33,7 @@ export const useContainerDimensions = (myRef: React.MutableRefObject<HTMLDivElem
 }
 
 // https://reactjs.org/docs/hooks-faq.html#how-to-get-the-previous-props-or-state
+// Used to get the previous value of an object
 export const usePrevious = (value: any): any => {
   const prevChildrenRef = useRef()
 

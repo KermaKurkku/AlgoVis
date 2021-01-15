@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, createRef } from 'react'
 
 import Bar from './Visualization/Bar'
 import { useTransition, a, TransitionFn } from 'react-spring'
@@ -6,6 +6,8 @@ import { useTransition, a, TransitionFn } from 'react-spring'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { RootState, CurrentNumberState } from '../store'
+
+import AnimateBars from './Visualization/AnimateBars'
 
 interface AnimationObject {
   value: number;
@@ -71,7 +73,15 @@ const Bars: React.FC<Props> = ({componentWidth}: { componentWidth: number } ) =>
   // https://codesandbox.io/embed/1wqpz5mzqj
   return (
     <div style={{ display: 'flex' }}>
-      {componentWidth ? fragment : null}
+      <AnimateBars>
+        {
+          list.map((b, i) => {
+            const barRef = createRef()
+            return <Bar key={i} width={width} height={b/listSize}
+              main={i === selected.main} sub={i === selected.sub} ref={barRef}
+            />
+        })}
+      </AnimateBars>
     </div>
   )
 }
