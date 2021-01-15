@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef} from 'react'
 
 interface Dimensions {
   width: number;
@@ -30,4 +30,15 @@ export const useContainerDimensions = (myRef: React.MutableRefObject<HTMLDivElem
 
   return dimensions
 
+}
+
+// https://reactjs.org/docs/hooks-faq.html#how-to-get-the-previous-props-or-state
+export const usePrevious = (value: any): any => {
+  const prevChildrenRef = useRef()
+
+  useEffect(() => {
+    prevChildrenRef.current = value
+  }, [value])
+
+  return prevChildrenRef.current
 }
