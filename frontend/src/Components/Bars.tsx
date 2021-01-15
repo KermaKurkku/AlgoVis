@@ -19,6 +19,9 @@ interface Props {
 }
 
 // wery much in progress
+// Maybe
+// https://itnext.io/animating-list-reordering-with-react-hooks-aca5e7eeafba
+// https://codesandbox.io/s/reorder-elements-with-slide-transition-and-react-hooks-flip-211f2?from-embed
 const Bars: React.FC<Props> = ({componentWidth}: { componentWidth: number } ) => {
   const listSize: number = useSelector((state: RootState) => state.numberList.size)
   const list: number[] = useSelector((state: RootState) => state.numberList.list)
@@ -44,11 +47,12 @@ const Bars: React.FC<Props> = ({componentWidth}: { componentWidth: number } ) =>
     list.map((n: number, i: number) => ({ value: n, index: i, x: (i+width)-width, width } as AnimationObject)),
     {
       expires: false,
+      unique: true,
       initial: { opacity: 1, width: width},
       from: { opacity: 1, width: width},
-      leave: { opacity: 1},
+      leave: { opacity: 0, width: 0},
       enter: ({ x, width }: { x: number; width: number }) => ({ x, width, opacity: 1 }),
-      update: ({ x, width }: { x: number; width: number }) => ({ position: `translate3d(${x}px,0,0)`, width })
+      update: ({ x, width }: { x: number; width: number }) => ({ transform: `translatex(${x}px)`, width })
     }
   )
   const fragment = transition((style, item) => {
