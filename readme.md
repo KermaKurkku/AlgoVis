@@ -30,4 +30,4 @@ ___
 | 15.1.21 | 9.30 - 16.00 | 6.5 | Got rid of react-spring and started doing my own animation based on <https://itnext.io/animating-list-reordering-with-react-hooks-aca5e7eeafba> | |
 |        |         |  |                                                                               | 63.5h |
 
-Link to app <https://rocky-springs-02478.herokuapp.com/>
+Link to app <https://rocky-springs-02478.herokuapp.com/> version 0.2.0
