@@ -2,6 +2,12 @@
 
 Algorith visualization webapp for Fullstack Open 2020 project
 
+### Currently supported algorithms
+
+- Bubblesort
+- Quicksort
+- Bogosort
+
 Working times
 
 | Date | Working time | Working time (h) | Work done | Total time used |
