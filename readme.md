@@ -8,6 +8,8 @@ Algorith visualization webapp for Fullstack Open 2020 project
 - Quicksort
 - Bogosort
 
+___
+
 Working times
 
 | Date | Working time | Working time (h) | Work done | Total time used |
