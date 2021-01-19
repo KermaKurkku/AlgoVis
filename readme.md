@@ -31,4 +31,4 @@ ___
 | 19.1.21 | 9.15 - | 1 | A | |
 |        |         |  |                                                                               | 63.5h |
 
-Link to app <https://rocky-springs-02478.herokuapp.com/> version 0.2.0
+Link to app <https://rocky-springs-02478.herokuapp.com/> version 0.4.0

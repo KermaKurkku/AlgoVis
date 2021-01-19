@@ -47,7 +47,6 @@ const AnimateBars: React.FC<any> = ({ children }: { children: any}) => {
             // Reduce speed of sorting so the animation shows
             domNode.style.transform = `translateX(${changeInX}px)`
             domNode.style.transition = `transform 0ms`
-            console.log(domNode.style)
 
             requestAnimationFrame(() => {
               // After previous frame, remove the transition to play the animation
