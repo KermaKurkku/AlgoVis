@@ -1,7 +1,7 @@
 import state from '../store'
 import { runningType } from '../store/running/types'
 
-const isRunning = (): runningType => {
+export const isRunning = (): runningType => {
   const running = state.getState().running
   switch (running) {
   case 'running':
@@ -13,4 +13,4 @@ const isRunning = (): runningType => {
   }
 }
 
-export default isRunning
+export const wait = async (ms: number): Promise<void> => await new Promise(resolve => setTimeout(resolve, ms))

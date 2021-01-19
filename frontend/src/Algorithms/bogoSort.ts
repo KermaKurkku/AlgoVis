@@ -7,9 +7,9 @@ import listService from '../services/lists'
 
 import store from '../store'
 
-import isRunning from '../utils/isRunning'
+import { isRunning, wait } from '../utils'
 
-const wait = async (ms: number): Promise<void> => await new Promise(resolve => setTimeout(resolve, ms))
+import _ from 'lodash'
 
 
 const sort = async (): Promise<void> => {
@@ -29,8 +29,7 @@ const sort = async (): Promise<void> => {
   }
 
   if (rerun) {
-    const newList = await listService.fetchNew(listSize)
-    store.dispatch(setNewAction(newList))
+    store.dispatch(setNewAction(_.shuffle(list)))
     store.dispatch(setMainAction(-1))
     await wait(400)
     return await sort()

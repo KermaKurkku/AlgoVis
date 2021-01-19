@@ -8,8 +8,7 @@ import React, { useState, useEffect, useLayoutEffect, ReactChildren } from 'reac
 import { usePrevious } from '../../hooks'
 import calculateBoundingBoxes from '../../utils/calculateBoundingBoxes'
 
-import { AnimationChild, AnimationChildren, DOMRectDict } from '../../types'
-import { domainToUnicode } from 'url'
+import { AnimationChild, DOMRectDict } from '../../types'
 
 const AnimateBars: React.FC<any> = ({ children }: { children: any}) => {
   const [boundingBox, setBoundingBox] = useState<DOMRectDict | null>({})

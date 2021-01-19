@@ -4,9 +4,7 @@ import { setFinishedAction } from '../store/running/actions'
 
 import store from '../store'
 
-import isRunning from '../utils/isRunning'
-
-const wait = async (ms: number): Promise<void> => await new Promise(resolve => setTimeout(resolve, ms))
+import { isRunning, wait } from '../utils'
 
 const partition = async (A: number[], low: number, high: number): Promise<number> => {
   const list: number[] = [...A]

@@ -6,7 +6,7 @@ import { RootState } from '../store'
 
 import { fetchNewList, changeListSize } from '../store/list/listReducer'
 
-import isRunning from '../utils/isRunning'
+import { isRunning } from '../utils'
 
 
 const ListSizeSlider: React.FC = () => {

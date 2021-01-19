@@ -2,23 +2,22 @@ import {
   BubbleSort,
   QuickSort,
   BogoSort,
+  InsertionSort,
   Algorithms
 } from './types'
 
-import {
-  quickSort,
-  bubbleSort,
-  bogoSort
-} from '../../Algorithms'
+import * as a from '../../Algorithms'
 
 export const runAlgorithm = async (type: Algorithms) => {
   switch (type) {
   case BubbleSort:
-    return await bubbleSort()
+    return await a.bubbleSort()
   case QuickSort:
-    return await quickSort()
+    return await a.quickSort()
   case BogoSort:
-    return await bogoSort()
+    return await a.bogoSort()
+  case InsertionSort:
+    return await a.insertionSort()
   default:
     return
   }

@@ -4,7 +4,7 @@ import { setFinishedAction } from '../store/running/actions'
 
 import store from '../store'
 
-import isRunning from '../utils/isRunning'
+import { isRunning } from '../utils'
 
 const timeoutLoop = (i: number, loop: number): void => {
 

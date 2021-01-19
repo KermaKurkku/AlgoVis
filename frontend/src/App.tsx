@@ -1,7 +1,3 @@
-/*
-  Create a button to change the places of 2 bars to figure out visualization
-*/
-
 import React, { useState, useRef} from 'react'
 import {
   Layout,
@@ -17,8 +13,6 @@ const { Header, Footer, Sider, Content } = Layout
 
 import Bars from './Components/Bars'
 import ListSizeSlider from './Components/ListSizeSlider'
-
-import isRunning from './utils/isRunning'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { setStopped, setRunning, setWaiting } from './store/running/runningReducer'
