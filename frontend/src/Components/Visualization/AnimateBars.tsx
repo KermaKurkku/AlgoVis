@@ -16,6 +16,7 @@ const AnimateBars: React.FC<any> = ({ children }: { children: any}) => {
   const [prevBoundingBox, setPrevBoundingBox] = useState<DOMRectDict | null>({})
   const prevChildren = usePrevious(children)
 
+  // Fix bounding boxes updating when list size updates
   useLayoutEffect(() => {
     const newBoundingBox = calculateBoundingBoxes(children)
     setBoundingBox(newBoundingBox)
@@ -27,7 +28,7 @@ const AnimateBars: React.FC<any> = ({ children }: { children: any}) => {
   }, [prevChildren])
 
   useEffect(() => {
-    if (!prevBoundingBox || !boundingBox)
+    if (!prevBoundingBox || !boundingBox || Object.keys(prevBoundingBox).length < Object.keys(boundingBox).length)
       return
 
     const hasPrevBoundingBox = Object.keys(prevBoundingBox).length
@@ -37,6 +38,9 @@ const AnimateBars: React.FC<any> = ({ children }: { children: any}) => {
         const domNode = child.ref.current
         const firstBox = prevBoundingBox[child.key]
         const lastBox = boundingBox[child.key]
+        if (!firstBox || !lastBox)
+          return
+
         const changeInX = firstBox.left - lastBox.left
 
 
