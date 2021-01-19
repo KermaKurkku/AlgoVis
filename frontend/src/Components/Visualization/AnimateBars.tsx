@@ -9,10 +9,11 @@ import { usePrevious } from '../../hooks'
 import calculateBoundingBoxes from '../../utils/calculateBoundingBoxes'
 
 import { AnimationChild, AnimationChildren, DOMRectDict } from '../../types'
+import { domainToUnicode } from 'url'
 
 const AnimateBars: React.FC<any> = ({ children }: { children: any}) => {
-  const [boundingBox, setBoundingBox] = useState<DOMRectDict>({})
-  const [prevBoundingBox, setPrevBoundingBox] = useState<DOMRectDict>({})
+  const [boundingBox, setBoundingBox] = useState<DOMRectDict | null>({})
+  const [prevBoundingBox, setPrevBoundingBox] = useState<DOMRectDict | null>({})
   const prevChildren = usePrevious(children)
 
   useLayoutEffect(() => {
@@ -26,6 +27,9 @@ const AnimateBars: React.FC<any> = ({ children }: { children: any}) => {
   }, [prevChildren])
 
   useEffect(() => {
+    if (!prevBoundingBox || !boundingBox)
+      return
+
     const hasPrevBoundingBox = Object.keys(prevBoundingBox).length
 
     if (hasPrevBoundingBox) {
@@ -34,8 +38,7 @@ const AnimateBars: React.FC<any> = ({ children }: { children: any}) => {
         const firstBox = prevBoundingBox[child.key]
         const lastBox = boundingBox[child.key]
         const changeInX = firstBox.left - lastBox.left
-        console.log('child', child)
-        console.log('domNode', domNode)
+
 
         if (changeInX) {
           requestAnimationFrame(() => {
@@ -43,12 +46,13 @@ const AnimateBars: React.FC<any> = ({ children }: { children: any}) => {
             // Maybe longer animation time?
             // Reduce speed of sorting so the animation shows
             domNode.style.transform = `translateX(${changeInX}px)`
-            domNode.style.transform = `transform 0ms`
+            domNode.style.transition = `transform 0ms`
+            console.log(domNode.style)
 
             requestAnimationFrame(() => {
               // After previous frame, remove the transition to play the animation
               domNode.style.transform = ''
-              domNode.style.transition = 'transfrom 100ms'
+              domNode.style.transition = 'transform 300ms'
             })
           })
         }

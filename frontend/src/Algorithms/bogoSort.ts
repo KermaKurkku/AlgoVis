@@ -18,7 +18,7 @@ const sort = async (): Promise<void> => {
   let rerun = false
 
   for (let i = 0; i < listSize - 1; i++) {
-    await wait(100)
+    await wait(200)
     if (isRunning() === 'stopped')
       return
     store.dispatch(setMainAction(i))
@@ -32,7 +32,7 @@ const sort = async (): Promise<void> => {
     const newList = await listService.fetchNew(listSize)
     store.dispatch(setNewAction(newList))
     store.dispatch(setMainAction(-1))
-    await wait(100)
+    await wait(400)
     return await sort()
   }
   store.dispatch(setFinishedAction())
