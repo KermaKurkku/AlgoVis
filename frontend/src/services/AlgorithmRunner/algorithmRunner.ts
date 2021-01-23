@@ -3,6 +3,7 @@ import {
   QuickSort,
   BogoSort,
   InsertionSort,
+  StalinSort,
   Algorithms
 } from './types'
 
@@ -18,6 +19,8 @@ export const runAlgorithm = async (type: Algorithms) => {
     return await a.bogoSort()
   case InsertionSort:
     return await a.insertionSort()
+  case StalinSort:
+    return await a.stalinSort()
   default:
     return
   }
