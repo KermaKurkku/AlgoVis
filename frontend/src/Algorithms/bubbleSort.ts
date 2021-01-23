@@ -5,6 +5,7 @@ import { setFinishedAction } from '../store/running/actions'
 import store from '../store'
 
 import { isRunning } from '../utils'
+import { baseDelay } from '../constants'
 
 const timeoutLoop = (i: number, loop: number): void => {
 
@@ -29,7 +30,7 @@ const timeoutLoop = (i: number, loop: number): void => {
     }else  {
       timeoutLoop(i, loop)
     }
-  }, 500)
+  }, baseDelay)
 }
 
 export const bubbleSort = (): void => {

@@ -29,6 +29,7 @@ ___
 | 14.1.21 | 9.30 - 12.00 13.00 - 13.30 | 3 | Figuring out why animation creates endless loop. Trying to stop animation creating endless amounts of new bars |  |
 | 15.1.21 | 9.30 - 16.00 | 6.5 | Got rid of react-spring and started doing my own animation based on <https://itnext.io/animating-list-reordering-with-react-hooks-aca5e7eeafba> | |
 | 19.1.21 | 9.15 - 13.30 | 4.25 | Added insertionSort and fixed animations | |
+| 23.1.21 | 11.30 - | 1 | | |
 |        |         |  |                                                                               | 67.75h |
 
 Link to app <https://rocky-springs-02478.herokuapp.com/> version 0.4.0

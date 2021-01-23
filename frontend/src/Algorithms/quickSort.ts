@@ -5,6 +5,7 @@ import { setFinishedAction } from '../store/running/actions'
 import store from '../store'
 
 import { isRunning, wait } from '../utils'
+import { baseDelay } from '../constants'
 
 const partition = async (A: number[], low: number, high: number): Promise<number> => {
   const list: number[] = [...A]
@@ -19,7 +20,7 @@ const partition = async (A: number[], low: number, high: number): Promise<number
       return -1
     store.dispatch(setSubAction(j))
 
-    await wait(400) // Wait for given amount of ms
+    await wait(baseDelay) // Wait for given amount of ms
 
     if (list[j] < pivot) {
       [list[i], list[j]] = [list[j], list[i]]

@@ -6,4 +6,6 @@ if (process.env.NODE_ENV === 'development')
 else
   apiBaseUrl = '/api'
 
-export { apiBaseUrl }
+const baseDelay = 250
+
+export { apiBaseUrl, baseDelay }

@@ -10,6 +10,7 @@ import store from '../store'
 import { isRunning, wait } from '../utils'
 
 import _ from 'lodash'
+import { baseDelay } from '../constants'
 
 
 const sort = async (): Promise<void> => {
@@ -18,7 +19,7 @@ const sort = async (): Promise<void> => {
   let rerun = false
 
   for (let i = 0; i < listSize - 1; i++) {
-    await wait(200)
+    await wait(baseDelay)
     if (isRunning() === 'stopped')
       return
     store.dispatch(setMainAction(i))
@@ -31,7 +32,7 @@ const sort = async (): Promise<void> => {
   if (rerun) {
     store.dispatch(setNewAction(_.shuffle(list)))
     store.dispatch(setMainAction(-1))
-    await wait(400)
+    await wait(300)
     return await sort()
   }
   store.dispatch(setFinishedAction())

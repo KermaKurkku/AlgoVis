@@ -6,18 +6,22 @@ import store from '../store'
 
 import { isRunning, wait } from '../utils'
 
+import { baseDelay } from '../constants'
+
 
 const sort = async (list: number[]): Promise<void> => {
   for (let i = 1; i < list.length; i++) {
     if (isRunning() === 'stopped')
       return
-    await wait(300)
+    
+    store.dispatch(removeSubAction())
+    await wait(baseDelay)
     let j = i
     store.dispatch(setMainAction(i))
     while (j > 0 && list[j - 1] > list[j]) {
       if (isRunning() === 'stopped')
         return
-      await wait(400);
+      await wait(300);
       store.dispatch(removeCurrentAction());
       store.dispatch(setSubAction(j - 1));
       
@@ -29,7 +33,7 @@ const sort = async (list: number[]): Promise<void> => {
       
       j--
     }
-    store.dispatch(removeSubAction())
+    
   }
 
 }

@@ -54,7 +54,7 @@ const AnimateBars: React.FC<any> = ({ children }: { children: any}) => {
             requestAnimationFrame(() => {
               // After previous frame, remove the transition to play the animation
               domNode.style.transform = ''
-              domNode.style.transition = 'transform 300ms'
+              domNode.style.transition = 'transform 200ms'
             })
           })
         }
