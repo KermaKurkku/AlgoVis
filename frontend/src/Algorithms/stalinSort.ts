@@ -10,6 +10,7 @@ import store from '../store'
 import { isRunning, wait } from '../utils'
 
 import { baseDelay } from '../constants'
+import { Stream } from 'stream'
 
 const sort = async (): Promise<void> => {
   
@@ -42,5 +43,6 @@ const sort = async (): Promise<void> => {
 export const stalinSort = async (): Promise<void> => {
   store.dispatch(setMainAction(-1))
   await sort()
+  store.dispatch(removeCurrentAction())
   store.dispatch(setFinishedAction())
 }

@@ -7,6 +7,7 @@ import { RootState } from '../store'
 import { fetchNewList, changeListSize } from '../store/list/listReducer'
 
 import { isRunning } from '../utils'
+import { setWaiting } from '../store/running/runningReducer'
 
 
 const ListSizeSlider: React.FC = () => {
@@ -17,6 +18,7 @@ const ListSizeSlider: React.FC = () => {
 
   useEffect(() => {
     dispatch(fetchNewList(listSize))
+    dispatch(setWaiting())
   }, [listSize])
 
   const onSliderChange = (value: any) => {
