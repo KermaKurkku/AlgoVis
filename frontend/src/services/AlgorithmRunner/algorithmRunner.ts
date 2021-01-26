@@ -4,6 +4,7 @@ import {
   BogoSort,
   InsertionSort,
   StalinSort,
+  MergeSort,
   Algorithms
 } from './types'
 
@@ -21,6 +22,8 @@ export const runAlgorithm = async (type: Algorithms) => {
     return await a.insertionSort()
   case StalinSort:
     return await a.stalinSort()
+  case MergeSort:
+    return await a.mergeSort()
   default:
     return
   }

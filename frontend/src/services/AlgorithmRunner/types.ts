@@ -3,16 +3,17 @@ export const QuickSort = 'QuickSort'
 export const BogoSort = 'BogoSort'
 export const InsertionSort = 'InsertionSort'
 export const StalinSort = 'StalinSort'
+export const MergeSort = 'MergeSort'
 
 export enum AlgorithmTypes {
   BubbleSort = 'BubbleSort',
   InsertionSort = 'InsertionSort',
   QuickSort = 'QuickSort',
   BogoSort = 'BogoSort',
-  StalinSort = 'StalinSort'
+  StalinSort = 'StalinSort',
+  MergeSort = 'MergeSort'
 }
 
 export type Algorithms = typeof BubbleSort | typeof QuickSort | typeof BogoSort | typeof InsertionSort
-  | typeof StalinSort
+  | typeof StalinSort | typeof MergeSort
 
-export type isAlgorithm<T> = T extends 'BubbleSort' ? typeof BubbleSort : typeof QuickSort

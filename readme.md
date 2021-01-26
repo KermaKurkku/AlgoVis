@@ -30,6 +30,7 @@ ___
 | 15.1.21 | 9.30 - 16.00 | 6.5 | Got rid of react-spring and started doing my own animation based on <https://itnext.io/animating-list-reordering-with-react-hooks-aca5e7eeafba> | |
 | 19.1.21 | 9.15 - 13.30 | 4.25 | Added insertionSort and fixed animations | |
 | 23.1.21 | 11.30 - 12.30 14.00 - 16.30| 4 | Added stalinsort, changed animations, made max list size smaller | |
+| 26.1.21 | 9.45 - 12.30 | 1 | A | |
 |        |         |  |                                                                               | 71.75h |
 
 Link to app <https://rocky-springs-02478.herokuapp.com/> version 0.4.0
