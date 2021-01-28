@@ -5,8 +5,10 @@ Algorith visualization webapp for Fullstack Open 2020 project
 ### Currently supported algorithms
 
 - Bubblesort
+- Iterationsort
 - Quicksort
 - Bogosort
+- Stalinsort
 
 ___
 
