@@ -60,8 +60,8 @@ const reducer = (state = initialState, action: CurrentNumberActionType): Current
     }
   case REMOVE_CURRENT:
     return {
-      main: -1,
-      sub: null,
+      ...state,
+      main: -1
     }
   case REMOVE_SUB:
     return {
