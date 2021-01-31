@@ -1,16 +1,14 @@
-import { setMainAction, removeCurrentAction } from '../store/currentNumber/actions'
+import { setMainAction, removeCurrentAction, removeSubAction } from '../store/currentNumber/actions'
 import { setFinishedAction } from '../store/running/actions'
 
 import { setNewAction } from '../store/list/actions'
 
-import listService from '../services/lists'
 
 import store from '../store'
 
 import { isRunning, wait } from '../utils'
 
 import { baseDelay } from '../constants'
-import { Stream } from 'stream'
 
 const sort = async (): Promise<void> => {
   
@@ -31,7 +29,6 @@ const sort = async (): Promise<void> => {
 
     if (list[index - 1] > list[index]) {
       const newList = list.filter(v => v !== list[index]) 
-      console.log(newList)
       store.dispatch(setNewAction(newList))
       continue
     }
@@ -44,5 +41,6 @@ export const stalinSort = async (): Promise<void> => {
   store.dispatch(setMainAction(-1))
   await sort()
   store.dispatch(removeCurrentAction())
+  store.dispatch(removeSubAction())
   store.dispatch(setFinishedAction())
 }

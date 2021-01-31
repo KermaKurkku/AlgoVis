@@ -1,4 +1,4 @@
-import { setMainAction, removeCurrentAction } from '../store/currentNumber/actions'
+import { setMainAction, removeCurrentAction, removeSubAction } from '../store/currentNumber/actions'
 import { setFinishedAction } from '../store/running/actions'
 
 import { setNewAction } from '../store/list/actions'
@@ -43,5 +43,6 @@ export const bogoSort = async (): Promise<void> => {
   store.dispatch(setMainAction(-1))
   await sort()
   store.dispatch(removeCurrentAction())
+  store.dispatch(removeSubAction())
 
 }

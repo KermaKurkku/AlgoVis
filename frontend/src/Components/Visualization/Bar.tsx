@@ -18,6 +18,7 @@ interface Bar {
 
 // Renders a bar to represent a number in the list
 const Bar: React.FC<Bar> = React.forwardRef<Ref, Props>((props: Props, ref) => {
+
   const normal = !props.main && !props.sub
   const maxHeight = 40
   const style = {

@@ -8,10 +8,11 @@ export const MergeSort = 'MergeSort'
 export enum AlgorithmTypes {
   BubbleSort = 'BubbleSort',
   InsertionSort = 'InsertionSort',
+  MergeSort = 'MergeSort',
   QuickSort = 'QuickSort',
   BogoSort = 'BogoSort',
   StalinSort = 'StalinSort',
-  MergeSort = 'MergeSort'
+  
 }
 
 export type Algorithms = typeof BubbleSort | typeof QuickSort | typeof BogoSort | typeof InsertionSort

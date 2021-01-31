@@ -65,8 +65,8 @@ const reducer = (state = initialState, action: CurrentNumberActionType): Current
     }
   case REMOVE_SUB:
     return {
-      sub: null,
-      ...state
+      ...state,
+      sub: null
     }
   default:
     return state

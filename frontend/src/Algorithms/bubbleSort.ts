@@ -1,4 +1,4 @@
-import { removeCurrentAction, setMainAction } from '../store/currentNumber/actions'
+import { removeCurrentAction, removeSubAction, setMainAction } from '../store/currentNumber/actions'
 import { setNewAction } from '../store/list/actions'
 import { setFinishedAction } from '../store/running/actions'
 
@@ -26,6 +26,7 @@ const timeoutLoop = (i: number, loop: number): void => {
       timeoutLoop(-1, loop - 1)
     }else if (loop === 0) {
       store.dispatch(removeCurrentAction())
+      store.dispatch(removeSubAction())
       store.dispatch(setFinishedAction())
     }else  {
       timeoutLoop(i, loop)

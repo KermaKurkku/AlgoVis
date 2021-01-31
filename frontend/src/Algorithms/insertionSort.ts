@@ -43,5 +43,6 @@ export const insertionSort = async (): Promise<void> => {
   store.dispatch(setMainAction(-1))
   await sort(list)
   store.dispatch(removeCurrentAction())
+  store.dispatch(removeSubAction())
   store.dispatch(setFinishedAction())
 }

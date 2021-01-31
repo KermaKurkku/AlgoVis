@@ -35,7 +35,7 @@ ___
 | 19.1.21 | 9.15 - 13.30 | 4.25 | Added insertionSort and fixed animations | |
 | 23.1.21 | 11.30 - 12.30 14.00 - 16.30| 4 | Added stalinsort, changed animations, made max list size smaller | |
 | 26.1.21 | 9.45 - 12.30 13.30 - 15.00 | 4.25 | Created the first version of mergesort, sorting works - visualizations don't | |
-| 31.1.21 | 14.30 | 1 | Yeet | |
+| 31.1.21 | 14.30 - 16.00 17.00 - | 1 | Yeet | |
 |        |         |  |                                                                               | 76h |
 
 Link to app <https://rocky-springs-02478.herokuapp.com/> version 0.4.0
