@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 
 import { RootState, CurrentNumberState } from '../store'
 
-import AnimateBars from './Visualization/AnimateBars'
+import AnimateBars from './Visualization/AnimateBar'
 
 interface Props {
   componentWidth: number;
@@ -30,7 +30,6 @@ const Bars: React.FC<Props> = ({componentWidth}: { componentWidth: number } ) =>
 
   return (
     <div style={{ display: 'flex' }}>
-      <AnimateBars>
         {
           list.map((b, i) => {
             const barRef = createRef<HTMLDivElement>()
@@ -40,7 +39,6 @@ const Bars: React.FC<Props> = ({componentWidth}: { componentWidth: number } ) =>
               main={i === selected.main} sub={i === selected.sub} ref={barRef} // Ref is null for some reason
             />
         })}
-      </AnimateBars>
     </div>
   )
 }

@@ -7,20 +7,18 @@ import React, { ReactChildren } from 'react'
 
 import { AnimationChild, AnimationChildren, DOMRectDict } from '../types'
 
-const calculateBoundingBoxes = (children: AnimationChildren): DOMRectDict | null => {
-  const boundingBoxes: DOMRectDict = {}
+const calculateBoundingBoxes = (child: AnimationChild): DOMRect | null => {
+  
 
-  React.Children.forEach(children, (child: AnimationChild) => {
-    if (!child.ref.current)
-      return null
-    const domNode = child.ref.current
-    const nodeBoundingBox = domNode.getBoundingClientRect()
+  if (!child.ref.current)
+    return null
+  const domNode = child.ref.current
+  const nodeBoundingBox = domNode.getBoundingClientRect()
 
 
-    boundingBoxes[child.key] = nodeBoundingBox
-  })
+  const boundingBox: DOMRect = nodeBoundingBox
 
-  return boundingBoxes
+  return boundingBox
 }
 
 export default calculateBoundingBoxes

@@ -1,5 +1,7 @@
 import React, { MutableRefObject } from 'react'
 
+import AnimateBar from './AnimateBar'
+
 type Props = {
   height: number;
   width: number;
@@ -45,7 +47,9 @@ const Bar: React.FC<Bar> = React.forwardRef<Ref, Props>((props: Props, ref) => {
 
   return (
     <div style={style}>
-      <div style={barStyle} ref={ref} />
+      <AnimateBar>
+        <div style={barStyle} ref={ref} />
+      </AnimateBar>
     </div>
   )
 })
