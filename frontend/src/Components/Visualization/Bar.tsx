@@ -5,6 +5,7 @@ type Props = {
   width: number;
   main: boolean;
   sub: boolean;
+  area: boolean;
 }
 
 type Ref = HTMLDivElement
@@ -14,6 +15,7 @@ interface Bar {
   width: number;
   main: boolean;
   sub: boolean;
+  area: boolean;
 }
 
 // Renders a bar to represent a number in the list
@@ -25,6 +27,13 @@ const Bar: React.FC<Bar> = React.forwardRef<Ref, Props>((props: Props, ref) => {
     height: `${maxHeight*props.height}em`,
     maxHeight: `${maxHeight}em`,
     width: `${props.width}%`,
+    background: props.area ? "#aab6c1" : 'transparent',
+    opacity: '80%'
+    
+  }
+  const barStyle = {
+    height: '100%',
+    width: 'auto',
     background: normal ? 'transparent' : props.main ? '#FF7A32' : 
     props.sub ? '#2EF550' : 'transparent',
     zIndex: 50,
@@ -34,7 +43,11 @@ const Bar: React.FC<Bar> = React.forwardRef<Ref, Props>((props: Props, ref) => {
     margin: '0.1em'
   }
 
-  return <div style={style} ref={ref} />
+  return (
+    <div style={style}>
+      <div style={barStyle} ref={ref} />
+    </div>
+  )
 })
 
 // Eslint is being a douche

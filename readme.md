@@ -36,6 +36,7 @@ ___
 | 23.1.21 | 11.30 - 12.30 14.00 - 16.30| 4 | Added stalinsort, changed animations, made max list size smaller | |
 | 26.1.21 | 9.45 - 12.30 13.30 - 15.00 | 4.25 | Created the first version of mergesort, sorting works - visualizations don't | |
 | 31.1.21 | 14.30 - 16.00 | 1.5 | Completed MergeSort and fixed some coloring | |
+| 2.1.21 | 10.30 - | 1 | asdf | |
 |        |         |  |                                                                               | 78.5h |
 
 Link to app <https://rocky-springs-02478.herokuapp.com/> version 0.6.0
