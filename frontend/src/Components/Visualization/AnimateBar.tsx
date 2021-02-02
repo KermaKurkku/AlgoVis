@@ -11,11 +11,22 @@ import calculateBoundingBoxes from '../../utils/calculateBoundingBoxes'
 import { AnimationChild, DOMRectDict } from '../../types'
 
 interface AnimationProps {
-  child: AnimationChild
+  child: AnimationChild,
+  styling: CSSStyleDeclaration
 }
 
-const AnimateBars: React.FC<any> = ({ child }: { child: any }) => {
-  console.log(child)
+const AnimateBar: React.FC<any> = ({ styling }: { styling: any }) => {
+  const child = React.createRef<HTMLDivElement>()
+
+  const StyledBar: React.FC<any> = React.forwardRef((_props, ref) => (
+    <div ref={ref} />
+  ))
+
+  StyledBar.displayName = 'StyledBar'
+
+  if (child.current === null)
+    return <StyledBar ref={child} />
+
   const [boundingBox, setBoundingBox] = useState<DOMRect | null>(null)
   const [prevBoundingBox, setPrevBoundingBox] = useState<DOMRect | null>(null)
   const prevChildren = usePrevious(child)
@@ -38,7 +49,7 @@ const AnimateBars: React.FC<any> = ({ child }: { child: any }) => {
     const hasPrevBoundingBox = Object.keys(prevBoundingBox).length
 
     if (hasPrevBoundingBox) {
-      const domNode = child.ref.current
+      const domNode = child.current
       const firstBox = prevBoundingBox
       const lastBox = boundingBox
       if (!firstBox || !lastBox)
@@ -47,7 +58,7 @@ const AnimateBars: React.FC<any> = ({ child }: { child: any }) => {
       const changeInX = firstBox.left - lastBox.left
 
 
-      if (changeInX) {
+      if (changeInX && domNode) {
         requestAnimationFrame(() => {
           // Before DOM paints, invert child to old position
           // Maybe longer animation time?
@@ -65,12 +76,11 @@ const AnimateBars: React.FC<any> = ({ child }: { child: any }) => {
     }
   }, [boundingBox, prevBoundingBox, child])
 
-  return (
-    <>
-      child
-    </>
-    )
+  return <StyledBar ref={child} />
+   
 
 }
 
-export default AnimateBars
+AnimateBar.displayName = 'AnimatedBar'
+
+export default AnimateBar

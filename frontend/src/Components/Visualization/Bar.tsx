@@ -44,12 +44,11 @@ const Bar: React.FC<Bar> = React.forwardRef<Ref, Props>((props: Props, ref) => {
     borderColor: '#1890ff',//'#f0f2f5',
     margin: '0.1em'
   }
+  const barRef = React.createRef<HTMLDivElement>()
 
   return (
     <div style={style}>
-      <AnimateBar>
-        <div style={barStyle} ref={ref} />
-      </AnimateBar>
+      <AnimateBar style={barStyle} />
     </div>
   )
 })

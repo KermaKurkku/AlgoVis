@@ -7,12 +7,12 @@ import React, { ReactChildren } from 'react'
 
 import { AnimationChild, AnimationChildren, DOMRectDict } from '../types'
 
-const calculateBoundingBoxes = (child: AnimationChild): DOMRect | null => {
+const calculateBoundingBoxes = (child: React.RefObject<HTMLDivElement>): DOMRect | null => {
   
 
-  if (!child.ref.current)
+  if (!child.current)
     return null
-  const domNode = child.ref.current
+  const domNode = child.current
   const nodeBoundingBox = domNode.getBoundingClientRect()
 
 
