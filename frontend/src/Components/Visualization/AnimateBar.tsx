@@ -16,33 +16,31 @@ interface AnimationProps {
 }
 
 const StyledBar: React.FC<any> = React.forwardRef((props: any, ref: any) => {
-  console.log(ref)
   return <div style={props.style} ref={ref} />
 })
 StyledBar.displayName = 'StyledBar'
 
 const AnimateBar: React.FC<any> = ({ styling }: { styling: any }) => {
-  const child = React.createRef<HTMLDivElement>()
-
-  
-
-  if (child.current === null)
-    return <StyledBar style={styling} ref={child} />
+  // Need to update child
+  const [child, setChild] = useState<React.RefObject<HTMLDivElement>>(React.createRef<HTMLDivElement>())
+  console.log(child)
 
   const [boundingBox, setBoundingBox] = useState<DOMRect | null>(null)
   const [prevBoundingBox, setPrevBoundingBox] = useState<DOMRect | null>(null)
-  const prevChildren = usePrevious(child)
+  const prevChild = usePrevious(child)
 
   // Fix bounding boxes updating when list size updates
+  // get child to update
   useLayoutEffect(() => {
     const newBoundingBox = calculateBoundingBoxes(child)
+    console.log(newBoundingBox)
     setBoundingBox(newBoundingBox)
   }, [child])
 
   useLayoutEffect(() => {
-    const prevBoundingBox = calculateBoundingBoxes(prevChildren)
+    const prevBoundingBox = calculateBoundingBoxes(prevChild)
     setPrevBoundingBox(prevBoundingBox)
-  }, [prevChildren])
+  }, [prevChild])
 
   useEffect(() => {
     if (!prevBoundingBox || !boundingBox || Object.keys(prevBoundingBox).length < Object.keys(boundingBox).length)
