@@ -32,11 +32,10 @@ const Bars: React.FC<Props> = ({componentWidth}: { componentWidth: number } ) =>
     <div style={{ display: 'flex' }}>
         {
           list.map((b, i) => {
-            const barRef = createRef<HTMLDivElement>()
             return <Bar key={b} width={width} height={b/listSize} area={i >= area.start && i <= area.end}
             // Fix types here
-            // @ts-expect-error
-              main={i === selected.main} sub={i === selected.sub} ref={barRef} // Ref is null for some reason
+
+              main={i === selected.main} sub={i === selected.sub} // Ref is null for some reason
             />
         })}
     </div>

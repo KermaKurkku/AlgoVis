@@ -20,6 +20,7 @@ interface Bar {
   area: boolean;
 }
 
+
 // Renders a bar to represent a number in the list
 const Bar: React.FC<Bar> = React.forwardRef<Ref, Props>((props: Props, ref) => {
 
@@ -48,7 +49,7 @@ const Bar: React.FC<Bar> = React.forwardRef<Ref, Props>((props: Props, ref) => {
 
   return (
     <div style={style}>
-      <AnimateBar style={barStyle} />
+      <AnimateBar styling={barStyle} />
     </div>
   )
 })

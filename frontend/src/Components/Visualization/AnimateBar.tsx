@@ -15,17 +15,19 @@ interface AnimationProps {
   styling: CSSStyleDeclaration
 }
 
+const StyledBar: React.FC<any> = React.forwardRef((props: any, ref: any) => {
+  console.log(ref)
+  return <div style={props.style} ref={ref} />
+})
+StyledBar.displayName = 'StyledBar'
+
 const AnimateBar: React.FC<any> = ({ styling }: { styling: any }) => {
   const child = React.createRef<HTMLDivElement>()
 
-  const StyledBar: React.FC<any> = React.forwardRef((_props, ref) => (
-    <div ref={ref} />
-  ))
-
-  StyledBar.displayName = 'StyledBar'
+  
 
   if (child.current === null)
-    return <StyledBar ref={child} />
+    return <StyledBar style={styling} ref={child} />
 
   const [boundingBox, setBoundingBox] = useState<DOMRect | null>(null)
   const [prevBoundingBox, setPrevBoundingBox] = useState<DOMRect | null>(null)
@@ -76,7 +78,7 @@ const AnimateBar: React.FC<any> = ({ styling }: { styling: any }) => {
     }
   }, [boundingBox, prevBoundingBox, child])
 
-  return <StyledBar ref={child} />
+  return <StyledBar style={styling} ref={child} />
    
 
 }
