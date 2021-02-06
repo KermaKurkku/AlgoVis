@@ -1,4 +1,4 @@
-import { CurrentNumberActionType, SET_CURRENT, SET_MAIN, SET_SUB, REMOVE_CURRENT, REMOVE_SUB } from './types'
+import { CurrentNumberActionType, SET_CURRENT, SET_MAIN, SET_SUB, REMOVE_CURRENT, REMOVE_SUB, SET_AREA } from './types'
 
 export const setCurrentAction = (main: number, sub?: number | null): CurrentNumberActionType => {
   return {
@@ -37,5 +37,15 @@ export const removeCurrentAction = (): CurrentNumberActionType => {
 export const removeSubAction = (): CurrentNumberActionType => {
   return {
     type: REMOVE_SUB
+  }
+}
+
+export const setAreaAction = (start: number, end: number): CurrentNumberActionType => {
+  return {
+    type: SET_AREA,
+    payload: {
+      start: start,
+      end: end
+    }
   }
 }

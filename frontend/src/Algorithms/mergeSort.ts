@@ -1,4 +1,6 @@
-import { setMainAction, setSubAction, removeCurrentAction, removeSubAction } from '../store/currentNumber/actions'
+import {
+	setMainAction, setSubAction, removeCurrentAction, removeSubAction, setAreaAction
+} from '../store/currentNumber/actions'
 import { setNewAction } from '../store/list/actions'
 import { setFinishedAction } from '../store/running/actions'
 
@@ -8,7 +10,7 @@ import { isRunning, wait } from '../utils'
 import { baseDelay } from '../constants'
 
 const merge = async (arr: number[], index: number): Promise<number[] | null> => {
-	const list = [...store.getState().numberList.list]
+	let list = [...store.getState().numberList.list]
 
 
 	if (arr.length === 1)
@@ -25,9 +27,13 @@ const merge = async (arr: number[], index: number): Promise<number[] | null> => 
 
 	if (leftArr === null || rightArr === null)
 		return null
+	
+	list = [...store.getState().numberList.list]
 
 	let leftIndex = 0
 	let rightIndex = 0
+
+	store.dispatch(setAreaAction(list.indexOf(leftArr[0]), list.indexOf(rightArr[rightArr.length-1])))
 	
 	do {
 		if (isRunning() === 'stopped') 
@@ -76,5 +82,6 @@ export const mergeSort = async (): Promise<void> => {
 	await sort()
 	store.dispatch(removeCurrentAction())
 	store.dispatch(removeSubAction())
+	store.dispatch(setAreaAction(-1, -1))
 	store.dispatch(setFinishedAction())
 }

@@ -1,4 +1,6 @@
-import { setMainAction, setSubAction, removeCurrentAction, removeSubAction } from '../store/currentNumber/actions'
+import {
+  setMainAction, setSubAction, removeCurrentAction, removeSubAction, setAreaAction
+} from '../store/currentNumber/actions'
 import { setNewAction } from '../store/list/actions'
 import { setFinishedAction } from '../store/running/actions'
 
@@ -6,12 +8,12 @@ import store from '../store'
 
 import { isRunning, wait } from '../utils'
 import { baseDelay } from '../constants'
-import { removeSub } from '../store/currentNumber/currentNumberReducer'
 
 const partition = async (A: number[], low: number, high: number): Promise<number> => {
   const list: number[] = [...A]
   const pivot: number = list[high]
   store.dispatch(setMainAction(high))
+  store.dispatch(setAreaAction(low, high))
   let i = low
 
   if (!pivot)
@@ -56,6 +58,8 @@ export const quickSort = async (): Promise<void> => {
   await sort(0, list.length-1)
   store.dispatch(removeCurrentAction())
   store.dispatch(removeSubAction())
+  store.dispatch(setAreaAction(-1, -1))
   if (isRunning() === 'running')
     store.dispatch(setFinishedAction())
+
 }

@@ -23,18 +23,13 @@ const Bars: React.FC<Props> = ({componentWidth}: { componentWidth: number } ) =>
   
   const width: number = 100/listSize * componentWidth/listSize 
 
-  const area = {
-    start: 1,
-    end: 5
-  }
-
   return (
     <div style={{ display: 'flex' }}>
       <AnimateBars>
         {
           list.map((b, i) => {
             const barRef = createRef<HTMLDivElement>()
-            return <Bar key={b} width={width} height={b/listSize} area={i >= area.start && i <= area.end}
+            return <Bar key={b} width={width} height={b/listSize} area={i >= selected.area.start && i <= selected.area.end}
             // Fix types here
             // @ts-expect-error
               main={i === selected.main} sub={i === selected.sub} ref={barRef} // Ref is null for some reason

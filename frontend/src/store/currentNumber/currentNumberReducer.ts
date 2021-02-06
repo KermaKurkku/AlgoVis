@@ -6,19 +6,25 @@ import {
   SET_SUB,
   REMOVE_CURRENT,
   REMOVE_SUB,
+  SET_AREA
 } from './types'
 import {
   setCurrentAction,
   setMainAction,
   setSubAction,
   removeCurrentAction,
-  removeSubAction
+  removeSubAction,
+  setAreaAction
 } from './actions'
 import { AppType } from '../'
 
 const initialState: CurrentNumberState = {
   main: -1,
-  sub: null
+  sub: null,
+  area: {
+    start: -1,
+    end: -1
+  }
 }
 
 export const setCurrent = (main: number, sub: number | null): AppType => async dispatch => {
@@ -45,16 +51,19 @@ const reducer = (state = initialState, action: CurrentNumberActionType): Current
   switch(action.type) {
   case SET_CURRENT:
     return {
+      ...state,
       main: action.payload.main,
       sub: action.payload.sub
     }
   case SET_MAIN:
     return {
+      ...state,
       main: action.payload.main,
       sub: state.sub
     }
   case SET_SUB:
     return {
+      ...state,
       main: state.main,
       sub: action.payload.sub
     }
@@ -67,6 +76,14 @@ const reducer = (state = initialState, action: CurrentNumberActionType): Current
     return {
       ...state,
       sub: null
+    }
+  case SET_AREA:
+    return {
+      ...state,
+      area: {
+        start: action.payload.start,
+        end: action.payload.end
+      }
     }
   default:
     return state
