@@ -44,8 +44,8 @@ const Bar: React.FC<Bar> = React.forwardRef<Ref, Props>((props: Props, ref) => {
   }
 
   return (
-    <div style={style}>
-      <div style={barStyle} ref={ref} />
+    <div style={style} ref={ref}>
+      <div style={barStyle}  />
     </div>
   )
 })
