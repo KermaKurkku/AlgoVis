@@ -39,7 +39,7 @@ ___
 | 31.1.21 | 14.30 - 16.00 | 1.5 | Completed MergeSort and fixed some coloring | |
 | 2.2.21 | 10.30 - 13.00 14.00 - 16.00 | 4.5 | Started working on showing sections in some sorting algorithms, requires reworking animations | |
 | 3.2.21 | 16.00 - 17.00 | 1 | Got bars to render again, animations not working. Need to get child to update | |
-| 6.2.21 | 12.30 - | 1 | asdf | |
+| 6.2.21 | 12.30 - 16.30 | 4 | Made showing area selections possible. Moved sider to it's own component. | |
 |        |         |  |                                                                               | 84h |
 
 Link to app <https://rocky-springs-02478.herokuapp.com/> version 0.6.0
