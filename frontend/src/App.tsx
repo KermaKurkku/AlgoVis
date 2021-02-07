@@ -1,4 +1,4 @@
-import React, { useRef} from 'react'
+import React, { useRef, useEffect, useState} from 'react'
 import {
   Layout,
   Menu,
@@ -18,10 +18,20 @@ import { useContainerDimensions } from './hooks'
 
 const App: React.FC = () => {
 
+  const [loading, setLoading] = useState<boolean>(false)
   const componentRef = useRef<HTMLDivElement>(null)
   const { width } = useContainerDimensions(componentRef)
 
-  console.log(width)
+
+  useEffect(() => {
+    if (loading === false) {
+      setTimeout(() => {
+        setLoading(false)
+      }, 500)
+      setLoading(true)
+    }
+    
+  }, [width])
 
   return (
     <div>
@@ -44,7 +54,10 @@ const App: React.FC = () => {
                 }}
               >
               <div ref={componentRef}>
-                <Bars componentWidth={width} />
+                {
+                  loading ? <Skeleton/> :
+                    <Bars componentWidth={width} />
+                }
                 <Divider />
                 <Skeleton />
                 <Skeleton />

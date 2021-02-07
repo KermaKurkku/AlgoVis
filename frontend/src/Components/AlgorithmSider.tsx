@@ -28,7 +28,7 @@ const AlgorithmSider: React.FC = () => {
   const algorithmOptions: string[] = Object.values(AlgorithmTypes) as string[]
   const [selectedAlgorithm, setSelectedAlgorithm] = useState<string>(algorithmOptions[0])
 
-  const [collapsed, setCollapsed] = useState<boolean>(false)
+  const [collapse, setCollapsed] = useState<boolean>(false)
 
   const dispatch = useDispatch()
 
@@ -63,19 +63,23 @@ const AlgorithmSider: React.FC = () => {
     setSelectedAlgorithm(event.key)
   }
 
-  const toggleCollapsed = () => {
-    setCollapsed(!collapsed)
+  const toggleCollapsed = (collapsed: any, type: any) => {
+    setCollapsed(collapsed)
+    console.log(collapsed)
+    console.log(type)
+    
   }
 
   return (
     <>
-      <Button style={{ display: 'block'}} onClick={toggleCollapsed} >Yeetus</Button>
+      {/*<Button style={{ display: 'block'}} onClick={toggleCollapsed} >Yeetus</Button>*/}
       <Sider
-        width={'20em'} className='site-layout-background' theme='light' collapsible defaultCollapsed={false}
-        collapsed={collapsed}
+        width={'19em'} className='site-layout-background' theme='light'
+         collapsedWidth="0" onCollapse={toggleCollapsed} breakpoint="lg"
+        onBreakpoint={(breakpoint: any) => console.log(breakpoint)}
       >
         {
-          !collapsed ?
+          !collapse ?
           <div>
             <Title level={2} style={{ margin: '0,5em auto', padding: '0.2em 1em' }}>Select list size</Title>
             <ListSizeSlider />
