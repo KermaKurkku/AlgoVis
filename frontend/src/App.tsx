@@ -21,6 +21,8 @@ const App: React.FC = () => {
   const componentRef = useRef<HTMLDivElement>(null)
   const { width } = useContainerDimensions(componentRef)
 
+  console.log(width)
+
   return (
     <div>
       <Layout>
@@ -31,7 +33,9 @@ const App: React.FC = () => {
           </Menu>
         </Header>
         <Layout style={{ margin: '0 5em 0 5em' }}>
+
           <AlgorithmSider />
+
           <Layout style={{ padding: '0 10em em' }}>
             <Content className="site-layout-content" id='container'
                 style={{

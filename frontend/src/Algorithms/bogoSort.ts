@@ -3,8 +3,6 @@ import { setFinishedAction } from '../store/running/actions'
 
 import { setNewAction } from '../store/list/actions'
 
-import listService from '../services/lists'
-
 import store from '../store'
 
 import { isRunning, wait } from '../utils'
@@ -18,12 +16,13 @@ const sort = async (): Promise<void> => {
   const listSize: number = store.getState().numberList.size
   let rerun = false
 
-  for (let i = 0; i < listSize - 1; i++) {
+  for (let i = 1; i < listSize - 1; i++) {
+    store.dispatch(setMainAction(i-1))
     await wait(baseDelay)
     if (isRunning() === 'stopped')
       return
     store.dispatch(setMainAction(i))
-    if (list[i] > list[i + 1]) {
+    if (list[i] < list[i - 1]) {
       rerun = !rerun
       break
     }

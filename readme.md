@@ -40,6 +40,7 @@ ___
 | 2.2.21 | 10.30 - 13.00 14.00 - 16.00 | 4.5 | Started working on showing sections in some sorting algorithms, requires reworking animations | |
 | 3.2.21 | 16.00 - 17.00 | 1 | Got bars to render again, animations not working. Need to get child to update | |
 | 6.2.21 | 12.30 - 16.30 | 4 | Made showing area selections possible. Moved sider to it's own component. | |
+| 7.1.21 | 11.00 - | 1 | asdf | |
 |        |         |  |                                                                               | 88h |
 
 Link to app <https://rocky-springs-02478.herokuapp.com/> version 0.6.0
