@@ -29,6 +29,7 @@ const AlgorithmSider: React.FC = () => {
   const [selectedAlgorithm, setSelectedAlgorithm] = useState<string>(algorithmOptions[0])
 
   const [open, setOpen] = useState<boolean>(false)
+  const [breakpoint, setBreakpoint] = useState<boolean>(false)
 
   const [curStyle, setCurStyle] = useState<React.CSSProperties>({ position: 'relative' })
 
@@ -42,8 +43,7 @@ const AlgorithmSider: React.FC = () => {
     if (running === 'finished')
       await dispatch(fetchNewList(listSize))
 
-    if (open) {
-      console.log('closing sider')
+    if (breakpoint && open) {
       setOpen(false)
     }
 
@@ -71,25 +71,25 @@ const AlgorithmSider: React.FC = () => {
   }
 
   const toggleOpen = (collapsed: any, type: any) => {
-    console.log('toggled open', !collapsed)
     setOpen(!collapsed)
     
   }
 
   const handleBreakpoint = (breakpoint: boolean) => {
-    console.log('breakpoint', breakpoint)
     if (breakpoint) 
       setCurStyle({
         position: 'absolute',
+        zIndex: 100
     })
     else
       setCurStyle({
         position: 'relative',
+        zIndex: 1,
+        transition: 'none' 
     })
 
+    setBreakpoint(breakpoint)
   }
-
-  console.log('is open', open)
 
   return (
     <>
@@ -100,7 +100,7 @@ const AlgorithmSider: React.FC = () => {
         onBreakpoint={handleBreakpoint} style={curStyle}
       >
         {
-          open ?
+          
           <div>
             <Title level={2} style={{ margin: '0,5em auto', padding: '0.2em 1em' }}>Select list size</Title>
             <ListSizeSlider />
@@ -120,7 +120,7 @@ const AlgorithmSider: React.FC = () => {
             {/*Menu for selecting sorting algorithm*/}
             <Menu
               mode="inline"
-              style={{ borderRight: 0 }}
+              style={{ borderRight: 0 , transition: 'none'}}
               defaultSelectedKeys={[selectedAlgorithm]}
               onClick={menuOnClick}
             >
@@ -128,11 +128,11 @@ const AlgorithmSider: React.FC = () => {
                 <Menu.Item
                   key={a}
                   disabled={running === 'running' ? true : false}
+                  style={{ transition: 'none' }}
                 >{a}</Menu.Item>
               )}
             </Menu>
-          </div> :
-          null
+          </div> 
         }
 
       </Sider>

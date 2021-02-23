@@ -16,7 +16,6 @@ const ListSizeSlider: React.FC = () => {
   const listSize = useSelector((state: RootState) => state.numberList.size)
   const visualizationStatus = useSelector((state: RootState) => state.running)
 
-  console.log('list size', listSize)
 
   const [sliderValue, setSliderValue] = useState(listSize)
  
