@@ -15,7 +15,7 @@ import {
 
 import { AppType } from '..'
 
-const initialState: runningType = 'waiting'
+const initialState: runningType = 'finished'
 
 export const setRunning = (): AppType => async dispatch => {
   dispatch(setRunningAction())

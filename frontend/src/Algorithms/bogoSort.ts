@@ -29,7 +29,7 @@ const sort = async (): Promise<void> => {
   }
 
   if (rerun) {
-    store.dispatch(setNewAction(_.shuffle(list)))
+    store.dispatch(setNewAction(_.shuffle(list), list.length))
     store.dispatch(setMainAction(-1))
     await wait(300)
     return await sort()

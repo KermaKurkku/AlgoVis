@@ -27,12 +27,13 @@ const partition = async (A: number[], low: number, high: number): Promise<number
 
     if (list[j] < pivot) {
       [list[i], list[j]] = [list[j], list[i]]
-      store.dispatch(setNewAction(list))
+      store.dispatch(setNewAction(list, list.length))
       i++
     }
   }
   [list[i], list[high]] = [list[high], list[i]]
-  store.dispatch(setNewAction(list))
+  store.dispatch(setNewAction(list, list.length))
+  await wait(baseDelay)
   return i
 }
 

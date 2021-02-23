@@ -28,7 +28,9 @@ const AlgorithmSider: React.FC = () => {
   const algorithmOptions: string[] = Object.values(AlgorithmTypes) as string[]
   const [selectedAlgorithm, setSelectedAlgorithm] = useState<string>(algorithmOptions[0])
 
-  const [collapse, setCollapsed] = useState<boolean>(false)
+  const [open, setOpen] = useState<boolean>(false)
+
+  const [curStyle, setCurStyle] = useState<React.CSSProperties>({ position: 'relative' })
 
   const dispatch = useDispatch()
 
@@ -39,6 +41,11 @@ const AlgorithmSider: React.FC = () => {
   const startVisualization = async (): Promise<void> => {
     if (running === 'finished')
       await dispatch(fetchNewList(listSize))
+
+    if (open) {
+      console.log('closing sider')
+      setOpen(false)
+    }
 
     dispatch(setRunning())
     const selected: Algorithms =  selectedAlgorithm as Algorithms
@@ -63,23 +70,37 @@ const AlgorithmSider: React.FC = () => {
     setSelectedAlgorithm(event.key)
   }
 
-  const toggleCollapsed = (collapsed: any, type: any) => {
-    setCollapsed(collapsed)
-    console.log(collapsed)
-    console.log(type)
+  const toggleOpen = (collapsed: any, type: any) => {
+    console.log('toggled open', !collapsed)
+    setOpen(!collapsed)
     
   }
 
+  const handleBreakpoint = (breakpoint: boolean) => {
+    console.log('breakpoint', breakpoint)
+    if (breakpoint) 
+      setCurStyle({
+        position: 'absolute',
+    })
+    else
+      setCurStyle({
+        position: 'relative',
+    })
+
+  }
+
+  console.log('is open', open)
+
   return (
     <>
-      {/*<Button style={{ display: 'block'}} onClick={toggleCollapsed} >Yeetus</Button>*/}
       <Sider
-        width={'19em'} className='site-layout-background' theme='light'
-         collapsedWidth="0" onCollapse={toggleCollapsed} breakpoint="lg"
-        onBreakpoint={(breakpoint: any) => console.log(breakpoint)}
+        width={'19em'} className='sider-root' theme='light'
+        collapsed={!open}
+        collapsedWidth="0" onCollapse={toggleOpen} breakpoint="lg"
+        onBreakpoint={handleBreakpoint} style={curStyle}
       >
         {
-          !collapse ?
+          open ?
           <div>
             <Title level={2} style={{ margin: '0,5em auto', padding: '0.2em 1em' }}>Select list size</Title>
             <ListSizeSlider />
@@ -100,8 +121,7 @@ const AlgorithmSider: React.FC = () => {
             <Menu
               mode="inline"
               style={{ borderRight: 0 }}
-              defaultOpenKeys={['slider', 'sub2']}
-              defaultSelectedKeys={[algorithmOptions[0]]}
+              defaultSelectedKeys={[selectedAlgorithm]}
               onClick={menuOnClick}
             >
               {algorithmOptions.map(a =>

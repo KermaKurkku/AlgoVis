@@ -15,12 +15,21 @@ import AlgorithmSider from './Components/AlgorithmSider'
 //import SortWorker from 'comlink-loader!./worker'
 
 import { useContainerDimensions } from './hooks'
+import { useDispatch } from 'react-redux'
+import { fetchNewList } from './store/list/listReducer'
+import { setWaiting } from './store/running/runningReducer'
 
 const App: React.FC = () => {
 
   const [loading, setLoading] = useState<boolean>(false)
   const componentRef = useRef<HTMLDivElement>(null)
   const { width } = useContainerDimensions(componentRef)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchNewList(20))
+    dispatch(setWaiting())
+  }, [])
 
 
   useEffect(() => {
@@ -36,13 +45,13 @@ const App: React.FC = () => {
   return (
     <div>
       <Layout>
-        <Header className='header'>
+        <Header className='header' style={{ padding: width > 992 ? '0 5em 0 5em' : '0 1em 0 1em'}}>
           <div />
           <Menu theme='dark' mode='horizontal' defaultSelectedKeys={['1']}>
             <Menu.Item key="1">AlgoVis</Menu.Item>
           </Menu>
         </Header>
-        <Layout style={{ margin: '0 5em 0 5em' }}>
+        <Layout style={{ margin: width > 992 ? '0 5em 0 5em' : '0' }}>
 
           <AlgorithmSider />
 
@@ -53,7 +62,7 @@ const App: React.FC = () => {
                   margin: 0,
                 }}
               >
-              <div ref={componentRef}>
+              <div className="bar-desc-container" ref={componentRef}>
                 {
                   loading ? <Skeleton/> :
                     <Bars componentWidth={width} />

@@ -33,7 +33,7 @@ const sort = async (list: number[]): Promise<void> => {
 
       [list[j], list[j - 1]] = [list[j - 1], list[j]]
 
-      store.dispatch(setNewAction([...list]))
+      store.dispatch(setNewAction([...list], list.length))
       
       j--
     }

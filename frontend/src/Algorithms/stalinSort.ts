@@ -17,6 +17,8 @@ const sort = async (): Promise<void> => {
 
   let index = 1;
   do {
+    if (isRunning() === 'stopped')
+      return
     const list = store.getState().numberList.list
     store.dispatch(setMainAction(index))
     if (list.length <= 1)
@@ -29,7 +31,7 @@ const sort = async (): Promise<void> => {
 
     if (list[index - 1] > list[index]) {
       const newList = list.filter(v => v !== list[index]) 
-      store.dispatch(setNewAction(newList))
+      store.dispatch(setNewAction(newList, list.length))
       continue
     }
     index++

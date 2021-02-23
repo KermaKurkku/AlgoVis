@@ -4,7 +4,7 @@ import { Slider } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store'
 
-import { fetchNewList, changeListSize } from '../store/list/listReducer'
+import { fetchNewList } from '../store/list/listReducer'
 
 import { isRunning } from '../utils'
 import { setWaiting } from '../store/running/runningReducer'
@@ -13,12 +13,21 @@ import { setWaiting } from '../store/running/runningReducer'
 const ListSizeSlider: React.FC = () => {
   const dispatch = useDispatch()
 
-  const [sliderValue, setSliderValue] = useState(20)
   const listSize = useSelector((state: RootState) => state.numberList.size)
+  const visualizationStatus = useSelector((state: RootState) => state.running)
+
+  console.log('list size', listSize)
+
+  const [sliderValue, setSliderValue] = useState(listSize)
+ 
 
   useEffect(() => {
-    dispatch(fetchNewList(listSize))
-    dispatch(setWaiting())
+    if (visualizationStatus === 'finished') {
+      dispatch(setWaiting())
+      dispatch(fetchNewList(listSize))
+    }
+    
+    
   }, [listSize])
 
   const onSliderChange = (value: any) => {
@@ -32,7 +41,7 @@ const ListSizeSlider: React.FC = () => {
       return
     if (value > 40)
       value = 40
-    dispatch(changeListSize(value))
+    dispatch(fetchNewList(value))
   }
 
   return (
@@ -42,7 +51,7 @@ const ListSizeSlider: React.FC = () => {
         max={40}
         onChange={onSliderChange}
         onAfterChange={setNewListSize}
-        value={typeof sliderValue === 'number' ? sliderValue : 20}
+        value={sliderValue}
         tipFormatter={null}
         disabled={isRunning() === 'running'}
       />

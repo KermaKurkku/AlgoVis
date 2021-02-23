@@ -58,7 +58,7 @@ const merge = async (arr: number[], index: number): Promise<number[] | null> => 
 		store.dispatch(setNewAction(list.map(
 				(v, i) => (i-baseIndex) >= 0 && (i-baseIndex) < rtrArr.length ?
 				rtrArr[i-baseIndex] : v
-			)
+			), list.length
 			))
 
 		index++

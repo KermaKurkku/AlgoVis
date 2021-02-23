@@ -18,7 +18,7 @@ const timeoutLoop = (i: number, loop: number): void => {
     }
     if (list[i] > list[i + 1]) {
       [list[i], list[i + 1]] = [list[i + 1], list[i]]
-      store.dispatch(setNewAction(list))
+      store.dispatch(setNewAction(list, list.length))
     }
     i++
     store.dispatch(setMainAction(i))
