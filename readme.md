@@ -41,7 +41,7 @@ ___
 | 3.2.21 | 16.00 - 17.00 | 1 | Got bars to render again, animations not working. Need to get child to update | |
 | 6.2.21 | 12.30 - 16.30 | 4 | Made showing area selections possible. Moved sider to it's own component. | |
 | 7.2.21 | 11.00 - 14.30 | 3.5 | Started working on making the UI reactive to screen size | |
-| 23.2.21 | 11.30 - | 1 | asdf | |
+| 23.2.21 | 11.30 - 12.00 13.00 - 16.00 | 3.5 | Updated sider to float when small enough. Fixed sider menu remebering choices | |
 |        |         |  |                                                                               | 91.5h |
 
 Link to app <https://rocky-springs-02478.herokuapp.com/> version 0.6.0
