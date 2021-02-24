@@ -48,7 +48,7 @@ const AlgorithmSider: React.FC = () => {
       await dispatch(fetchNewList(listSize))
 
     if (breakpoint && open) {
-      setOpen(false)
+      toggleOpen(true)
     }
 
     dispatch(setRunning())
@@ -74,7 +74,7 @@ const AlgorithmSider: React.FC = () => {
     setSelectedAlgorithm(event.key)
   }
 
-  const toggleOpen = (collapsed: any, type: any) => {
+  const toggleOpen = (collapsed: boolean) => {
     setOpen(!collapsed)
 
     if (collapsed) 
@@ -123,15 +123,6 @@ const AlgorithmSider: React.FC = () => {
     setBreakpoint(breakpoint)
   }
 
-  const collapseButton: React.CSSProperties = {
-    top: '40px',
-    right: '-36px',
-    maxHeight: '2em',
-    maxWidth: '2em',
-    height: '100%',
-    width: '100%',
-    opacity: 1,
-  }
 
   return (
     <>
@@ -139,7 +130,7 @@ const AlgorithmSider: React.FC = () => {
         width={'19em'} className='sider-root' theme='light'
         collapsed={!open}
         collapsedWidth="0" onCollapse={toggleOpen} breakpoint="lg"
-        onBreakpoint={handleBreakpoint} style={currStyle} 
+        onBreakpoint={handleBreakpoint} style={currStyle} zeroWidthTriggerStyle={{ top: 0 }}
       >
        <div className='sider-wrapper' style={wrapperStyle}>
         <Title level={2} style={{ margin: '0,5em auto', padding: '0.2em 1em' }}>Select list size</Title>

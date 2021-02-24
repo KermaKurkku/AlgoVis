@@ -59,7 +59,7 @@ const App: React.FC = () => {
             <Content className="site-layout-content" id='container'
                 style={{
                   padding: 24,
-                  margin: 0,
+                  marginTop: width > 922 ? 0 : 20,
                 }}
               >
               <div className="bar-desc-container" ref={componentRef}>
