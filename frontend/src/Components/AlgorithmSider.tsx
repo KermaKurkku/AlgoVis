@@ -72,20 +72,19 @@ const AlgorithmSider: React.FC = () => {
   }
 
   const toggleOpen = (collapsed: boolean) => {
-    setOpen(!collapsed)
+    3
 
+    setOpen(!collapsed)
     if (collapsed) 
       setWrappperStyle({
         opacity: 0,
-        transition: 'opacity, 0.2s',
-        transitionTimingFunction: 'cubic-bezier(0,1,0,1)'
+        transition: 'opacity, 0.2s cubic-bezier(0,1,0,1)',
       })
     else 
       setWrappperStyle({
         ...wrapperStyle,
         opacity: 1,
-        transition: 'opacity, 0.2s',
-        transitionTimingFunction: 'cubic-bezier(1,0,1,0)'
+        transition: 'opacity, 0.2s cubic-bezier(1,0,1,0)',
       })
     
   }
@@ -99,8 +98,7 @@ const AlgorithmSider: React.FC = () => {
       })
       setWrappperStyle({
         opacity: 0,
-        transition: 'opacity, 0.2s',
-        transitionTimingFunction: 'cubic-bezier(0,1,0,1)'
+        transition: 'opacity, 0.2s cubic-bezier(0,1,0,1)',
       })
     } else {
       setCurrStyle({
@@ -112,7 +110,6 @@ const AlgorithmSider: React.FC = () => {
         ...wrapperStyle,
         opacity: 1,
         transition: 'none',
-        transitionTimingFunction: 'cubic-bezier(1,0,1,0)'
       })
     }
       
