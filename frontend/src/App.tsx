@@ -15,21 +15,13 @@ import AlgorithmSider from './Components/AlgorithmSider'
 //import SortWorker from 'comlink-loader!./worker'
 
 import { useContainerDimensions } from './hooks'
-import { useDispatch } from 'react-redux'
-import { fetchNewList } from './store/list/listReducer'
-import { setWaiting } from './store/running/runningReducer'
+
 
 const App: React.FC = () => {
 
   const [loading, setLoading] = useState<boolean>(false)
   const componentRef = useRef<HTMLDivElement>(null)
   const { width } = useContainerDimensions(componentRef)
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(fetchNewList(20))
-    dispatch(setWaiting())
-  }, [])
 
 
   useEffect(() => {

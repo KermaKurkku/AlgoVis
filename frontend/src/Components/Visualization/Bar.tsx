@@ -22,7 +22,7 @@ interface Bar {
 const Bar: React.FC<Bar> = React.forwardRef<Ref, Props>((props: Props, ref) => {
 
   const normal = !props.main && !props.sub
-  const maxHeight = 40
+  const maxHeight = 30
   const style = {
     height: `${maxHeight+1}em`,
     width: `${props.width}%`,

@@ -32,10 +32,7 @@ const AlgorithmSider: React.FC = () => {
   const [breakpoint, setBreakpoint] = useState<boolean>(false)
 
   const [currStyle, setCurrStyle] = useState<React.CSSProperties>({ position: 'relative' })
-  const [wrapperStyle, setWrappperStyle] = useState<React.CSSProperties>({
-    opacity: 1
-  })
-
+  const [wrapperStyle, setWrappperStyle] = useState<React.CSSProperties>({ opacity: 1 })
 
   const dispatch = useDispatch()
 
@@ -134,7 +131,10 @@ const AlgorithmSider: React.FC = () => {
       >
        <div className='sider-wrapper' style={wrapperStyle}>
         <Title level={2} style={{ margin: '0,5em auto', padding: '0.2em 1em' }}>Select list size</Title>
-          <ListSizeSlider />
+          {/* List size slider */}
+          <ListSizeSlider breakpoint={breakpoint} />
+
+          {/* Run button */}
           {running === 'stopped' || running === 'finished' || running === 'waiting' ?
             <Button type='primary' block size='large' style={{
               margin: '1em auto',
@@ -147,6 +147,7 @@ const AlgorithmSider: React.FC = () => {
             onClick={stopVisualization}
             >Stop visualization</Button>
           }
+
           <Divider>Select sorting algorithm</Divider>
           {/*Menu for selecting sorting algorithm*/}
           <Menu
@@ -155,6 +156,7 @@ const AlgorithmSider: React.FC = () => {
             defaultSelectedKeys={[selectedAlgorithm]}
             onClick={menuOnClick}
           >
+          
           {algorithmOptions.map(a =>
             <Menu.Item
               key={a}
