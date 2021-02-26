@@ -43,7 +43,7 @@ ___
 | 7.2.21 | 11.00 - 14.30 | 3.5 | Started working on making the UI reactive to screen size | |
 | 23.2.21 | 11.30 - 12.00 13.00 - 17.00 | 4.5 | Updated sider to float when small enough. Fixed sider menu remebering choices. Updated Heroku. | |
 | 24.2.21 | 16.00 - 17.30 | 1.5 | Cleaned up ui when sider can be collapsed | |
-| 26.2.21 | 14.45 - | 1 | asdf | |
-|        |         |  |                                                                               | 97.5h |
+| 26.2.21 | 16.45 - 17.30| 0.75 | Fixed errors. List size slider max now adjusts to screen size | |
+|        |         |  |                                                                               | 98.25h |
 
 Link to app <https://rocky-springs-02478.herokuapp.com/> version 0.8.0
