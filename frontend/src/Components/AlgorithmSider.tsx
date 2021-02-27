@@ -50,17 +50,13 @@ const AlgorithmSider: React.FC = () => {
     if (running === 'finished')
       await dispatch(fetchNewList(listSize))
 
-    
-
     dispatch(setRunning())
     
-
     await runner.runAlgorithm()
   }
 
   const stopVisualization = (): void => {
     dispatch(setStopped())
-    
   }
 
   const menuOnClick = (event: any)  => {
@@ -123,6 +119,21 @@ const AlgorithmSider: React.FC = () => {
     setBreakpoint(breakpoint)
   }
 
+  const RunButton = () => (
+    running === 'stopped' || running === 'finished' || running === 'waiting' ?
+      <Button type='primary' block size='large' style={{
+          margin: '1em auto',
+        }}
+        onClick={startVisualization}
+      >Visualize</Button> :
+      <Button type='primary' block size='large' style={{
+          margin: '1em auto'
+        }}
+        onClick={stopVisualization}
+      >Stop visualization</Button>
+    
+  )
+
 
   return (
     <>
@@ -138,17 +149,9 @@ const AlgorithmSider: React.FC = () => {
           <ListSizeSlider breakpoint={breakpoint} />
 
           {/* Run button */}
-          {running === 'stopped' || running === 'finished' || running === 'waiting' ?
-            <Button type='primary' block size='large' style={{
-              margin: '1em auto',
-            }}
-            onClick={startVisualization}
-            >Visualize</Button> :
-            <Button type='primary' block size='large' style={{
-              margin: '1em auto'
-            }}
-            onClick={stopVisualization}
-            >Stop visualization</Button>
+          {
+            breakpoint ? null 
+            : <RunButton />
           }
 
           <Divider>Select sorting algorithm</Divider>

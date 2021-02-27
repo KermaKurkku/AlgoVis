@@ -11,6 +11,7 @@ const { Header, Footer, Content } = Layout
 
 import Bars from './Components/Bars'
 import AlgorithmSider from './Components/AlgorithmSider'
+import PageHeader from './Components/PageHeader'
 
 // Figure out webworkers at some point maybe?
 //import SortWorker from 'comlink-loader!./worker'
@@ -36,30 +37,9 @@ const App: React.FC = () => {
   }, [width])
 
   return (
-    <div>
+    <div ref={componentRef}>
       <Layout>
-        <Header className='header' style={{ padding: width > 992 ? '0 5em 0 5em' : '0 1em 0 1em'}}>
-          <div />
-          <Menu
-            theme='dark' mode='horizontal' defaultSelectedKeys={['1']}
-            style={{ display: 'inline-block'}}
-          >
-            <Menu.Item key="1">AlgoVis</Menu.Item>
-          </Menu>
-            {
-              width < 992 ?
-                <Button 
-                  type='primary' block size='large'
-                  style={{ 
-                    display: 'inline-block', float: 'right', height: '90%', margin: 'auto 1em', 
-                    width: 'auto', transform: 'translate(0, -50%)', top: '50%'
-                  }}
-                >
-                Start Visualization
-                </Button>
-              : null
-            }
-        </Header>
+        <PageHeader width={width} />
         <Layout style={{ margin: width > 992 ? '0 5em 0 5em' : '0' }}>
 
           <AlgorithmSider />
@@ -71,7 +51,7 @@ const App: React.FC = () => {
                   marginTop: width > 922 ? 0 : 20,
                 }}
               >
-              <div className="bar-desc-container" ref={componentRef}>
+              <div className="bar-desc-container" >
                 {
                   loading ? <Skeleton/> :
                     <Bars componentWidth={width} />
