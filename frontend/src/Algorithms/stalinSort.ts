@@ -11,6 +11,7 @@ import { isRunning, wait } from '../utils'
 import { baseDelay } from '../constants'
 
 const sort = async (): Promise<void> => {
+  const listLength = store.getState().numberList.size
   
   if (!isRunning())
     return
@@ -31,7 +32,7 @@ const sort = async (): Promise<void> => {
 
     if (list[index - 1] > list[index]) {
       const newList = list.filter(v => v !== list[index]) 
-      store.dispatch(setNewAction(newList, list.length))
+      store.dispatch(setNewAction(newList, listLength))
       continue
     }
     index++
