@@ -44,7 +44,7 @@ ___
 | 23.2.21 | 11.30 - 12.00 13.00 - 17.00 | 4.5 | Updated sider to float when small enough. Fixed sider menu remebering choices. Updated Heroku. | |
 | 24.2.21 | 16.00 - 17.30 | 1.5 | Cleaned up ui when sider can be collapsed | |
 | 26.2.21 | 16.45 - 17.30| 0.75 | Fixed errors. List size slider max now adjusts to screen size | |
-| 27.2.21 | 12.00 - 12.30 14.35 - | 1 | asdf | |
+| 27.2.21 | 12.00 - 12.30 14.35 - | 1 | Updated algorithmRunner. Start button moves to header when website is in mobile mode. | |
 |        |         |  |                                                                               | 98.25h |
 
 Link to app <https://rocky-springs-02478.herokuapp.com/> version 0.8.0

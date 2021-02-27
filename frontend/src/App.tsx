@@ -40,7 +40,10 @@ const App: React.FC = () => {
     <div ref={componentRef}>
       <Layout>
         <PageHeader width={width} />
-        <Layout style={{ margin: width > 992 ? '0 5em 0 5em' : '0' }}>
+        <Layout style={{ 
+          margin: width > 992 ? '0 5em 0 5em' : '0',
+          marginTop: width > 922 ? 0 : '64px'
+        }}>
 
           <AlgorithmSider />
 
