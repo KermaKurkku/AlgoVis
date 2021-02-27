@@ -10,16 +10,15 @@ import {
 
 import * as a from '../../Algorithms'
 
-export class AlgorithmRunner {  
-  selectedAlgorithm: Algorithms
+class AlgorithmRunner {  
+  private selectedAlgorithm: Algorithms
 
   constructor() {
-    this.selectedAlgorithm = 'BubbleSort' as Algorithms
+    this.selectedAlgorithm = 'BubbleSort'
   }
 
   setAlgorithm(algorithm: Algorithms) {
     this.selectedAlgorithm = algorithm
-    console.log('selected algorithm', this.selectedAlgorithm)
   }
 
   getAlgorithm() {
@@ -46,3 +45,7 @@ export class AlgorithmRunner {
   }
 
 }
+
+const instance = new AlgorithmRunner()
+
+export default instance
