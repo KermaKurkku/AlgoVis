@@ -3,7 +3,8 @@ import {
   Layout,
   Menu,
   Skeleton,
-  Divider
+  Divider,
+  Button
 } from 'antd'
 
 const { Header, Footer, Content } = Layout
@@ -39,9 +40,25 @@ const App: React.FC = () => {
       <Layout>
         <Header className='header' style={{ padding: width > 992 ? '0 5em 0 5em' : '0 1em 0 1em'}}>
           <div />
-          <Menu theme='dark' mode='horizontal' defaultSelectedKeys={['1']}>
+          <Menu
+            theme='dark' mode='horizontal' defaultSelectedKeys={['1']}
+            style={{ display: 'inline-block'}}
+          >
             <Menu.Item key="1">AlgoVis</Menu.Item>
           </Menu>
+            {
+              width < 992 ?
+                <Button 
+                  type='primary' block size='large'
+                  style={{ 
+                    display: 'inline-block', float: 'right', height: '90%', margin: 'auto 1em', 
+                    width: 'auto', transform: 'translate(0, -50%)', top: '50%'
+                  }}
+                >
+                Start Visualization
+                </Button>
+              : null
+            }
         </Header>
         <Layout style={{ margin: width > 992 ? '0 5em 0 5em' : '0' }}>
 

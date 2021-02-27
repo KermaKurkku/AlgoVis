@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Layout,
   Typography,
@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setStopped, setRunning, setWaiting } from '../store/running/runningReducer'
 
 import {
-  runAlgorithm,
+  AlgorithmRunner,
   Algorithms,
   AlgorithmTypes
 } from '../services/AlgorithmRunner'
@@ -26,7 +26,6 @@ import { fetchNewList } from '../store/list/listReducer'
 const AlgorithmSider: React.FC = () => {
 
   const algorithmOptions: string[] = Object.values(AlgorithmTypes) as string[]
-  const [selectedAlgorithm, setSelectedAlgorithm] = useState<string>(algorithmOptions[0])
 
   const [open, setOpen] = useState<boolean>(false)
   const [breakpoint, setBreakpoint] = useState<boolean>(false)
@@ -39,18 +38,24 @@ const AlgorithmSider: React.FC = () => {
   const running = useSelector((state: RootState) => state.running)
   const listSize = useSelector((state: RootState) => state.numberList.size)
 
+  const runner = new AlgorithmRunner()
+
+  useEffect(() => {
+    if (running === 'running' && breakpoint && open)
+      toggleOpen(true)
+  }, [running])
+
 
   const startVisualization = async (): Promise<void> => {
     if (running === 'finished')
       await dispatch(fetchNewList(listSize))
 
-    if (breakpoint && open) {
-      toggleOpen(true)
-    }
+    
 
     dispatch(setRunning())
-    const selected: Algorithms =  selectedAlgorithm as Algorithms
-    await runAlgorithm(selected)
+    
+
+    await runner.runAlgorithm()
   }
 
   const stopVisualization = (): void => {
@@ -68,7 +73,8 @@ const AlgorithmSider: React.FC = () => {
 
     checkIfNotWaiting()
 
-    setSelectedAlgorithm(event.key)
+    runner.setAlgorithm(event.key as Algorithms)
+
   }
 
   const toggleOpen = (collapsed: boolean) => {
@@ -150,7 +156,7 @@ const AlgorithmSider: React.FC = () => {
           <Menu
             mode="inline"
             style={{ borderRight: 0 , transition: 'none'}}
-            defaultSelectedKeys={[selectedAlgorithm]}
+            defaultSelectedKeys={[runner.getAlgorithm()]}
             onClick={menuOnClick}
           >
           
