@@ -30,7 +30,7 @@ const App: React.FC = () => {
     if (loading === false) {
       setTimeout(() => {
         setLoading(false)
-      }, 500)
+      }, 250)
       setLoading(true)
     }
     

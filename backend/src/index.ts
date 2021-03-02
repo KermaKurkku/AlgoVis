@@ -2,6 +2,7 @@ require('dotenv').config()
 import express from 'express'
 const cors = require('cors')
 import listRouter from './routes/lists'
+import descriptionRouter from './routes/descriptions'
 
 const app = express()
 
@@ -16,11 +17,9 @@ app.get('/api/ping', (_req, res) => {
   res.send('pong')
 })
 
-
-
 app.use('/api/list', listRouter)
 
-
+app.use('/api/description', descriptionRouter)
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
