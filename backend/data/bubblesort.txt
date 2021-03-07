@@ -1,7 +1,7 @@
-Bubble sort is a simple sorting algorithm that steps through the list, compares adjacent elements and swaps them if they are in the wrong order. This is repeated until the list is sorted. 
+Bubble sort is a simple sorting algorithm that steps through the list, compares adjacent elements and swaps them if they are in the wrong order. When the whole list is iterated through, iteration is started again from the first item. This is repeated until the list is sorted. 
 The algorithm which is a comparison sort gets it's name for the way smaller or larger elements 'bubble' to the top of the list.
 This algorithm performs poorly in real world use with an average complexity of O(n²) where n is the number of items being sorted, which means it's efficiency decreases exponentially when the size of the list increases. As it is very inefficient it's primary use is as an educational tool, more efficient algorithms such as quicksort, timsort or merge sort are used by the sorting libraries built into popular programming languages such as Python and Java
 
 #Pseudocode implementation
 
-//n := length(A)//    do//        swapped := false//        for i := 1 to n - 1 inclusive do//            if A[i - 1] > A[i] then//                swap(A[i - 1], A[i])//                swapped = true//            end if//        end for//        n := n - 1//    while not swapped
+//Bubblesort(A[])//    n := length(A)//    do//        swapped := false//        for i := 1 to n - 1 inclusive do//            if A[i - 1] > A[i] then//                swap(A[i - 1], A[i])//                swapped = true//            end if//        end for//        n := n - 1//    while not swapped

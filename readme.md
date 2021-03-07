@@ -46,7 +46,7 @@ ___
 | 26.2.21 | 16.45 - 17.30| 0.75 | Fixed errors. List size slider max now adjusts to screen size | |
 | 27.2.21 | 12.00 - 12.30 14.30 - 17.00 | 3 | Updated algorithmRunner. Start button moves to header when website is in mobile mode. | |
 | 2.3.21 | 15.00 - 16.00 | 1 | Started working on backend route to get sorting descriptions | |
-| 7.3.21 | 10.30 - | 1 | asdf | |
+| 7.3.21 | 10.30 - 14.30 15.30 - | 1 | asdf | |
 |        |         |  |                                                                               | 102.25h |
 
 Link to app <https://rocky-springs-02478.herokuapp.com/> version 0.8.0
