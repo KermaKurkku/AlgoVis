@@ -13,9 +13,9 @@ const { Sider } = Layout
 import ListSizeSlider from '../Components/ListSizeSlider'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { setStopped, setRunning, setWaiting } from '../store/running/runningReducer'
+import { setStopped, setRunning, setWaiting, setRunnable} from '../store/running/runningReducer'
 
-import AlgorithmRunner, {
+import algorithmRunner, {
   Algorithms,
   AlgorithmTypes
 } from '../services/AlgorithmRunner'
@@ -34,7 +34,8 @@ const AlgorithmSider: React.FC = () => {
 
   const dispatch = useDispatch()
 
-  const running = useSelector((state: RootState) => state.running)
+  const running = useSelector((state: RootState) => state.running.state)
+  const algorithm = useSelector((state: RootState) => state.running.runnable)
   const listSize = useSelector((state: RootState) => state.numberList.size)
 
   useEffect(() => {
@@ -49,7 +50,7 @@ const AlgorithmSider: React.FC = () => {
 
     dispatch(setRunning())
     
-    await AlgorithmRunner.runAlgorithm()
+    await algorithmRunner(algorithm)
   }
 
   const stopVisualization = (): void => {
@@ -65,8 +66,7 @@ const AlgorithmSider: React.FC = () => {
     }
 
     checkIfNotWaiting()
-
-    AlgorithmRunner.setAlgorithm(event.key as Algorithms)
+    dispatch(setRunnable(event.key as Algorithms))
 
   }
 
@@ -156,7 +156,7 @@ const AlgorithmSider: React.FC = () => {
           <Menu
             mode="inline"
             style={{ borderRight: 0 , transition: 'none'}}
-            defaultSelectedKeys={[AlgorithmRunner.getAlgorithm()]}
+            defaultSelectedKeys={[algorithm]}
             onClick={menuOnClick}
           >
           

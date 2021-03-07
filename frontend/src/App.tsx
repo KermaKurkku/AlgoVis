@@ -17,6 +17,7 @@ import PageHeader from './Components/PageHeader'
 //import SortWorker from 'comlink-loader!./worker'
 
 import { useContainerDimensions } from './hooks'
+import Description from './Components/Description'
 
 
 const App: React.FC = () => {
@@ -60,8 +61,7 @@ const App: React.FC = () => {
                     <Bars componentWidth={width} />
                 }
                 <Divider />
-                <Skeleton />
-                <Skeleton />
+                <Description />
               </div>
             </Content>
           </Layout>

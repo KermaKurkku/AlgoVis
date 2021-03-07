@@ -3,8 +3,12 @@ import {
   SET_RUNNING,
   SET_STOPPED,
   SET_FINISHED,
-  SET_WAITING
+  SET_WAITING,
+  SET_RUNNABLE
 } from './types'
+
+import {Algorithms} from '../../services/AlgorithmRunner'
+
 
 export const setRunningAction = (): RunningStateAction => {
   return {
@@ -27,5 +31,12 @@ export const setFinishedAction = (): RunningStateAction => {
 export const setWaitingAction = (): RunningStateAction => {
   return {
     type: SET_WAITING
+  }
+}
+
+export const setRunnableAction = (algorithmName: Algorithms): RunningStateAction => {
+  return {
+    type: SET_RUNNABLE,
+    payload: algorithmName
   }
 }

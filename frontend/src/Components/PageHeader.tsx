@@ -7,7 +7,7 @@ import {
 
 import { useSelector, useDispatch } from 'react-redux'
 
-import AlgorithmRunner, {
+import algorithmRunner, {
   Algorithms,
   AlgorithmTypes
 } from '../services/AlgorithmRunner'
@@ -26,7 +26,8 @@ type PageHeaderProps = {
 const PageHeader = ({ width }: PageHeaderProps) => {
   const dispatch = useDispatch()
 
-  const running = useSelector((state: RootState) => state.running)
+  const running = useSelector((state: RootState) => state.running.state)
+  const algorithm = useSelector((state: RootState) => state.running.runnable)
   const listSize = useSelector((state: RootState) => state.numberList.size)
 
   const startVisualization = async (): Promise<void> => {
@@ -35,7 +36,7 @@ const PageHeader = ({ width }: PageHeaderProps) => {
 
     dispatch(setRunning())
     
-    await AlgorithmRunner.runAlgorithm()
+    await algorithmRunner(algorithm)
   }
 
   const stopVisualization = (): void => {

@@ -18,7 +18,7 @@ const ListSizeSlider = ({ breakpoint }: SliderProps) => {
   const maxSliderValue = breakpoint ? 20 : 40
 
   const listSize = useSelector((state: RootState) => state.numberList.size)
-  const visualizationStatus = useSelector((state: RootState) => state.running)
+  const visualizationStatus = useSelector((state: RootState) => state.running.state)
 
   const [sliderValue, setSliderValue] = useState(listSize)
  

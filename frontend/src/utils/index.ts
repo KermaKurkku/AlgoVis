@@ -2,7 +2,7 @@ import state from '../store'
 import { runningType } from '../store/running/types'
 
 export const isRunning = (): runningType => {
-  const running = state.getState().running
+  const running = state.getState().running.state
   switch (running) {
   case 'running':
     return 'running'

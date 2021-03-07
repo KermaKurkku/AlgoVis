@@ -1,5 +1,5 @@
-import AlgorithmRunner from './algorithmRunner'
+import algorithmRunner from './algorithmRunner'
 
 export * from './types'
 
-export default AlgorithmRunner
+export default algorithmRunner

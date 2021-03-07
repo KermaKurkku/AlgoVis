@@ -10,23 +10,8 @@ import {
 
 import * as a from '../../Algorithms'
 
-class AlgorithmRunner {  
-  private selectedAlgorithm: Algorithms
-
-  constructor() {
-    this.selectedAlgorithm = 'BubbleSort'
-  }
-
-  setAlgorithm(algorithm: Algorithms) {
-    this.selectedAlgorithm = algorithm
-  }
-
-  getAlgorithm() {
-    return this.selectedAlgorithm
-  }
-
-  runAlgorithm = async () => {
-    switch (this.selectedAlgorithm) {
+const algorithmRunner = async (algorithm: Algorithms) =>  {  
+    switch (algorithm) {
     case BubbleSort:
       return await a.bubbleSort()
     case QuickSort:
@@ -42,10 +27,6 @@ class AlgorithmRunner {
     default:
       return
     }
-  }
-
 }
 
-const instance = new AlgorithmRunner()
-
-export default instance
+export default algorithmRunner

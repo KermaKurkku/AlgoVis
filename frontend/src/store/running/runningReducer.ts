@@ -1,21 +1,29 @@
 import {
   RunningStateAction,
-  runningType,
+  RunningState,
   SET_RUNNING,
   SET_STOPPED,
   SET_FINISHED,
-  SET_WAITING
+  SET_WAITING,
+  SET_RUNNABLE
 } from './types'
 import {
   setRunningAction,
   setStoppedAction,
   setFinishedAction,
-  setWaitingAction
+  setWaitingAction,
+  setRunnableAction
 } from './actions'
+
+import {Algorithms} from '../../services/AlgorithmRunner'
+
 
 import { AppType } from '..'
 
-const initialState: runningType = 'finished'
+const initialState: RunningState = {
+  state: 'finished',
+  runnable: 'BubbleSort'
+}
 
 export const setRunning = (): AppType => async dispatch => {
   dispatch(setRunningAction())
@@ -33,18 +41,39 @@ export const setWaiting = (): AppType => async dispatch => {
   dispatch(setWaitingAction())
 }
 
-const reducer = (state = initialState, action: RunningStateAction) => {
+export const setRunnable = (algorithmName: Algorithms): AppType => async dispatch => {
+  dispatch(setRunnableAction(algorithmName))
+}
+
+const reducer = (runningState = initialState, action: RunningStateAction): RunningState  => {
   switch (action.type){
   case SET_RUNNING:
-    return 'running'
+    return {
+      state: 'running',
+      runnable: runningState.runnable
+    }
   case SET_STOPPED:
-    return 'stopped'
+    return {
+      state: 'stopped',
+      runnable: runningState.runnable
+    }
   case SET_FINISHED:
-    return 'finished'
+    return {
+      state: 'finished',
+      runnable: runningState.runnable
+    }
   case SET_WAITING:
-    return 'waiting'
+    return {
+      state: 'waiting',
+      runnable: runningState.runnable
+    }
+  case SET_RUNNABLE:
+    return {
+      state: runningState.state,
+      runnable: action.payload
+    }
   default:
-    return state
+    return runningState
   }
 }
 
