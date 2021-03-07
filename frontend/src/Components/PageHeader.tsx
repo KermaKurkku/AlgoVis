@@ -21,7 +21,7 @@ type PageHeaderProps = {
   width: number
 }
 
-const PageHeader = ({ width }: PageHeaderProps) => {
+const PageHeader: React.FC<PageHeaderProps> = ({ width }: PageHeaderProps) => {
   const dispatch = useDispatch()
 
   const running = useSelector((state: RootState) => state.running.state)

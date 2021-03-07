@@ -1,5 +1,5 @@
-import React, { useState, useEffect, ReactElement, ReactHTML } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
 
 import { Skeleton, Typography } from 'antd'
@@ -8,8 +8,11 @@ const { Paragraph, Title } = Typography
 import descriptionService from '../services/descriptions'
 import { RootState } from '../store'
 
+type propType = {
+	width: number
+}
 
-const Description = ({width}: {width: number}) => {
+const Description: React.FC<propType> = ({width}: propType) => {
 	const [description, setDescription] = useState<string>("")
 
 	const algorithm = useSelector((state: RootState) => state.running.runnable)
@@ -17,7 +20,10 @@ const Description = ({width}: {width: number}) => {
 	useEffect(() => {
 		const getDesc = async () => {
 			const desc = await descriptionService.fetchDescription(algorithm.toLowerCase())
-			setDescription(desc)
+			if (!desc)
+				setDescription("")
+			else
+				setDescription(desc)
 			console.log(desc)
 		}
 		console.log('useEffect')
@@ -29,7 +35,7 @@ const Description = ({width}: {width: number}) => {
 	const mapToParagraphs = (par: string, i: number) => {
 		console.log
 
-		const mapToCode = (desc: any, i: number) => {
+		const mapToCode = (desc: string, i: number) => {
 			return <p key={i} style={{whiteSpace: width > 700 ? 'pre-wrap' : 'pre-line' }}>{desc}<br/></p>
 		}
 

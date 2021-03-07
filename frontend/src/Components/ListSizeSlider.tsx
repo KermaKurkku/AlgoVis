@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Slider } from 'antd'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,7 +13,7 @@ type SliderProps = {
   breakpoint: boolean
 }
 
-const ListSizeSlider = ({ breakpoint }: SliderProps) => {
+const ListSizeSlider: React.FC<SliderProps> = ({ breakpoint }: SliderProps) => {
   const dispatch = useDispatch()
   const maxSliderValue = breakpoint ? 20 : 40
 
@@ -37,13 +37,11 @@ const ListSizeSlider = ({ breakpoint }: SliderProps) => {
     
   }, [listSize])
 
-  const onSliderChange = (value: any) => {
-    if (typeof value !== 'number' || isNaN(Number(value)))
-      return
+  const onSliderChange = (value: number) => {
     setSliderValue(value)
   }
 
-  const setNewListSize = (value: any) => {
+  const setNewListSize = (value: number) => {
     if (typeof value !== 'number')
       return
     if (value > maxSliderValue)

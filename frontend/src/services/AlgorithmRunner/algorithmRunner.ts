@@ -10,7 +10,7 @@ import {
 
 import * as a from '../../Algorithms'
 
-const algorithmRunner = async (algorithm: Algorithms) =>  {  
+const algorithmRunner = async (algorithm: Algorithms): Promise<void> =>  {  
     switch (algorithm) {
     case BubbleSort:
       return await a.bubbleSort()

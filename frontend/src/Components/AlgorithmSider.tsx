@@ -57,6 +57,7 @@ const AlgorithmSider: React.FC = () => {
     dispatch(setStopped())
   }
 
+  // eslint-disable-next-line
   const menuOnClick = (event: any)  => {
     const checkIfNotWaiting = async () => {
       if (running !== 'waiting') {

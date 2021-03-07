@@ -3,7 +3,7 @@
   Calculates the bounding boxes of elements given to it
 */
 
-import React, { ReactChildren } from 'react'
+import React from 'react'
 
 import { AnimationChild, AnimationChildren, DOMRectDict } from '../types'
 

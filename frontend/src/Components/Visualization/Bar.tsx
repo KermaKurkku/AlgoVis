@@ -1,4 +1,4 @@
-import React, { MutableRefObject } from 'react'
+import React from 'react'
 
 type Props = {
   height: number;
@@ -38,7 +38,7 @@ const Bar: React.FC<Bar> = React.forwardRef<Ref, Props>((props: Props, ref) => {
     zIndex: 50,
     borderStyle: 'solid',
     borderWidth: '0.2em',
-    borderColor: '#1890ff',//'#f0f2f5',
+    borderColor: '#1890ff',
     margin: '0.1em',
     opacity: '100%'
   }

@@ -47,6 +47,10 @@ export const removeSub = (): AppType => async dispatch => {
   dispatch(removeSubAction())
 }
 
+export const setArea = (start: number, end: number): AppType => async dispatch => {
+  dispatch(setAreaAction(start, end))
+}
+
 const reducer = (state = initialState, action: CurrentNumberActionType): CurrentNumberState => {
   switch(action.type) {
   case SET_CURRENT:

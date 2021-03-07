@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createRef } from 'react'
+import React, { createRef } from 'react'
 
 import Bar from './Visualization/Bar'
 
@@ -12,10 +12,6 @@ interface Props {
   componentWidth: number;
 }
 
-// wery much in progress
-// Maybe
-// https://itnext.io/animating-list-reordering-with-react-hooks-aca5e7eeafba
-// https://codesandbox.io/s/reorder-elements-with-slide-transition-and-react-hooks-flip-211f2?from-embed
 const Bars: React.FC<Props> = ({componentWidth}: { componentWidth: number } ) => {
   const listSize: number = useSelector((state: RootState) => state.numberList.size)
   const list: number[] = useSelector((state: RootState) => state.numberList.list)
@@ -33,7 +29,7 @@ const Bars: React.FC<Props> = ({componentWidth}: { componentWidth: number } ) =>
             return <Bar key={b} width={width} height={b/listSize} area={i >= selected.area.start && i <= selected.area.end}
             // Fix types here
             // @ts-expect-error
-              main={i === selected.main} sub={i === selected.sub} ref={barRef} // Ref is null for some reason
+              main={i === selected.main} sub={i === selected.sub} ref={barRef}
             />
         })}
       </AnimateBars>

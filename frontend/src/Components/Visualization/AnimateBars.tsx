@@ -4,18 +4,21 @@
   Used to animate changing bar positions
 */
 
-import React, { useState, useEffect, useLayoutEffect, ReactChildren } from 'react'
+import React, { useState, useEffect, useLayoutEffect } from 'react'
 import { usePrevious } from '../../hooks'
 import calculateBoundingBoxes from '../../utils/calculateBoundingBoxes'
 
 import { AnimationChild, DOMRectDict } from '../../types'
 
-const AnimateBars: React.FC<any> = ({ children }: { children: any}) => {
+type propType = { // eslint-disable-next-line
+  children: any
+}
+
+const AnimateBars: React.FC<propType> = ({ children }: propType) => {
   const [boundingBox, setBoundingBox] = useState<DOMRectDict | null>({})
   const [prevBoundingBox, setPrevBoundingBox] = useState<DOMRectDict | null>({})
   const prevChildren = usePrevious(children)
 
-  // Fix bounding boxes updating when list size updates
   useLayoutEffect(() => {
     const newBoundingBox = calculateBoundingBoxes(children)
     setBoundingBox(newBoundingBox)
