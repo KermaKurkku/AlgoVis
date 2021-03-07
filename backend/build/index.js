@@ -7,6 +7,7 @@ require('dotenv').config();
 const express_1 = __importDefault(require("express"));
 const cors = require('cors');
 const lists_1 = __importDefault(require("./routes/lists"));
+const descriptions_1 = __importDefault(require("./routes/descriptions"));
 const app = express_1.default();
 app.use(cors());
 app.use(express_1.default.json());
@@ -17,6 +18,7 @@ app.get('/api/ping', (_req, res) => {
     res.send('pong');
 });
 app.use('/api/list', lists_1.default);
+app.use('/api/description', descriptions_1.default);
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });

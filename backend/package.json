@@ -1,6 +1,6 @@
 {
   "name": "algovis_backend",
-  "version": "0.8.0",
+  "version": "1.0.0",
   "description": "Backend for AlgoVis, algorithm visualisator",
   "main": "index.js",
   "scripts": {
