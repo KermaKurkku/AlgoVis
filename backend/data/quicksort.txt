@@ -1,0 +1,7 @@
+Quicksort is an efficient sorting algorithm invented by Tony Hoare in 1959. It is one of the most commonly used sorting algorithms. When implemented well, it can be somewhat faster than merge sort.
+Quicksort is a divide and conquer algorithm that works by selecting a pivot element from the list, often either the first, last or a random item. The algorithm then divides the list into two sub-arrays according to wether the items are less or greater than the pivot. The same function is then repeated recursively on each partition.
+The complexity of the algorithm is O(n log n) in best case scenarios and O(n²) in worst case scenarios, where n is the number of items in the list.
+
+# Pseudocode
+
+//Quicksort(A, lo, hi)//    if lo < hi then//        p := Partition(A, lo, hi)//        Quicksort(A, lo, p - 1)//        Quicksort(A, p + 1, hi)//	end if////Partition(A, lo, hi)//    pivot := A[hi]//    i := lo//    for j := lo to hi do//        if A[j] < pivot then//            swap A[i] with A[j]//            i := i + 1//	end for//    swap A[i] with A[hi]//    return i
