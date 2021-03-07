@@ -4,8 +4,11 @@ import {
   Menu,
   Skeleton,
   Divider,
-  Button
+  Button,
+  Typography
 } from 'antd'
+
+const { Title } = Typography
 
 const { Header, Footer, Content } = Layout
 
@@ -19,13 +22,18 @@ import PageHeader from './Components/PageHeader'
 import { useContainerDimensions } from './hooks'
 import Description from './Components/Description'
 
+import { useSelector } from 'react-redux'
+import { Algorithms } from './services/AlgorithmRunner'
+import { RootState } from './store'
+
+
 
 const App: React.FC = () => {
 
   const [loading, setLoading] = useState<boolean>(false)
   const componentRef = useRef<HTMLDivElement>(null)
   const { width } = useContainerDimensions(componentRef)
-
+  const algorithm: Algorithms = useSelector((state: RootState) => state.running.runnable)
 
   useEffect(() => {
     if (loading === false) {
@@ -43,12 +51,14 @@ const App: React.FC = () => {
         <PageHeader width={width} />
         <Layout style={{ 
           margin: width > 992 ? '0 5em 0 5em' : '0',
-          marginTop: width > 922 ? 0 : '64px'
+          marginTop: width > 922 ? 0 : '64px',
+          minHeight: '90vh'
         }}>
 
           <AlgorithmSider />
 
           <Layout style={{ padding: '0 10em em' }}>
+           
             <Content className="site-layout-content" id='container'
                 style={{
                   padding: 24,

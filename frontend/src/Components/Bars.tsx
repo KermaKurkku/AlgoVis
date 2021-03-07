@@ -25,6 +25,7 @@ const Bars: React.FC<Props> = ({componentWidth}: { componentWidth: number } ) =>
 
   return (
     <div style={{ display: 'flex' }}>
+      
       <AnimateBars>
         {
           list.map((b, i) => {

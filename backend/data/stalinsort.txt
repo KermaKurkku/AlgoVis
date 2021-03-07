@@ -1,0 +1,9 @@
+#JOKE!
+
+Stalin sort is one of the most effective sorting algorithms created by gustavo-depaula on github. It is one of the only single pass sorting algorithms, meaning it sorts the list with only a single pass through the list.
+The algorithm works by iterating through the list and checking if the elements are in order. Any element found not to be in order is eliminated.
+The algorithm's complexity is always O(n), where n is the amount of items in the list.
+
+#Pseudocode
+
+//StalinSort(A[])//	n := A.length//	bigger := 0//	B SET empty list////	for i := 0 to n do://		if A[i] >= bigger://			bigger := A[i]//			B.push(A[i])//		end if//	end for////	return B

@@ -19,7 +19,7 @@ import algorithmRunner, {
   Algorithms,
   AlgorithmTypes
 } from '../services/AlgorithmRunner'
-import { RootState } from '../store'
+import { RootState, runningType } from '../store'
 import { fetchNewList } from '../store/list/listReducer'
 
 const AlgorithmSider: React.FC = () => {
@@ -34,9 +34,9 @@ const AlgorithmSider: React.FC = () => {
 
   const dispatch = useDispatch()
 
-  const running = useSelector((state: RootState) => state.running.state)
-  const algorithm = useSelector((state: RootState) => state.running.runnable)
-  const listSize = useSelector((state: RootState) => state.numberList.size)
+  const running: runningType = useSelector((state: RootState) => state.running.state)
+  const algorithm: Algorithms = useSelector((state: RootState) => state.running.runnable)
+  const listSize: number = useSelector((state: RootState) => state.numberList.size)
 
   useEffect(() => {
     if (running === 'running' && breakpoint && open)

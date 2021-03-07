@@ -1,0 +1,8 @@
+#JOKE!
+
+Bogosort, also known as permutation sort, stupid sort or slowsort is a highly inefficient sortign algorithm based on the generate and test paradigm. The algorithm is not actually useful for sorting, but it can be used for educational purposes to contrast it to more efficient algorithms.
+The algorithm has a best case performance of O(n), average case performance of O((n+1)!), n being the amount of items in the list, and it's worst case performance is technically unbounded.  It is one of the worst performing algorithms possible.
+
+#Pseudocode
+
+//IsSorted(A[])//	for i := 0 to A.length-1 do://		if A[i] > A[i+1]://			return false//		end if//	end for//	return true////BogoSort(A[])//	while not IsSorted(A[])//		suffle(A)//	end while
