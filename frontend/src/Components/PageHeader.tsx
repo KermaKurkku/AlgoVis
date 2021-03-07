@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState} from 'react'
+import React from 'react'
 import {
   Layout,
   Menu,
@@ -8,13 +8,11 @@ import {
 import { useSelector, useDispatch } from 'react-redux'
 
 import algorithmRunner, {
-  Algorithms,
-  AlgorithmTypes
 } from '../services/AlgorithmRunner'
 
 import { RootState } from '../store'
 import { fetchNewList } from '../store/list/listReducer'
-import { setStopped, setRunning, setWaiting } from '../store/running/runningReducer'
+import { setStopped, setRunning,  } from '../store/running/runningReducer'
 
 
 const { Header } = Layout

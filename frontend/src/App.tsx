@@ -58,7 +58,9 @@ const App: React.FC = () => {
           <AlgorithmSider />
 
           <Layout style={{ padding: '0 10em em' }}>
-           
+            <span style={{ display: 'block', marginLeft: width > 992 ? '5em' : 'auto', marginRight: 'auto' }}>
+              <Title level={3} style={{}}>{algorithm}</Title>
+            </span>
             <Content className="site-layout-content" id='container'
                 style={{
                   padding: 24,
@@ -71,7 +73,7 @@ const App: React.FC = () => {
                     <Bars componentWidth={width} />
                 }
                 <Divider />
-                <Description />
+                <Description width={width}/>
               </div>
             </Content>
           </Layout>

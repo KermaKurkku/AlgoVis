@@ -9,7 +9,7 @@ import descriptionService from '../services/descriptions'
 import { RootState } from '../store'
 
 
-const Description = () => {
+const Description = ({width}: {width: number}) => {
 	const [description, setDescription] = useState<string>("")
 
 	const algorithm = useSelector((state: RootState) => state.running.runnable)
@@ -30,13 +30,16 @@ const Description = () => {
 		console.log
 
 		const mapToCode = (desc: any, i: number) => {
-			return <span key={i} style={{whiteSpace: 'pre'}}>{desc}<br/></span>
+			return <p key={i} style={{whiteSpace: width > 700 ? 'pre-wrap' : 'pre-line' }}>{desc}<br/></p>
 		}
 
 		if (par[0] === '#')
-			return <Title level={4} >{par.substring(1)}</Title>
+			return <Title level={4} key={par.substring(1,3)}>{par.substring(1)}</Title>
 		else if (par[0]==='/' && par[1]==='/')
-			return <Paragraph code >{par.substring(2).split('//').map(mapToCode)}</Paragraph>
+			return <Paragraph 
+				key={`code${par.substring(2,4)}`}
+				style={{ overflowWrap: 'break-word', fontFamily: 'monospace'}}
+			>{par.substring(2).split('//').map(mapToCode)}</Paragraph>
 		else 
 			return <Paragraph key={i}>{par}</Paragraph>
 	}

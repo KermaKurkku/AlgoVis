@@ -91,7 +91,7 @@ const AlgorithmSider: React.FC = () => {
   const handleBreakpoint = (breakpoint: boolean) => {
     if (breakpoint) {
       setCurrStyle({
-        position: 'absolute',
+        position: 'fixed',
         zIndex: 100,
         transition: 'all 0.2s'
       })
