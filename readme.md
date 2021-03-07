@@ -1,6 +1,6 @@
 # AlgoVis
 
-Algorith visualization webapp for Fullstack Open 2020 project
+Algorithm visualization webapp for Fullstack Open 2020 project
 
 ### Currently supported algorithms
 
