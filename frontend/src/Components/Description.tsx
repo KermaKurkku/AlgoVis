@@ -24,17 +24,12 @@ const Description: React.FC<propType> = ({width}: propType) => {
 				setDescription("")
 			else
 				setDescription(desc)
-			console.log(desc)
 		}
-		console.log('useEffect')
-		console.log(algorithm)
 
 		getDesc()
 	}, [algorithm])
 
 	const mapToParagraphs = (par: string, i: number) => {
-		console.log
-
 		const mapToCode = (desc: string, i: number) => {
 			return <p key={i} style={{whiteSpace: width > 700 ? 'pre-wrap' : 'pre-line' }}>{desc}<br/></p>
 		}

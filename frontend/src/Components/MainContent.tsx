@@ -36,7 +36,7 @@ const MainContent: React.FC<propType> = ({width}: propType) => {
 	return (
 		<Layout style={{ padding: '0 10em em' }}>
 			<span style={{ display: 'block', marginTop: '1em', marginLeft: width > 992 ? '5em' : 'auto', marginRight: 'auto' }}>
-				<Title level={3} style={{}}>{algorithm}</Title>
+				<Title level={3} >{algorithm}</Title>
 			</span>
 			<Content className="site-layout-content" id='container'
 				style={{

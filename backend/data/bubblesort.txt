@@ -4,4 +4,4 @@ This algorithm performs poorly in real world use with an average complexity of O
 
 #Pseudocode implementation
 
-//Bubblesort(A[])//    n := length(A)//    do//        swapped := false//        for i := 1 to n - 1 do//            if A[i - 1] > A[i] then//                swap(A[i - 1], A[i])//                swapped = true//            end if//        end for//        n := n - 1//    while not swapped
+//Bubblesort(A[])//    n := length(A)//    do//        swapped := false//        for i := 1 to n - 1 inclusive do//            if A[i - 1] > A[i] then//                swap(A[i - 1], A[i])//                swapped = true//            end if//        end for//        n := n - 1//    while not swapped
