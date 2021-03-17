@@ -36,13 +36,13 @@ const Description: React.FC<propType> = ({width}: propType) => {
 
 		if (par[0] === '#')
 			return <Title level={4} key={par.substring(1,3)}>{par.substring(1)}</Title>
-		else if (par[0]==='/' && par[1]==='/')
+		if (par[0]==='/' && par[1]==='/')
 			return <Paragraph 
 				key={`code${par.substring(2,4)}`}
 				style={{ overflowWrap: 'break-word', fontFamily: 'monospace'}}
 			>{par.substring(2).split('//').map(mapToCode)}</Paragraph>
-		else 
-			return <Paragraph key={i}>{par}</Paragraph>
+
+		return <Paragraph key={i}>{par}</Paragraph>
 	}
 
 	return (

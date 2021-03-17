@@ -3,7 +3,8 @@ import { RefObject } from 'react'
 export interface AnimationChild {
 	key: number;
 	id: number | string;
-	ref: RefObject<any>
+	// eslint-disable-next-line
+	ref: RefObject<any>;
 }
 
 export type AnimationChildren = AnimationChild[]

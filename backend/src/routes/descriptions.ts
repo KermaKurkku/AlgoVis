@@ -11,7 +11,6 @@ router.post('/', (req, res) => {
 		if (err) {
 			console.log(err.stack)
 		} else {
-			console.log(body, 'found')
 		}
 		res.send(data)
 		

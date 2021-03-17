@@ -1,8 +1,8 @@
 import {Algorithms} from '../../services/AlgorithmRunner'
 
 export type RunningState = {
-  state: 'running' | 'stopped' | 'finished' | 'waiting',
-  runnable: Algorithms
+  state: 'running' | 'stopped' | 'finished' | 'waiting';
+  runnable: Algorithms;
 }
 
 export type runningType = 'running' | 'stopped' | 'finished' | 'waiting'
@@ -34,8 +34,8 @@ interface SetWaiting {
 }
 
 interface SetRunnable {
-  type: typeof SET_RUNNABLE,
-  payload: Algorithms
+  type: typeof SET_RUNNABLE;
+  payload: Algorithms;
 }
 
 export type RunningStateAction = SetRunning | SetStopped | SetFinished | SetWaiting | SetRunnable

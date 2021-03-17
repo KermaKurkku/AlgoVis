@@ -4,7 +4,7 @@ export interface CurrentNumberState {
   area: {
     start: number;
     end: number;
-  }
+  };
 }
 
 export const SET_CURRENT = 'SET_CURRENT'
@@ -52,9 +52,9 @@ interface RemoveSubAction {
 interface SetAreaAction {
   type: typeof SET_AREA;
   payload: {
-    start: number,
-    end: number
-  }
+    start: number;
+    end: number;
+  };
 }
 
 export type CurrentNumberActionType = SetCurrentAction | SetMainAction | SetSubAction | RemoveCurrentAction | 

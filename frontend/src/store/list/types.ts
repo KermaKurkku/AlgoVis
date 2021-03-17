@@ -10,7 +10,7 @@ interface SetList {
   payload: {
     list: number[];
     size: number;
-  }
+  };
 }
 
 export type ListActionType = SetList
