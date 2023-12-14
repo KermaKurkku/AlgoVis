@@ -49,4 +49,4 @@ ___
 | 7.3.21 | 10.30 - 14.30 15.30 - 18.15 | 6.75 | Created descripions for algorithms. Changed website name and icon. Clearing eslint errors. Updated heroku to version 1.0.0. Moved main content into it's own component. General maintenance and bugfixing. | |
 |        |         |  |                                                                               | 109h |
 
-Link to app <https://algovis-sort.herokuapp.com/> version 1.0.0
+Link to app <https://algovis-sort.herokuapp.com/> version 1.0.0 ## NO LONGER WORKING
